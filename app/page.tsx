@@ -99,6 +99,59 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Mission Section */}
+      <section className="py-20 bg-primary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-balance">Our Mission</h2>
+              <div className="space-y-4">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  At Secure Monitoring, our mission is to provide unwavering protection to businesses and communities by delivering exceptional, human-centered surveillance monitoring that sets the industry standard for reliability and responsiveness.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  We believe that security is not just about technology—it's about trust, dedication, and the human expertise that turns cameras into comprehensive protection. Our trained operators are committed to being your vigilant partners, ensuring that every moment is watched with precision and every threat is met with swift action.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  We empower businesses to operate with confidence, knowing that round-the-clock professional monitoring stands between them and uncertainty. Your peace of mind is our priority, and your security is our purpose.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-primary to-accent rounded-lg p-8 text-white">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Our Values</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <Shield className="w-6 h-6 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="font-semibold">Vigilance</p>
+                        <p className="text-sm opacity-90">Constant, unwavering attention to detail</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Clock className="w-6 h-6 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="font-semibold">Reliability</p>
+                        <p className="text-sm opacity-90">24/7 dependable service you can trust</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Users className="w-6 h-6 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="font-semibold">Excellence</p>
+                        <p className="text-sm opacity-90">Professional operators with strict training</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <Testimonials />
 
