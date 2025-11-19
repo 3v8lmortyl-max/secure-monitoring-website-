@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,8 +22,10 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // In production, this would send to a backend API
-    console.log('Form submitted:', formData)
+    const whatsappMessage = `Name: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`
+    const whatsappUrl = `https://wa.me/919392525869?text=${whatsappMessage}`
+    window.open(whatsappUrl, '_blank')
+    
     setSubmitted(true)
     setTimeout(() => {
       setFormData({ name: '', phone: '', email: '', message: '' })
@@ -69,6 +71,16 @@ export default function Contact() {
                     </div>
                   </div>
 
+                  <div className="flex space-x-4">
+                    <MessageCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold mb-2">WhatsApp</h3>
+                      <a href="https://wa.me/919392525869" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                        +91 9392525869
+                      </a>
+                    </div>
+                  </div>
+
                   {/* Email */}
                   <div className="flex space-x-4">
                     <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
@@ -76,6 +88,16 @@ export default function Contact() {
                       <h3 className="font-semibold mb-2">Email</h3>
                       <a href="mailto:securemonitoring24hr@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                         securemonitoring24hr@gmail.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex space-x-4">
+                    <Instagram className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold mb-2">Instagram</h3>
+                      <a href="https://instagram.com/secure.monitoring" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                        @secure.monitoring
                       </a>
                     </div>
                   </div>
@@ -100,8 +122,8 @@ export default function Contact() {
                 
                 {submitted ? (
                   <div className="bg-primary/10 border border-primary text-primary p-4 rounded-lg">
-                    <p className="font-semibold mb-2">Thank you for your message!</p>
-                    <p>We'll get back to you as soon as possible.</p>
+                    <p className="font-semibold mb-2">Message sent to WhatsApp!</p>
+                    <p>Our team will respond shortly. You can also reach us directly on WhatsApp at +91 9392525869.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -175,7 +197,7 @@ export default function Contact() {
                       type="submit"
                       className="w-full bg-primary hover:bg-accent text-primary-foreground py-3 rounded-lg font-bold transition-colors"
                     >
-                      Send Message
+                      Send Message via WhatsApp
                     </button>
                   </form>
                 )}

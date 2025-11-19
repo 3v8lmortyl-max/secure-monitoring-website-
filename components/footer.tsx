@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Phone } from 'lucide-react'
+import { Mail, Phone, Instagram, MessageCircle } from 'lucide-react'
 
 export function Footer() {
   return (
@@ -44,13 +44,17 @@ export function Footer() {
                 <Phone size={18} />
                 <span className="text-sm">+91 9392525869</span>
               </a>
-              <a href="tel:+918087557454" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
-                <Phone size={18} />
-                <span className="text-sm">+91 8087557454</span>
+              <a href="https://wa.me/919392525869" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
+                <MessageCircle size={18} />
+                <span className="text-sm">WhatsApp</span>
+              </a>
+              <a href="https://instagram.com/secure.monitoring" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
+                <Instagram size={18} />
+                <span className="text-sm">@secure.monitoring</span>
               </a>
               <a href="mailto:securemonitoring24hr@gmail.com" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
                 <Mail size={18} />
-                <span className="text-sm">securemonitoring24hr@gmail.com</span>
+                <span className="text-sm">Email</span>
               </a>
             </div>
           </div>
