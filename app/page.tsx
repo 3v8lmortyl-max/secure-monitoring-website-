@@ -103,15 +103,15 @@ export default function Home() {
       <Testimonials />
 
       {/* CTA Section */}
-      <section className="py-20 bg-card border-t border-border">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Protect Your Property?</h2>
+      <section className="py-20 bg-primary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Protect Your Assets?</h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Get in touch with our team today to learn how Secure Monitoring can protect what matters most to you.
+            Join thousands of businesses trusting Secure Monitoring for their 24/7 surveillance needs.
           </p>
           <Link
             href="/contact"
-            className="bg-primary hover:bg-accent text-primary-foreground px-10 py-4 rounded-lg font-bold transition-colors inline-block text-lg"
+            className="inline-block bg-primary hover:bg-accent text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-colors"
           >
             Get Started Now
           </Link>

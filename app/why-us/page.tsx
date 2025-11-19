@@ -120,22 +120,6 @@ export default function WhyUs() {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-background">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Experience the Secure Monitoring Advantage</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Let our professional team show you how human-based monitoring can protect your property more effectively.
-          </p>
-          <a
-            href="/contact"
-            className="bg-primary hover:bg-accent text-primary-foreground px-10 py-4 rounded-lg font-bold transition-colors inline-block text-lg"
-          >
-            Start Your Free Consultation
-          </a>
-        </div>
-      </section>
     </div>
   )
 }

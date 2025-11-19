@@ -11,7 +11,6 @@ export function Navigation() {
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Why Us', href: '/why-us' },
-    { label: 'Contact', href: '/contact' },
   ]
 
   const handleNavClick = (href: string) => {
@@ -46,12 +45,7 @@ export function Navigation() {
           </div>
 
           {/* CTA Button */}
-          <Link
-            href="/contact"
-            className="hidden sm:inline bg-primary hover:bg-accent text-primary-foreground px-6 py-2 rounded-md font-medium transition-colors"
-          >
-            Contact Us
-          </Link>
+          {/* removed Contact from navigation menu */}
         </div>
 
         <div className="md:hidden overflow-x-auto pb-2">
@@ -66,13 +60,7 @@ export function Navigation() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => handleNavClick('/contact')}
-              className="bg-primary hover:bg-accent text-primary-foreground px-3 py-2 rounded-md font-medium transition-colors text-sm whitespace-nowrap flex-shrink-0"
-            >
-              Contact Us
-            </Link>
+            {/* removed Contact from navigation menu */}
           </div>
         </div>
       </div>
