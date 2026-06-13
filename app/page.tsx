@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import { Shield, Clock, Users, AlertCircle, Eye, Zap, BarChart3, ChevronRight, Phone } from 'lucide-react'
+import { Shield, Clock, Users, Eye, Zap, BarChart3, ChevronRight, Phone } from 'lucide-react'
 import { Testimonials } from '@/components/testimonials'
 import { StatsCounter } from '@/components/stats-counter'
 
