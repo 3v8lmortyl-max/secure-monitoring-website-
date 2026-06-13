@@ -1,12 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { CheckCircle, ChevronRight, Shield, Clock, Users } from 'lucide-react'
+import { ChevronRight, Clock } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about Secure Monitoring — a dedicated remote surveillance operations company providing professional, human-based CCTV monitoring services 24/7.',
-}
+  description: 'Learn about Secure Monitoring — a dedicated remote surveillance operations company providing professional, human-based CCTV monitoring services 24/7.' }
 
 const highlights = [
   'Dedicated 24/7 control room operations',
