@@ -1,203 +1,161 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram } from 'lucide-react'
+import { Phone, Mail, Clock, MessageCircle, Instagram, ChevronRight, Send } from 'lucide-react'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    message: ''
-  })
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const whatsappMessage = `Name: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`
-    const whatsappUrl = `https://wa.me/919392525869?text=${whatsappMessage}`
-    window.open(whatsappUrl, '_blank')
-    
-    setSubmitted(true)
+    setSending(true)
+    const msg = encodeURIComponent(
+      `Hi Secure Monitoring,\n\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n\nMessage: ${formData.message}`
+    )
+    window.open(`https://wa.me/919392525869?text=${msg}`, '_blank')
     setTimeout(() => {
-      setFormData({ name: '', phone: '', email: '', message: '' })
-      setSubmitted(false)
-    }, 3000)
+      setSending(false)
+      setSubmitted(true)
+      setTimeout(() => {
+        setFormData({ name: '', phone: '', email: '', message: '' })
+        setSubmitted(false)
+      }, 4000)
+    }, 800)
   }
 
+  const contactInfo = [
+    { icon: Phone, label: 'Phone', values: ['+91 93925 25869', '+91 80875 57454'], href: 'tel:+919392525869' },
+    { icon: MessageCircle, label: 'WhatsApp', values: ['+91 93925 25869'], href: 'https://wa.me/919392525869' },
+    { icon: Mail, label: 'Email', values: ['securemonitoring24hr@gmail.com'], href: 'mailto:securemonitoring24hr@gmail.com' },
+    { icon: Instagram, label: 'Instagram', values: ['@secure.monitoring'], href: 'https://instagram.com/secure.monitoring' },
+    { icon: Clock, label: 'Availability', values: ['24/7 — We never close'], href: null },
+  ]
+
   return (
-    <div className="w-full">
+    <div className="w-full pt-20">
+
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-card to-secondary/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl">
-            Get in touch with our team. We're here to answer your questions and discuss your security needs.
+      <section className="relative py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
+        <div className="absolute inset-0 grid-overlay opacity-15" />
+        <div className="scan-line" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-xs tracking-widest uppercase text-cyan font-mono mb-4 reveal">Get In Touch</div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 reveal delay-1">Contact Us</h1>
+          <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed reveal delay-2">
+            Reach out to our team. We respond quickly and can have monitoring in place within hours of your inquiry.
           </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20 bg-background">
+      {/* Main */}
+      <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold mb-8">Get In Touch</h2>
-                
-                <div className="space-y-8">
-                  {/* Phone */}
-                  <div className="flex space-x-4">
-                    <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-2">Phone</h3>
-                      <div className="space-y-1">
-                        <p className="text-muted-foreground">
-                          <a href="tel:+919392525869" className="hover:text-primary transition-colors">+91 9392525869</a>
-                        </p>
-                        <p className="text-muted-foreground">
-                          <a href="tel:+918087557454" className="hover:text-primary transition-colors">+91 8087557454</a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="flex space-x-4">
-                    <MessageCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-2">WhatsApp</h3>
-                      <a href="https://wa.me/919392525869" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                        +91 9392525869
-                      </a>
+            {/* Contact info */}
+            <div className="space-y-4 reveal">
+              <h2 className="text-2xl font-bold mb-8">Reach Us Directly</h2>
+              {contactInfo.map((c, i) => {
+                const Icon = c.icon
+                const Wrap = c.href ? 'a' : 'div'
+                const props = c.href
+                  ? { href: c.href, target: c.href.startsWith('http') ? '_blank' : undefined, rel: c.href.startsWith('http') ? 'noopener noreferrer' : undefined }
+                  : {}
+                return (
+                  <Wrap
+                    key={i}
+                    {...props}
+                    className={`glass p-5 flex gap-4 items-start transition-all duration-200 ${c.href ? 'hover:border-cyan/40 cursor-pointer group' : ''}`}
+                  >
+                    <div className="w-10 h-10 border border-cyan/30 flex items-center justify-center flex-shrink-0">
+                      <Icon size={16} className="text-cyan" />
                     </div>
-                  </div>
-
-                  {/* Email */}
-                  <div className="flex space-x-4">
-                    <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-2">Email</h3>
-                      <a href="mailto:securemonitoring24hr@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                        securemonitoring24hr@gmail.com
-                      </a>
+                      <div className="text-xs tracking-widest uppercase text-muted-foreground mb-1 font-mono">{c.label}</div>
+                      {c.values.map((v, vi) => (
+                        <div key={vi} className={`text-sm font-medium ${c.href ? 'group-hover:text-cyan transition-colors' : ''}`}>{v}</div>
+                      ))}
                     </div>
-                  </div>
-
-                  <div className="flex space-x-4">
-                    <Instagram className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-2">Instagram</h3>
-                      <a href="https://instagram.com/secure.monitoring" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                        @secure.monitoring
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Hours */}
-                  <div className="flex space-x-4">
-                    <Clock className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-2">Hours</h3>
-                      <p className="text-muted-foreground">24/7 Service</p>
-                      <p className="text-sm text-muted-foreground mt-2">Available anytime for your security needs</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    {c.href && <ChevronRight size={14} className="ml-auto text-muted-foreground group-hover:text-cyan transition-colors flex-shrink-0 mt-1" />}
+                  </Wrap>
+                )
+              })}
             </div>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <div className="bg-card border border-border rounded-lg p-8">
-                <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-                
+            {/* Form */}
+            <div className="lg:col-span-2 reveal delay-2">
+              <div className="glass p-8 md:p-10">
+                <h2 className="text-2xl font-bold mb-2">Send a Message</h2>
+                <p className="text-sm text-muted-foreground mb-8">Submitting this form opens WhatsApp with your message pre-filled — quick and direct.</p>
+
                 {submitted ? (
-                  <div className="bg-primary/10 border border-primary text-primary p-4 rounded-lg">
-                    <p className="font-semibold mb-2">Message sent to WhatsApp!</p>
-                    <p>Our team will respond shortly. You can also reach us directly on WhatsApp at +91 9392525869.</p>
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 border border-cyan/50 flex items-center justify-center mx-auto mb-6">
+                      <Send size={24} className="text-cyan" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+                    <p className="text-muted-foreground">We've received your enquiry and will respond shortly via WhatsApp.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                        Your Name
-                      </label>
+                      <label className="block text-xs tracking-widest uppercase text-muted-foreground mb-2 font-mono">Your Name</label>
                       <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground focus:outline-none focus:border-primary"
-                        placeholder="John Doe"
+                        type="text" name="name" value={formData.name} onChange={handleChange} required
+                        placeholder="John Smith"
+                        className="w-full bg-background border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-cyan/60 transition-colors"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-semibold mb-2">
-                          Phone Number
-                        </label>
+                        <label className="block text-xs tracking-widest uppercase text-muted-foreground mb-2 font-mono">Phone Number</label>
                         <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          required
-                          className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground focus:outline-none focus:border-primary"
+                          type="tel" name="phone" value={formData.phone} onChange={handleChange} required
                           placeholder="+91 XXXXXXXXXX"
+                          className="w-full bg-background border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-cyan/60 transition-colors"
                         />
                       </div>
-
                       <div>
-                        <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                          Email Address
-                        </label>
+                        <label className="block text-xs tracking-widest uppercase text-muted-foreground mb-2 font-mono">Email Address</label>
                         <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground focus:outline-none focus:border-primary"
+                          type="email" name="email" value={formData.email} onChange={handleChange} required
                           placeholder="your@email.com"
+                          className="w-full bg-background border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-cyan/60 transition-colors"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-semibold mb-2">
-                        Message
-                      </label>
+                      <label className="block text-xs tracking-widest uppercase text-muted-foreground mb-2 font-mono">Message</label>
                       <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={5}
-                        className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground focus:outline-none focus:border-primary resize-none"
-                        placeholder="Tell us about your security needs..."
+                        name="message" value={formData.message} onChange={handleChange} required rows={5}
+                        placeholder="Tell us about your security needs — camera count, facility type, monitoring hours required..."
+                        className="w-full bg-background border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-cyan/60 transition-colors resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-primary hover:bg-accent text-primary-foreground py-3 rounded-lg font-bold transition-colors"
+                      disabled={sending}
+                      className="btn-glow w-full flex items-center justify-center gap-3 bg-primary text-primary-foreground py-4 text-sm font-semibold tracking-widest uppercase disabled:opacity-60"
                     >
-                      Send Message via WhatsApp
+                      {sending ? (
+                        <span className="flex items-center gap-2">
+                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </span>
+                      ) : (
+                        <>Send Message via WhatsApp <MessageCircle size={16} /></>
+                      )}
                     </button>
                   </form>
                 )}
