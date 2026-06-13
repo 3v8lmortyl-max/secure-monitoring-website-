@@ -15,13 +15,8 @@ export const metadata: Metadata = {
     default: 'Secure Monitoring — 24/7 Professional CCTV Monitoring',
     template: '%s | Secure Monitoring',
   },
-  description:
-    'Professional human-based CCTV monitoring services 24/7. Real operators. No AI. Instant threat detection and incident escalation for retail, warehouses, offices and more.',
-  keywords: [
-    '24/7 CCTV monitoring', 'remote security monitoring', 'human monitoring',
-    'professional surveillance', 'retail security', 'live monitoring service',
-    'security operations center', 'CCTV operators', 'incident escalation',
-  ],
+  description: 'Professional human-based CCTV monitoring services 24/7. Real operators. No AI. Instant threat detection and incident escalation for retail, warehouses, offices and more.',
+  keywords: ['24/7 CCTV monitoring', 'remote security monitoring', 'human monitoring', 'professional surveillance', 'retail security', 'live monitoring service', 'security operations center', 'CCTV operators', 'incident escalation'],
   openGraph: {
     type: 'website',
     url: 'https://securemonitoring24hr.com',
@@ -30,11 +25,7 @@ export const metadata: Metadata = {
     siteName: 'Secure Monitoring',
     images: [{ url: '/professional-control-room-with-operators-monitorin.jpg', width: 1200, height: 630 }],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Secure Monitoring — 24/7 Professional CCTV Monitoring',
-    description: 'Real human operators monitoring your cameras 24/7.',
-  },
+  twitter: { card: 'summary_large_image', title: 'Secure Monitoring — 24/7 Professional CCTV Monitoring', description: 'Real human operators monitoring your cameras 24/7.' },
   robots: { index: true, follow: true },
   metadataBase: new URL('https://securemonitoring24hr.com'),
 }
@@ -44,12 +35,10 @@ const structuredData = {
   '@type': 'SecurityService',
   name: 'Secure Monitoring',
   url: 'https://securemonitoring24hr.com',
-  description: 'Professional 24/7 human-based CCTV monitoring services. Real-time threat detection and incident escalation.',
+  description: 'Professional 24/7 human-based CCTV monitoring services.',
   telephone: '+919392525869',
   email: 'securemonitoring24hr@gmail.com',
   sameAs: ['https://instagram.com/secure.monitoring'],
-  areaServed: { '@type': 'Country', name: 'India' },
-  availableLanguage: 'English',
   openingHours: 'Mo-Su 00:00-24:00',
 }
 
@@ -63,7 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <Navigation />
           <main>{children}</main>
           <Footer />
