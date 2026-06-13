@@ -35,7 +35,7 @@
 
 // Reveal on scroll
 (function () {
-  var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .zoom-in');
   if (!('IntersectionObserver' in window)) {
     els.forEach(function (el) { el.classList.add('in'); });
     return;

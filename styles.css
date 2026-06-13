@@ -436,3 +436,133 @@ a.contact-card:hover { border-color: rgba(47,143,214,0.45); }
   .footer-grid { grid-template-columns: 1fr; }
   .workflow { grid-template-columns: 1fr; }
 }
+
+/* ════════════════════════════════════════════
+   ENHANCEMENT LAYER — modern professional polish
+   ════════════════════════════════════════════ */
+
+/* Refined image frames: depth, hover lift, subtle zoom */
+.img-frame {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -20px rgba(0,0,0,0.75), 0 0 0 1px rgba(47,143,214,0.12);
+  transition: transform 0.5s cubic-bezier(.2,.7,.2,1), box-shadow 0.5s ease;
+}
+.img-frame img { transition: transform 0.7s cubic-bezier(.2,.7,.2,1); }
+.img-frame:hover { transform: translateY(-4px); box-shadow: 0 32px 70px -18px rgba(0,0,0,0.8), 0 0 0 1px rgba(47,143,214,0.3); }
+.img-frame:hover img { transform: scale(1.04); }
+.img-frame::before { border-radius: 14px; }
+
+/* Cinematic gradient on framed images */
+.img-frame { position: relative; }
+.img-frame .img-grad {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(7,9,13,0.55), transparent 55%);
+}
+
+/* Page hero with background photo (immersive inner-page headers) */
+.page-hero-media {
+  position: relative;
+  padding: 11rem 0 7rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-hero-media .ph-bg {
+  position: absolute; inset: 0; z-index: -2;
+}
+.page-hero-media .ph-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.05);
+}
+.page-hero-media .ph-overlay {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(to right, rgba(7,9,13,0.96) 0%, rgba(7,9,13,0.82) 45%, rgba(7,9,13,0.55) 100%),
+    linear-gradient(to top, var(--background), transparent 60%);
+}
+.page-hero-media .eyebrow { color: var(--cyan); }
+
+/* Section divider line accent */
+.accent-line {
+  width: 48px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-red), var(--primary));
+  margin-bottom: 1.5rem;
+}
+.section-head .accent-line { margin-left: auto; margin-right: auto; }
+
+/* Card depth + smoother hover */
+.glass.card {
+  border-radius: 10px;
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.glass.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 50px -24px rgba(0,0,0,0.85);
+}
+.card-icon { border-radius: 8px; background: rgba(47,143,214,0.06); transition: all 0.35s ease; }
+.glass.card:hover .card-icon { background: rgba(47,143,214,0.14); transform: scale(1.06); }
+
+/* Stat tiles get subtle panel treatment */
+.stat-item {
+  padding: 1.75rem 1rem;
+  border-radius: 10px;
+  background: linear-gradient(160deg, rgba(18,103,168,0.06), transparent);
+  border: 1px solid rgba(26,37,51,0.6);
+  transition: border-color 0.35s ease, transform 0.35s ease;
+}
+.stat-item:hover { border-color: rgba(47,143,214,0.3); transform: translateY(-3px); }
+
+/* Button: crisper, tactile */
+.btn { border-radius: 8px; letter-spacing: 0.1em; }
+.btn-primary { box-shadow: 0 8px 24px -10px rgba(230,1,5,0.6); }
+
+/* Nav refinement */
+.nav.scrolled { box-shadow: 0 10px 30px -15px rgba(0,0,0,0.8); }
+.nav-link { transition: color 0.2s ease; border-radius: 6px; }
+
+/* Value cards / contact cards rounded + depth */
+.value-card, .contact-card, .testi-card, .workflow .step, table.cmp, .img-badge,
+.form-input, .form-textarea { border-radius: 10px; }
+.value-card { transition: transform 0.35s ease, border-color 0.35s ease; }
+.value-card:hover { transform: translateX(4px); }
+
+/* Feature list bullets pop */
+.feature-bullet { border-radius: 6px; background: rgba(47,143,214,0.06); transition: all 0.3s ease; }
+.feature-list li:hover .feature-bullet { background: rgba(47,143,214,0.18); }
+
+/* Glow accent behind section heads */
+.section-head { position: relative; }
+
+/* Mono label chip */
+.chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Geist Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan);
+  padding: 0.4rem 0.9rem; border: 1px solid rgba(47,143,214,0.3);
+  border-radius: 100px; background: rgba(47,143,214,0.06);
+}
+
+/* Stat band image accent (about page operations) */
+.media-strip { border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 28px 64px -24px rgba(0,0,0,0.8); }
+.media-strip img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Improved testimonial card */
+.testi-card { box-shadow: 0 24px 60px -28px rgba(0,0,0,0.8); }
+.testi-card::after {
+  content: '"'; position: absolute; top: -1rem; right: 1.5rem;
+  font-size: 7rem; line-height: 1; color: rgba(47,143,214,0.1);
+  font-family: Georgia, serif; pointer-events: none;
+}
+
+/* Subtle hover on comparison rows already present; add brand tint to highlighted col */
+table.cmp th.hl { background: rgba(230,1,5,0.06); }
+table.cmp td:nth-child(2) { background: rgba(18,103,168,0.05); font-weight: 600; }
+
+/* Image reveal animation helper */
+.zoom-in { opacity: 0; transform: scale(0.98); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.7,.2,1); }
+.zoom-in.in { opacity: 1; transform: scale(1); }
+
+@media (max-width: 768px) {
+  .page-hero-media { padding: 8rem 0 4rem; }
+  .page-hero-media .ph-overlay { background: linear-gradient(to top, var(--background) 5%, rgba(7,9,13,0.8) 60%, rgba(7,9,13,0.65)); }
+}
