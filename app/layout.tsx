@@ -10,18 +10,9 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Secure Monitoring — 24/7 Professional CCTV Monitoring',
-  description: 'Professional human-based CCTV monitoring services 24/7. Real operators. No AI. Instant threat detection and incident escalation.',
+  title: 'Secure Monitoring - 24/7 Professional CCTV Monitoring',
+  description: 'Professional human-based CCTV monitoring services 24/7. No AI, no automation. Real-time threat detection and incident escalation.',
   generator: 'v0.app',
-  openGraph: {
-    type: 'website',
-    url: 'https://securemonitoring24hr.com',
-    title: 'Secure Monitoring — 24/7 Professional CCTV Monitoring',
-    description: 'Real human operators monitoring your cameras 24/7. No AI, no automation.',
-    siteName: 'Secure Monitoring',
-    images: [{ url: '/professional-control-room-with-operators-monitorin.jpg', width: 1200, height: 630 }],
-  },
-  metadataBase: new URL('https://securemonitoring24hr.com'),
 }
 
 export default function RootLayout({
