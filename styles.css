@@ -169,15 +169,9 @@ h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
   border-bottom: 1px solid rgba(40,58,80,0.35);
   /* Safe-area: extend background behind status bar but don't squeeze nav-inner */
   padding-top: env(safe-area-inset-top, 0px);
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
-  /* Promote to its own layer so first-scroll repaint is stable on mobile */
-  will-change: box-shadow;
-  -webkit-transform: translateZ(0); transform: translateZ(0);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .nav { background: rgba(8,11,16,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
-}
-.nav.scrolled { border-bottom-color: rgba(40,58,80,0.7); box-shadow: 0 10px 30px -15px rgba(0,0,0,0.8); }
+.nav.scrolled { border-bottom-color: rgba(40,58,80,0.7); box-shadow: 0 8px 24px -16px rgba(0,0,0,0.85); }
 /* nav-inner always a fixed height — never affected by safe-area padding */
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; min-height: 4.5rem; }
 .logo { display: flex; align-items: center; gap: 0.75rem; }
