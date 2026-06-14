@@ -166,7 +166,8 @@ h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   background: rgba(8,11,16,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  transition: all 0.4s ease;
+  padding-top: env(safe-area-inset-top, 0px);
+  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 }
 .nav.scrolled { background: rgba(8,11,16,0.97); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(40,58,80,0.6); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
@@ -414,7 +415,6 @@ a.contact-card:hover { border-color: rgba(47,143,214,0.45); }
 }
 @media (max-width: 768px) {
   .section { padding: 4rem 0; }
-  .nav { padding-top: env(safe-area-inset-top, 0); }
   .nav-inner { height: 4rem; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
