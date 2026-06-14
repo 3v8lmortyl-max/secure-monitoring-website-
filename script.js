@@ -6,8 +6,8 @@
   if (!nav) return;
   var lastY = window.scrollY || 0;
   var ticking = false;
-  var REVEAL_AT_TOP = 80;   // always show within this many px of the top
-  var DELTA = 6;            // ignore tiny scroll jitter
+  var REVEAL_AT_TOP = 60;   // always show within this many px of the top
+  var DELTA = 4;            // ignore tiny scroll jitter (responsive)
 
   function apply() {
     var y = window.scrollY || 0;
