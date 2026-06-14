@@ -1,16 +1,21 @@
 // ════════ Secure Monitoring — Static Site JS ════════
 
-// Nav scroll glass effect
+// Nav scroll glass effect (rAF-throttled to avoid first-scroll repaint jank)
 (function () {
   var nav = document.getElementById('nav');
-  if (nav) {
-    var onScroll = function () {
-      if (window.scrollY > 40) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+  if (!nav) return;
+  var ticking = false;
+  function apply() {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+    ticking = false;
   }
+  function onScroll() {
+    if (!ticking) { window.requestAnimationFrame(apply); ticking = true; }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  // Run immediately so the nav state is correct on first paint, no waiting for scroll
+  apply();
 })();
 
 // Mobile menu toggle

@@ -161,16 +161,21 @@ h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
 .btn-outline:hover { border-color: rgba(47,143,214,0.6); color: var(--cyan); transform: translateY(-1px); }
 
 /* ── Navigation ── */
-.logo-img { height: 2.5rem; width: auto; display: block; }
+.logo-img { height: 2.5rem; width: auto; aspect-ratio: 333 / 220; object-fit: contain; display: block; flex-shrink: 0; }
 .footer .logo-img { height: 2.75rem; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   background: #080b10;
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(40,58,80,0.35);
   /* Safe-area: extend background behind status bar but don't squeeze nav-inner */
   padding-top: env(safe-area-inset-top, 0px);
   transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  /* Promote to its own layer so first-scroll repaint is stable on mobile */
+  will-change: box-shadow;
+  -webkit-transform: translateZ(0); transform: translateZ(0);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav { background: rgba(8,11,16,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
 }
 .nav.scrolled { border-bottom-color: rgba(40,58,80,0.7); box-shadow: 0 10px 30px -15px rgba(0,0,0,0.8); }
 /* nav-inner always a fixed height — never affected by safe-area padding */
@@ -422,7 +427,7 @@ a.contact-card:hover { border-color: rgba(47,143,214,0.45); }
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .hamburger { display: block; }
-  .logo-img { height: 2rem; }
+  .logo-img { height: 2rem; width: auto; }
   .logo-title { font-size: 0.72rem; }
   .logo-sub { font-size: 0.55rem; }
   .split { grid-template-columns: 1fr; gap: 2.5rem; }
