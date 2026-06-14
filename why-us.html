@@ -17,17 +17,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="logo.png" fetchpriority="high">
+<link rel="preload" as="image" href="logo.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="whyus-officer.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
 <meta name="theme-color" content="#004D83">
 <link rel="manifest" href="manifest.json">
 <meta property="og:image" content="https://securemonitoring24hr.com/logo.png">
+<noscript><style>.img-fade{opacity:1 !important;}</style></noscript>
 </head>
 <body>
 
 <nav class="nav" id="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="logo"><img src="logo.png" alt="Secure Monitoring" class="logo-img" width="333" height="220" fetchpriority="high" decoding="async"><span><span class="logo-title" style="display:block">Secure Monitoring</span><span class="logo-sub">24/7 Operations</span></span></a>
+    <a href="index.html" class="logo"><picture><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="Secure Monitoring" class="logo-img" width="333" height="220" fetchpriority="high" decoding="async"></picture><span><span class="logo-title" style="display:block">Secure Monitoring</span><span class="logo-sub">24/7 Operations</span></span></a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Home</a>
       <a href="about.html" class="nav-link">About</a>
@@ -49,7 +51,7 @@
 </div>
 
 <header class="page-hero-media">
-  <div class="ph-bg"><img src="whyus-officer.jpg" alt="Professional security officer in monitoring operations room" width="1400" height="933"></div>
+  <div class="ph-bg"><picture><source srcset="whyus-officer.webp" type="image/webp"><img src="whyus-officer.jpg" alt="Professional security officer in monitoring operations room" width="1400" height="933" fetchpriority="high" decoding="async" class="img-fade"></picture></div>
   <div class="ph-overlay"></div>
   <div class="grid-overlay" style="opacity:.12"></div>
   <div class="scan-line"></div>
@@ -136,7 +138,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="logo"><img src="logo.png" alt="Secure Monitoring" class="logo-img" width="333" height="220" fetchpriority="high" decoding="async"><span><span class="logo-title" style="display:block">Secure Monitoring</span><span class="logo-sub">24/7 Operations</span></span></a>
+        <a href="index.html" class="logo"><picture><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="Secure Monitoring" class="logo-img" width="333" height="220" fetchpriority="high" decoding="async"></picture><span><span class="logo-title" style="display:block">Secure Monitoring</span><span class="logo-sub">24/7 Operations</span></span></a>
         <p>Professional 24/7 human-based CCTV monitoring. Real operators. No AI. Your security is our purpose.</p>
         <div class="footer-status"><span class="pulse-dot" style="width:8px;height:8px"></span> Systems Operational</div>
       </div>

@@ -184,3 +184,18 @@
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();
+
+// Smooth image fade-in (handles cached images too)
+(function () {
+  function reveal(img) { img.classList.add('loaded'); }
+  var imgs = document.querySelectorAll('img.img-fade');
+  imgs.forEach(function (img) {
+    if (img.complete && img.naturalWidth > 0) {
+      // already loaded (cached) — reveal immediately, no flash
+      reveal(img);
+    } else {
+      img.addEventListener('load', function () { reveal(img); }, { once: true });
+      img.addEventListener('error', function () { reveal(img); }, { once: true }); // never leave invisible
+    }
+  });
+})();
