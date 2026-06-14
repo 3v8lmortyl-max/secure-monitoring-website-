@@ -1,21 +1,46 @@
 // ════════ Secure Monitoring — Static Site JS ════════
 
-// Nav scroll glass effect (rAF-throttled to avoid first-scroll repaint jank)
+// Auto-hide header: hides on scroll-down, reveals on scroll-up (rAF-throttled)
 (function () {
   var nav = document.getElementById('nav');
   if (!nav) return;
+  var lastY = window.scrollY || 0;
   var ticking = false;
+  var REVEAL_AT_TOP = 80;   // always show within this many px of the top
+  var DELTA = 6;            // ignore tiny scroll jitter
+
   function apply() {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
+    var y = window.scrollY || 0;
+
+    // Solid-shadow state once scrolled past the hero top
+    if (y > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
+
+    // Near the very top: always visible
+    if (y <= REVEAL_AT_TOP) {
+      nav.classList.remove('nav-hidden');
+      lastY = y;
+      ticking = false;
+      return;
+    }
+
+    var diff = y - lastY;
+    if (Math.abs(diff) > DELTA) {
+      if (diff > 0) {
+        nav.classList.add('nav-hidden');   // scrolling down → hide
+      } else {
+        nav.classList.remove('nav-hidden'); // scrolling up → show
+      }
+      lastY = y;
+    }
     ticking = false;
   }
+
   function onScroll() {
     if (!ticking) { window.requestAnimationFrame(apply); ticking = true; }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  // Run immediately so the nav state is correct on first paint, no waiting for scroll
-  apply();
+  apply(); // correct state on first paint
 })();
 
 // Mobile menu toggle
@@ -24,9 +49,11 @@
   var menu = document.getElementById('mobileMenu');
   if (!btn || !menu) return;
   var open = false;
+  var nav = document.getElementById('nav');
   function set(state) {
     open = state;
     menu.classList.toggle('open', open);
+    if (open && nav) nav.classList.remove('nav-hidden'); // never hide header while menu open
     btn.innerHTML = open
       ? '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
       : '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
