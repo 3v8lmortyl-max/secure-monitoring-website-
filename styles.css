@@ -414,9 +414,14 @@ a.contact-card:hover { border-color: rgba(47,143,214,0.45); }
 }
 @media (max-width: 768px) {
   .section { padding: 4rem 0; }
+  .nav { padding-top: env(safe-area-inset-top, 0); }
+  .nav-inner { height: 4rem; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .hamburger { display: block; }
+  .logo-img { height: 2rem; }
+  .logo-title { font-size: 0.72rem; }
+  .logo-sub { font-size: 0.55rem; }
   .split { grid-template-columns: 1fr; gap: 2.5rem; }
   .split .order-1 { order: -1; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
