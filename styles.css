@@ -165,11 +165,12 @@ h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
 .footer .logo-img { height: 2.75rem; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  background: rgba(8,11,16,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  background: #080b10; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(40,58,80,0.35);
   padding-top: env(safe-area-inset-top, 0px);
-  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
-.nav.scrolled { background: rgba(8,11,16,0.97); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(40,58,80,0.6); }
+.nav.scrolled { border-bottom-color: rgba(40,58,80,0.7); box-shadow: 0 10px 30px -15px rgba(0,0,0,0.8); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
 .logo { display: flex; align-items: center; gap: 0.75rem; }
 .logo-mark {
@@ -523,7 +524,6 @@ a.contact-card:hover { border-color: rgba(47,143,214,0.45); }
 .btn-primary { box-shadow: 0 8px 24px -10px rgba(230,1,5,0.6); }
 
 /* Nav refinement */
-.nav.scrolled { box-shadow: 0 10px 30px -15px rgba(0,0,0,0.8); }
 .nav-link { transition: color 0.2s ease; border-radius: 6px; }
 
 /* Value cards / contact cards rounded + depth */
