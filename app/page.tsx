@@ -1,175 +1,38 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Shield, Clock, Users, AlertCircle } from 'lucide-react'
-import { Testimonials } from '@/components/testimonials'
+import { ArrowRight, BellRing, CheckCircle2, ClipboardCheck, Clock3, PhoneCall, ShieldCheck, Users } from 'lucide-react'
+
+const capabilities = [
+  { icon: Users, title: 'Human-led monitoring', text: 'Operators review connected camera feeds and apply agreed procedures when an incident needs attention.' },
+  { icon: BellRing, title: 'Response coordination', text: 'We contact designated employees and coordinate through WhatsApp when action is required.' },
+  { icon: ClipboardCheck, title: 'Incident reporting', text: 'Clear incident records help your team understand what happened and what was communicated.' },
+]
 
 export default function Home() {
-  const benefits = [
-    {
-      icon: Clock,
-      title: 'Real-Time Threat Detection',
-      description: 'Our trained operators monitor your feeds 24/7 to identify threats instantly.'
-    },
-    {
-      icon: AlertCircle,
-      title: 'Incident Escalation',
-      description: 'Fast escalation process ensures quick response to security incidents.'
-    },
-    {
-      icon: Users,
-      title: 'Dedicated Operators',
-      description: 'Professional human operators with strict SOPs and extensive training.'
-    },
-    {
-      icon: Shield,
-      title: 'Night Surveillance',
-      description: 'Complete surveillance coverage including 24/7 night monitoring.'
-    }
-  ]
-
-  return (
-    <div className="w-full">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-card to-secondary/20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-primary rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent rounded-full blur-3xl"></div>
+  return <div>
+    <section className="relative overflow-hidden border-b border-border bg-card">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,oklch(0.4_0.12_250_/_0.2),transparent_30%)]" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-28">
+        <div className="flex flex-col justify-center">
+          <p className="mb-5 flex items-center gap-2 text-sm font-semibold tracking-[0.16em] text-primary uppercase"><span className="h-px w-8 bg-primary" /> Managed security operations</p>
+          <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">Security operations that respond when it matters.</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">Connect existing camera infrastructure to a professional, human-led monitoring operation for incident detection, response coordination, escalation, and reporting.</p>
+          <div className="mt-7 flex items-start gap-3 rounded-lg border border-primary/30 bg-primary/10 p-4 text-sm"><Clock3 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p><strong>30-second response target.</strong> When an actionable incident is detected, our monitoring team targets response initiation within 30 seconds.</p></div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/pricing" className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-semibold text-primary-foreground hover:bg-accent">View plans <ArrowRight className="h-4 w-4" /></Link><Link href="/contact" className="inline-flex items-center justify-center rounded-md border border-border px-5 py-3 font-semibold hover:bg-secondary">Book a consultation</Link></div>
         </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
-                24/7 Professional CCTV Monitoring You Can Depend On
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-lg">
-                Human-based surveillance monitoring with no AI, no automation. Just dedicated professionals watching your cameras, protecting your assets, around the clock.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link
-                  href="/contact"
-                  className="bg-primary hover:bg-accent text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-colors text-center"
-                >
-                  Contact Us Today
-                </Link>
-                <Link
-                  href="/services"
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-colors text-center"
-                >
-                  Our Services
-                </Link>
-              </div>
-            </div>
+        <div className="relative min-h-[320px] overflow-hidden rounded-xl border border-border shadow-2xl lg:min-h-full"><Image src="/professional-control-room-with-operators-monitorin.jpg" alt="Professional monitoring operators in a control room" fill className="object-cover" priority /><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 to-transparent p-6 pt-20"><p className="text-sm font-semibold">Human monitoring. Clear operational communication.</p></div></div>
+      </div>
+    </section>
 
-            <div className="relative">
-              <Image
-                src="/professional-control-room-with-operators-monitorin.jpg"
-                alt="Control room with professional operators monitoring CCTV feeds"
-                width={500}
-                height={400}
-                className="rounded-lg shadow-2xl border border-border"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="max-w-2xl"><p className="text-sm font-semibold uppercase tracking-[0.15em] text-primary">What we do</p><h2 className="mt-3 text-3xl font-bold sm:text-4xl">A managed operational service—not another dashboard.</h2><p className="mt-4 leading-7 text-muted-foreground">Secure Monitoring supports the people and procedures behind your cameras. Our work focuses on the operational moment: identifying what needs attention, starting the right response, and documenting the outcome.</p></div>
+      <div className="mt-10 grid gap-5 md:grid-cols-3">{capabilities.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-xl border border-border bg-card p-6"><Icon className="h-8 w-8 text-primary" /><h3 className="mt-5 text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p></article>)}</div>
+    </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Human Monitoring?</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our experienced operators provide intelligent, real-time monitoring that AI simply cannot replicate.
-            </p>
-          </div>
+    <section className="border-y border-border bg-card"><div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"><div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="text-sm font-semibold uppercase tracking-[0.15em] text-primary">How operations work</p><h2 className="mt-3 text-3xl font-bold sm:text-4xl">A response path your team can understand.</h2></div><Link href="/operations" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">Explore operations <ArrowRight className="h-4 w-4" /></Link></div><ol className="mt-12 grid gap-4 md:grid-cols-4">{[['01','Detection','Connected camera feeds are monitored for actionable incidents.'],['02','Verification','An operator reviews the situation against agreed procedures.'],['03','Response & escalation','Designated employees are contacted; authorized escalation follows the plan.'],['04','Reporting','The incident and operational communications are documented.']].map(([n,t,d])=><li key={n} className="rounded-lg border border-border bg-background p-5"><span className="text-sm font-bold text-primary">{n}</span><h3 className="mt-5 font-semibold">{t}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{d}</p></li>)}</ol></div></section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon
-              return (
-                <div key={index} className="bg-card border border-border rounded-lg p-6 hover:border-accent transition-colors">
-                  <Icon className="w-10 h-10 text-primary mb-4" />
-                  <h3 className="font-bold text-lg mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground text-sm">{benefit.description}</p>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"><div className="grid gap-8 lg:grid-cols-2"><div><p className="text-sm font-semibold uppercase tracking-[0.15em] text-primary">Built around real operations</p><h2 className="mt-3 text-3xl font-bold sm:text-4xl">Coverage for the moments that need a response.</h2></div><div className="grid gap-3 sm:grid-cols-2">{['Employee monitoring','Shoplifting monitoring','Night camera monitoring','Incident response','WhatsApp operational communication','Incident reporting'].map(item=><div key={item} className="flex items-center gap-3 rounded-lg bg-secondary/50 p-4 text-sm font-medium"><CheckCircle2 className="h-5 w-5 text-primary" />{item}</div>)}</div></div></section>
 
-      {/* Mission Section */}
-      <section className="py-20 bg-primary/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-balance">Our Mission</h2>
-              <div className="space-y-4">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  At Secure Monitoring, our mission is to provide unwavering protection to businesses and communities by delivering exceptional, human-centered surveillance monitoring that sets the industry standard for reliability and responsiveness.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  We believe that security is not just about technology—it's about trust, dedication, and the human expertise that turns cameras into comprehensive protection. Our trained operators are committed to being your vigilant partners, ensuring that every moment is watched with precision and every threat is met with swift action.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  We empower businesses to operate with confidence, knowing that round-the-clock professional monitoring stands between them and uncertainty. Your peace of mind is our priority, and your security is our purpose.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-primary to-accent rounded-lg p-8 text-white">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">Our Values</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <Shield className="w-6 h-6 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="font-semibold">Vigilance</p>
-                        <p className="text-sm opacity-90">Constant, unwavering attention to detail</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Clock className="w-6 h-6 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="font-semibold">Reliability</p>
-                        <p className="text-sm opacity-90">24/7 dependable service you can trust</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Users className="w-6 h-6 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="font-semibold">Excellence</p>
-                        <p className="text-sm opacity-90">Professional operators with strict training</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <Testimonials />
-
-      {/* CTA Section */}
-      <section className="py-20 bg-primary/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Protect Your Assets?</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of businesses trusting Secure Monitoring for their 24/7 surveillance needs.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block bg-primary hover:bg-accent text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-colors"
-          >
-            Get Started Now
-          </Link>
-        </div>
-      </section>
-    </div>
-  )
+    <section className="bg-primary py-16 text-primary-foreground"><div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8"><div><h2 className="text-3xl font-bold">Bring your monitoring requirements to the table.</h2><p className="mt-2 max-w-2xl text-primary-foreground/80">Discuss existing cameras, escalation preferences, coverage, and reporting needs with our team.</p></div><Link href="/contact" className="inline-flex shrink-0 items-center gap-2 rounded-md bg-background px-5 py-3 font-semibold text-foreground hover:bg-background/90"><PhoneCall className="h-4 w-4" /> Book a consultation</Link></div></section>
+  </div>
 }
