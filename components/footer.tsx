@@ -1,70 +1,44 @@
 import Link from 'next/link'
-import { Mail, Phone, Instagram, MessageCircle } from 'lucide-react'
+import { Mail, MessageCircle, Phone, Shield } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
+    <footer className="border-t border-border bg-card">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="font-bold text-lg mb-4">Secure Monitoring</h3>
-            <p className="text-muted-foreground text-sm">
-              Professional 24/7 human-based CCTV monitoring for complete peace of mind.
-            </p>
+            <div className="mb-4 flex items-center gap-2 font-bold tracking-wide"><Shield className="h-5 w-5 text-primary" /> SECURE MONITORING</div>
+            <p className="text-sm leading-6 text-muted-foreground">Human-led managed security operations for teams that need a clear response path when incidents occur.</p>
           </div>
-
-          {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link></li>
-              <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About Us</Link></li>
-              <li><Link href="/services" className="text-muted-foreground hover:text-foreground transition-colors">Services</Link></li>
-              <li><Link href="/why-us" className="text-muted-foreground hover:text-foreground transition-colors">Why Choose Us</Link></li>
+            <h2 className="mb-4 text-sm font-semibold">Explore</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/solutions" className="hover:text-foreground">Solutions</Link></li>
+              <li><Link href="/operations" className="hover:text-foreground">Operations</Link></li>
+              <li><Link href="/professional-services" className="hover:text-foreground">Professional Services</Link></li>
+              <li><Link href="/pricing" className="hover:text-foreground">Pricing</Link></li>
             </ul>
           </div>
-
-          {/* Services */}
           <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/services" className="text-muted-foreground hover:text-foreground transition-colors">Live CCTV Monitoring</Link></li>
-              <li><Link href="/services" className="text-muted-foreground hover:text-foreground transition-colors">Night Surveillance</Link></li>
-              <li><Link href="/services" className="text-muted-foreground hover:text-foreground transition-colors">Event-Based Monitoring</Link></li>
-              <li><Link href="/services" className="text-muted-foreground hover:text-foreground transition-colors">Daily Reports</Link></li>
+            <h2 className="mb-4 text-sm font-semibold">Company</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/about" className="hover:text-foreground">About</Link></li>
+              <li><Link href="/contact" className="hover:text-foreground">Book a Consultation</Link></li>
+              <li><Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-foreground">Terms & Conditions</Link></li>
+              <li><Link href="/cancellation-refund" className="hover:text-foreground">Cancellation & Refunds</Link></li>
             </ul>
           </div>
-
-          {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
-            <div className="space-y-3">
-              <a href="tel:+919392525869" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
-                <Phone size={18} />
-                <span className="text-sm">+91 9392525869</span>
-              </a>
-              <a href="https://wa.me/919392525869" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
-                <MessageCircle size={18} />
-                <span className="text-sm">WhatsApp</span>
-              </a>
-              <a href="https://instagram.com/secure.monitoring" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
-                <Instagram size={18} />
-                <span className="text-sm">@secure.monitoring</span>
-              </a>
-              <a href="mailto:securemonitoring24hr@gmail.com" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
-                <Mail size={18} />
-                <span className="text-sm">Email</span>
-              </a>
+            <h2 className="mb-4 text-sm font-semibold">Talk to our team</h2>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <a href="tel:+919392525869" className="flex items-center gap-2 hover:text-foreground"><Phone className="h-4 w-4 text-primary" /> +91 9392525869</a>
+              <a href="https://wa.me/919392525869" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground"><MessageCircle className="h-4 w-4 text-primary" /> WhatsApp</a>
+              <a href="mailto:securemonitoring24hr@gmail.com" className="flex items-center gap-2 hover:text-foreground"><Mail className="h-4 w-4 text-primary" /> Email us</a>
             </div>
           </div>
         </div>
-
-        <div className="border-t border-border pt-8">
-          <p className="text-center text-muted-foreground text-sm">
-            © 2025 Secure Monitoring. All Rights Reserved.
-          </p>
-        </div>
+        <div className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">© {new Date().getFullYear()} Secure Monitoring. All rights reserved.</div>
       </div>
     </footer>
   )
