@@ -6,32 +6,15 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
 export const metadata: Metadata = {
-  title: 'Secure Monitoring - 24/7 Professional CCTV Monitoring',
-  description: 'Professional human-based CCTV monitoring services 24/7. No AI, no automation. Real-time threat detection and incident escalation.',
-  generator: 'v0.app',
+  title: { default: 'Secure Monitoring | Managed Security Operations', template: '%s | Secure Monitoring' },
+  description: 'Human-led managed security operations for incident monitoring, response coordination, escalation, and reporting.',
+  openGraph: { title: 'Secure Monitoring | Managed Security Operations', description: 'Human-led monitoring, incident response, escalation, and reporting.', type: 'website' },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans antialiased bg-background text-foreground`}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <Navigation />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
-        <Analytics />
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en" suppressHydrationWarning><body className={`${geist.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}><ThemeProvider attribute="class" defaultTheme="dark"><Navigation /><main>{children}</main><Footer /></ThemeProvider><Analytics /></body></html>
 }
