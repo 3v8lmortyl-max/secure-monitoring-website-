@@ -1,4 +1,15 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import { ArrowRight, Ban, RotateCcw } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
-export const metadata: Metadata = { title: 'Cancellation & Refund Policy', description: 'Cancellation and refund information for Secure Monitoring service arrangements.' }
-export default function CancellationRefundPage(){return <><PageHero eyebrow="Legal" title="Cancellation & Refund Policy">Cancellation and refund terms for managed services are established in the applicable customer service agreement.</PageHero><article className="prose prose-invert mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8"><h2>Service-specific terms</h2><p>Each monitoring arrangement may have a different scope, commencement date, operational procedure, and billing arrangement. Any cancellation, refund, or change terms will be set out in the agreement applicable to that service.</p><h2>Before a service agreement</h2><p>Contact Secure Monitoring before making payment if you need clarification about pricing, scope, or proposed cancellation terms.</p><h2>Questions</h2><p>For help with an existing arrangement, use the published contact details and include enough information for the team to identify the relevant service discussion.</p></article></>}
+
+export const metadata: Metadata = { title: 'Cancellation & Refunds', description: 'Summary of Secure Monitoring’s cancellation and refund policies for monthly remote CCTV monitoring subscriptions.' }
+
+const cards = [
+  { href: '/cancellation-policy', icon: Ban, title: 'Cancellation Policy', points: ['Month-to-month, no cancellation fee', 'Cancel by email or WhatsApp at any time', 'Give 3 business days’ notice before your next billing date', 'Service runs to the end of the paid month'] },
+  { href: '/refund-policy', icon: RotateCcw, title: 'Refund Policy', points: ['100% refund if cancelled before monitoring starts', 'Full refund of duplicate or incorrect charges', 'Pro-rata refund if service is not delivered because of us', 'Refunds initiated within 5–7 business days of approval'] },
+]
+
+export default function CancellationRefundPage() {
+  return <><PageHero eyebrow="Legal" title="Cancellation & Refunds">Our cancellation and refund terms are set out in two separate policies. A summary of each is below. The full policy applies.</PageHero><section className="mx-auto grid max-w-5xl gap-6 px-4 py-16 sm:px-6 md:grid-cols-2 lg:px-8">{cards.map(({ href, icon: Icon, title, points }) => <Link key={href} href={href} className="group flex flex-col rounded-xl border border-border bg-card p-7 transition-colors hover:border-primary"><Icon className="h-8 w-8 text-primary" /><h2 className="mt-5 text-2xl font-bold">{title}</h2><ul className="mt-4 flex-1 space-y-2 text-sm leading-6 text-muted-foreground">{points.map(p => <li key={p} className="flex gap-2"><span className="text-primary">•</span>{p}</li>)}</ul><span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary">Read the full policy <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></span></Link>)}</section></>
+}

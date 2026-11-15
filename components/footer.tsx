@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Mail, MessageCircle, Phone, Shield } from 'lucide-react'
+import { BUSINESS, BUSINESS_ADDRESS_ONE_LINE, POLICY_LINKS } from '@/lib/business'
 
 export function Footer() {
   return (
@@ -24,21 +25,24 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/about" className="hover:text-foreground">About</Link></li>
               <li><Link href="/contact" className="hover:text-foreground">Book a Consultation</Link></li>
-              <li><Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-foreground">Terms & Conditions</Link></li>
-              <li><Link href="/cancellation-refund" className="hover:text-foreground">Cancellation & Refunds</Link></li>
+              {POLICY_LINKS.map((p) => <li key={p.href}><Link href={p.href} className="hover:text-foreground">{p.label}</Link></li>)}
             </ul>
           </div>
           <div>
             <h2 className="mb-4 text-sm font-semibold">Talk to our team</h2>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <a href="tel:+919392525869" className="flex items-center gap-2 hover:text-foreground"><Phone className="h-4 w-4 text-primary" /> +91 9392525869</a>
+              <a href={BUSINESS.phoneHref} className="flex items-center gap-2 hover:text-foreground"><Phone className="h-4 w-4 text-primary" /> {BUSINESS.phone}</a>
+              <a href={BUSINESS.phone2Href} className="flex items-center gap-2 hover:text-foreground"><Phone className="h-4 w-4 text-primary" /> {BUSINESS.phone2}</a>
               <a href="https://wa.me/919392525869" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground"><MessageCircle className="h-4 w-4 text-primary" /> WhatsApp</a>
-              <a href="mailto:securemonitoring24hr@gmail.com" className="flex items-center gap-2 hover:text-foreground"><Mail className="h-4 w-4 text-primary" /> Email us</a>
+              <a href={`mailto:${BUSINESS.email}`} className="flex items-center gap-2 break-all hover:text-foreground"><Mail className="h-4 w-4 shrink-0 text-primary" /> {BUSINESS.email}</a>
             </div>
           </div>
         </div>
-        <div className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">© {new Date().getFullYear()} Secure Monitoring. All rights reserved.</div>
+        <div className="mt-10 space-y-2 border-t border-border pt-6 text-sm text-muted-foreground">
+          <p>{BUSINESS.name} · {BUSINESS.legalStructure} (Proprietor: {BUSINESS.proprietor}) · Udyam Reg. No. {BUSINESS.udyamNumber}</p>
+          <p>{BUSINESS_ADDRESS_ONE_LINE}</p>
+          <p>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   )
