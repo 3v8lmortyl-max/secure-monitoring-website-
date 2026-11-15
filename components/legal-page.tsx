@@ -15,6 +15,11 @@ const bodyStyles =
   '[&_li]:pl-1 [&_li::marker]:text-primary ' +
   '[&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:decoration-primary [&_a]:underline-offset-4 hover:[&_a]:decoration-2'
 
+// Inline contact sentence used in policy text: email plus both phone numbers.
+export function ContactLine() {
+  return <>email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>, or call <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a> (also WhatsApp) or <a href={BUSINESS.phone2Href}>{BUSINESS.phone2}</a></>
+}
+
 export function LegalPage({ title, summary, path, sections }: { title: string; summary: ReactNode; path: string; sections: LegalSection[] }) {
   return (
     <>
@@ -65,12 +70,13 @@ export function LegalPage({ title, summary, path, sections }: { title: string; s
             <h2 id="business-details" className="flex items-center gap-2 text-lg font-bold"><Building2 className="h-5 w-5 text-primary" />Business details</h2>
             <dl className="mt-5 grid gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
               <div><dt className="text-muted-foreground">Business name</dt><dd className="mt-1 font-medium">{BUSINESS.name}</dd></div>
+              <div><dt className="text-muted-foreground">Proprietor</dt><dd className="mt-1 font-medium">{BUSINESS.proprietor}</dd></div>
               <div><dt className="text-muted-foreground">Legal structure</dt><dd className="mt-1 font-medium">{BUSINESS.legalStructure}</dd></div>
               <div><dt className="text-muted-foreground">Udyam (MSME) registration</dt><dd className="mt-1 font-medium">{BUSINESS.udyamNumber}</dd></div>
               <div><dt className="text-muted-foreground">Business activity</dt><dd className="mt-1 font-medium">{BUSINESS.activity}</dd></div>
               <div className="sm:col-span-2"><dt className="flex items-center gap-1.5 text-muted-foreground"><MapPin className="h-3.5 w-3.5" />Registered address</dt><dd className="mt-1 font-medium">{BUSINESS_ADDRESS_ONE_LINE}</dd></div>
               <div><dt className="flex items-center gap-1.5 text-muted-foreground"><Mail className="h-3.5 w-3.5" />Email</dt><dd className="mt-1 font-medium"><a href={`mailto:${BUSINESS.email}`} className="break-all hover:text-primary">{BUSINESS.email}</a></dd></div>
-              <div><dt className="flex items-center gap-1.5 text-muted-foreground"><Phone className="h-3.5 w-3.5" />Phone / WhatsApp</dt><dd className="mt-1 font-medium"><a href={BUSINESS.phoneHref} className="hover:text-primary">{BUSINESS.phone}</a></dd></div>
+              <div><dt className="flex items-center gap-1.5 text-muted-foreground"><Phone className="h-3.5 w-3.5" />Phone</dt><dd className="mt-1 space-y-0.5 font-medium"><a href={BUSINESS.phoneHref} className="block hover:text-primary">{BUSINESS.phone} <span className="font-normal text-muted-foreground">(also WhatsApp)</span></a><a href={BUSINESS.phone2Href} className="block hover:text-primary">{BUSINESS.phone2}</a></dd></div>
             </dl>
           </section>
         </article>

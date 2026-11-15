@@ -14,10 +14,14 @@ export const BUSINESS = {
     pin: '503185',
     country: 'India',
   },
+  proprietor: 'Shaik Mudassir',
   email: 'securemonitoring24hr@gmail.com',
+  // Primary number (also WhatsApp) and the number registered on the Udyam certificate.
   phone: '+91 9392525869',
   phoneHref: 'tel:+919392525869',
   whatsappHref: 'https://wa.me/919392525869',
+  phone2: '+91 8121510065',
+  phone2Href: 'tel:+918121510065',
   jurisdiction: 'Nizamabad, Telangana, India',
   billingCurrency: 'US Dollars (USD)',
 } as const

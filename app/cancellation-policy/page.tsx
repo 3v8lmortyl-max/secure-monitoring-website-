@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { LegalPage, type LegalSection } from '@/components/legal-page'
+import { ContactLine, LegalPage, type LegalSection } from '@/components/legal-page'
 import { BUSINESS } from '@/lib/business'
 
 export const metadata: Metadata = {
@@ -23,8 +23,9 @@ const sections: LegalSection[] = [
     content: <>
       <p>An authorised person from your business can cancel at any time by:</p>
       <ul>
-        <li>Emailing <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a> with the subject line <strong>“Cancellation Request”</strong>; or</li>
-        <li>Sending a WhatsApp message to <a href={BUSINESS.whatsappHref} target="_blank" rel="noopener noreferrer">{BUSINESS.phone}</a>.</li>
+        <li>Emailing <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a> with the subject line <strong>“Cancellation Request”</strong>;</li>
+        <li>Sending a WhatsApp message to <a href={BUSINESS.whatsappHref} target="_blank" rel="noopener noreferrer">{BUSINESS.phone}</a>; or</li>
+        <li>Calling <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a> or <a href={BUSINESS.phone2Href}>{BUSINESS.phone2}</a> and confirming by email.</li>
       </ul>
       <p>Please include your business name, the location(s) you want to cancel, and the date you would like monitoring to stop. We will send a written confirmation of your cancellation, including the final service date, within <strong>2 business days</strong>. If you do not receive it, please contact us again.</p>
     </>,
@@ -89,7 +90,7 @@ const sections: LegalSection[] = [
     id: 'contact',
     title: 'Contact us',
     content: <>
-      <p>For help with a cancellation, email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a> or call / WhatsApp <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a>.</p>
+      <p>For help with a cancellation, <ContactLine />.</p>
     </>,
   },
 ]

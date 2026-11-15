@@ -13,7 +13,7 @@ const sections: LegalSection[] = [
     id: 'overview',
     title: 'Who we are',
     content: <>
-      <p>This Privacy Policy explains how <strong>{BUSINESS.name}</strong>, a sole proprietorship registered in India (Udyam Reg. No. {BUSINESS.udyamNumber}), located at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us”), handles information when you visit this website, contact us, subscribe to our remote CCTV monitoring services or make a payment.</p>
+      <p>This Privacy Policy explains how <strong>{BUSINESS.name}</strong>, a sole proprietorship owned by {BUSINESS.proprietor} and registered in India (Udyam Reg. No. {BUSINESS.udyamNumber}), located at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us”), handles information when you visit this website, contact us, subscribe to our remote CCTV monitoring services or make a payment.</p>
       <p>We process information in line with applicable law, including India’s Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023, and we respect the privacy expectations of our customers in the United States.</p>
     </>,
   },
@@ -132,10 +132,11 @@ const sections: LegalSection[] = [
     id: 'grievance',
     title: 'Contact and grievance officer',
     content: <>
-      <p>For privacy questions, requests or complaints, contact our Grievance Officer (the proprietor of Secure Monitoring):</p>
+      <p>For privacy questions, requests or complaints, contact our Grievance Officer:</p>
       <ul>
+        <li>Name: <strong>{BUSINESS.proprietor}</strong>, Proprietor, Secure Monitoring</li>
         <li>Email: <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a></li>
-        <li>Phone / WhatsApp: <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a></li>
+        <li>Phone: <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a> (also WhatsApp) or <a href={BUSINESS.phone2Href}>{BUSINESS.phone2}</a></li>
         <li>Address: {BUSINESS_ADDRESS_ONE_LINE}</li>
       </ul>
       <p>We acknowledge grievances within 48 hours and aim to resolve them within 30 days. See also our <Link href="/terms">Terms &amp; Conditions</Link>.</p>

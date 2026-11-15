@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { LegalPage, type LegalSection } from '@/components/legal-page'
+import { ContactLine, LegalPage, type LegalSection } from '@/components/legal-page'
 import { BUSINESS } from '@/lib/business'
 
 export const metadata: Metadata = {
@@ -55,7 +55,7 @@ const sections: LegalSection[] = [
         <li>The payment date, amount and invoice or transaction reference;</li>
         <li>The reason for your request and any supporting details (for example, dates the service was unavailable).</li>
       </ol>
-      <p>You can also reach us by phone or WhatsApp at <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a>, but please confirm your request by email so there is a written record.</p>
+      <p>You can also call us on <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a> (also WhatsApp) or <a href={BUSINESS.phone2Href}>{BUSINESS.phone2}</a>, but please confirm your request by email so there is a written record.</p>
     </>,
   },
   {
@@ -88,7 +88,7 @@ const sections: LegalSection[] = [
     id: 'contact',
     title: 'Contact us',
     content: <>
-      <p>For refund questions, email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a> or call / WhatsApp <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a>.</p>
+      <p>For refund questions, <ContactLine />.</p>
     </>,
   },
 ]

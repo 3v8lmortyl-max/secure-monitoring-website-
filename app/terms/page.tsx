@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { LegalPage, type LegalSection } from '@/components/legal-page'
+import { ContactLine, LegalPage, type LegalSection } from '@/components/legal-page'
 import { BUSINESS, BUSINESS_ADDRESS_ONE_LINE } from '@/lib/business'
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ const sections: LegalSection[] = [
     id: 'about',
     title: 'About these terms',
     content: <>
-      <p>These Terms &amp; Conditions (“Terms”) govern your use of this website and the remote CCTV monitoring and retail security surveillance services (“Services”) provided by <strong>{BUSINESS.name}</strong>, a sole proprietorship registered in India under Udyam (MSME) Registration No. <strong>{BUSINESS.udyamNumber}</strong>, with its registered address at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us” or “our”).</p>
+      <p>These Terms &amp; Conditions (“Terms”) govern your use of this website and the remote CCTV monitoring and retail security surveillance services (“Services”) provided by <strong>{BUSINESS.name}</strong>, a sole proprietorship owned by {BUSINESS.proprietor} and registered in India under Udyam (MSME) Registration No. <strong>{BUSINESS.udyamNumber}</strong>, with its registered address at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us” or “our”).</p>
       <p>“Customer”, “you” or “your” means the business, and the individual acting for that business, that uses this website, subscribes to the Services or makes a payment to us. By subscribing to the Services, making a payment or using this website, you agree to these Terms, our <Link href="/privacy">Privacy Policy</Link>, our <Link href="/refund-policy">Refund Policy</Link> and our <Link href="/cancellation-policy">Cancellation Policy</Link>.</p>
       <p>If you have signed a separate written service agreement or order with us, that agreement applies together with these Terms. Where the two conflict, the signed agreement prevails for that specific point.</p>
     </>,
@@ -156,7 +156,7 @@ const sections: LegalSection[] = [
     id: 'contact',
     title: 'Contact us',
     content: <>
-      <p>For questions about these Terms, billing or your service, contact us at <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a> or call / WhatsApp <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a>. We aim to respond within 2 business days.</p>
+      <p>For questions about these Terms, billing or your service, <ContactLine />. We aim to respond within 2 business days.</p>
     </>,
   },
 ]
