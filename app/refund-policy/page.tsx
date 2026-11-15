@@ -14,6 +14,7 @@ const sections: LegalSection[] = [
     title: 'Overview',
     content: <>
       <p>This Refund Policy applies to all payments made to <strong>{BUSINESS.name}</strong> for remote CCTV monitoring and retail security surveillance services. Our Services are monthly subscriptions billed in advance, per monitored location, in {BUSINESS.billingCurrency}. We sell services only; we do not sell physical products, so there are no shipping or product returns.</p>
+      <p>New customers can try the service with a <strong>7-day free trial</strong> before paying anything. No card is required for the trial and no charge is made during it, so there is nothing to refund for the trial period. There are no setup fees.</p>
       <p>This policy should be read with our <Link href="/cancellation-policy">Cancellation Policy</Link> and <Link href="/terms">Terms &amp; Conditions</Link>.</p>
     </>,
   },
@@ -23,7 +24,7 @@ const sections: LegalSection[] = [
     content: <>
       <p>You will receive a refund in the following cases:</p>
       <ul>
-        <li><strong>Cancellation before activation: 100% refund.</strong> If you paid but cancel before monitoring has started at your location, we refund the full amount paid.</li>
+        <li><strong>Cancellation before activation: 100% refund.</strong> If you paid but cancel before your paid service period has started, we refund the full amount paid.</li>
         <li><strong>We are unable to start the service: 100% refund.</strong> If we cannot connect to or monitor your cameras within 7 days of payment for reasons on our side, or we decide not to proceed, we refund the full amount.</li>
         <li><strong>Duplicate or incorrect charge: 100% refund</strong> of the duplicate or excess amount.</li>
         <li><strong>Charged after a valid cancellation:</strong> if you cancelled in line with our Cancellation Policy and were still charged for the next month, we refund that charge in full.</li>

@@ -6,8 +6,8 @@ import { PageHero } from '@/components/page-hero'
 export const metadata: Metadata = { title: 'Cancellation & Refunds', description: 'Summary of Secure Monitoring’s cancellation and refund policies for monthly remote CCTV monitoring subscriptions.' }
 
 const cards = [
-  { href: '/cancellation-policy', icon: Ban, title: 'Cancellation Policy', points: ['Month-to-month, no cancellation fee', 'Cancel by email or WhatsApp at any time', 'Give 3 business days’ notice before your next billing date', 'Service runs to the end of the paid month'] },
-  { href: '/refund-policy', icon: RotateCcw, title: 'Refund Policy', points: ['100% refund if cancelled before monitoring starts', 'Full refund of duplicate or incorrect charges', 'Pro-rata refund if service is not delivered because of us', 'Refunds initiated within 5–7 business days of approval'] },
+  { href: '/cancellation-policy', icon: Ban, title: 'Cancellation Policy', points: ['7-day free trial, no card required', 'Month-to-month, no cancellation fee', 'Cancel by email or WhatsApp at any time', 'Give 3 business days’ notice before your next billing date', 'Service runs to the end of the paid month'] },
+  { href: '/refund-policy', icon: RotateCcw, title: 'Refund Policy', points: ['No charge during the free trial', '100% refund if cancelled before paid service starts', 'Full refund of duplicate or incorrect charges', 'Pro-rata refund if service is not delivered because of us', 'Refunds initiated within 5–7 business days of approval'] },
 ]
 
 export default function CancellationRefundPage() {

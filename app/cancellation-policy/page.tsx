@@ -43,10 +43,17 @@ const sections: LegalSection[] = [
     </>,
   },
   {
-    id: 'before-activation',
-    title: 'Cancelling before the service starts',
+    id: 'trial',
+    title: 'Cancelling during the free trial',
     content: <>
-      <p>If you have paid but monitoring has not yet started at your location, you can cancel at any time before activation and receive a <strong>full (100%) refund</strong>.</p>
+      <p>The 7-day free trial is free of charge and no card is required, so there is nothing to cancel financially. You can end the trial at any time by telling us by email or WhatsApp. If you do not subscribe by the end of the 7 days, monitoring simply stops, no charge is made, and we remove our access to your cameras.</p>
+    </>,
+  },
+  {
+    id: 'before-activation',
+    title: 'Cancelling after payment, before paid service starts',
+    content: <>
+      <p>If you have paid but your paid service period has not yet started, you can cancel at any time before it starts and receive a <strong>full (100%) refund</strong>.</p>
     </>,
   },
   {
