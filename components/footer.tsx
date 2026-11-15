@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Mail, MessageCircle, Phone, Shield } from 'lucide-react'
+import { BUSINESS, BUSINESS_ADDRESS_ONE_LINE, POLICY_LINKS } from '@/lib/business'
 
 export function Footer() {
   return (
@@ -24,9 +25,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/about" className="hover:text-foreground">About</Link></li>
               <li><Link href="/contact" className="hover:text-foreground">Book a Consultation</Link></li>
-              <li><Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-foreground">Terms & Conditions</Link></li>
-              <li><Link href="/cancellation-refund" className="hover:text-foreground">Cancellation & Refunds</Link></li>
+              {POLICY_LINKS.map((p) => <li key={p.href}><Link href={p.href} className="hover:text-foreground">{p.label}</Link></li>)}
             </ul>
           </div>
           <div>
@@ -38,7 +37,11 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">© {new Date().getFullYear()} Secure Monitoring. All rights reserved.</div>
+        <div className="mt-10 space-y-2 border-t border-border pt-6 text-sm text-muted-foreground">
+          <p>{BUSINESS.name} · {BUSINESS.legalStructure} · Udyam Reg. No. {BUSINESS.udyamNumber}</p>
+          <p>{BUSINESS_ADDRESS_ONE_LINE}</p>
+          <p>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   )
