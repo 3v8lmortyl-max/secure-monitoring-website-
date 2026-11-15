@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
-import { Building2, FileText, Mail, MapPin, Phone } from 'lucide-react'
+import { Building2, FileText, Globe, Mail, MapPin, Phone } from 'lucide-react'
 import { BUSINESS, BUSINESS_ADDRESS_ONE_LINE, POLICIES_LAST_UPDATED, POLICY_LINKS } from '@/lib/business'
 
 export type LegalSection = { id: string; title: string; content: ReactNode }
@@ -74,6 +74,7 @@ export function LegalPage({ title, summary, path, sections }: { title: string; s
               <div><dt className="text-muted-foreground">Legal structure</dt><dd className="mt-1 font-medium">{BUSINESS.legalStructure}</dd></div>
               <div><dt className="text-muted-foreground">Udyam (MSME) registration</dt><dd className="mt-1 font-medium">{BUSINESS.udyamNumber}</dd></div>
               <div><dt className="text-muted-foreground">Business activity</dt><dd className="mt-1 font-medium">{BUSINESS.activity}</dd></div>
+              <div><dt className="flex items-center gap-1.5 text-muted-foreground"><Globe className="h-3.5 w-3.5" />Website</dt><dd className="mt-1 font-medium"><a href={BUSINESS.website} className="hover:text-primary">{BUSINESS.websiteLabel}</a></dd></div>
               <div className="sm:col-span-2"><dt className="flex items-center gap-1.5 text-muted-foreground"><MapPin className="h-3.5 w-3.5" />Registered address</dt><dd className="mt-1 font-medium">{BUSINESS_ADDRESS_ONE_LINE}</dd></div>
               <div><dt className="flex items-center gap-1.5 text-muted-foreground"><Mail className="h-3.5 w-3.5" />Email</dt><dd className="mt-1 font-medium"><a href={`mailto:${BUSINESS.email}`} className="break-all hover:text-primary">{BUSINESS.email}</a></dd></div>
               <div><dt className="flex items-center gap-1.5 text-muted-foreground"><Phone className="h-3.5 w-3.5" />Phone</dt><dd className="mt-1 space-y-0.5 font-medium"><a href={BUSINESS.phoneHref} className="block hover:text-primary">{BUSINESS.phone} <span className="font-normal text-muted-foreground">(also WhatsApp)</span></a><a href={BUSINESS.phone2Href} className="block hover:text-primary">{BUSINESS.phone2}</a></dd></div>

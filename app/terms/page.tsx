@@ -13,7 +13,7 @@ const sections: LegalSection[] = [
     id: 'about',
     title: 'About these terms',
     content: <>
-      <p>These Terms &amp; Conditions (“Terms”) govern your use of this website and the remote CCTV monitoring and retail security surveillance services (“Services”) provided by <strong>{BUSINESS.name}</strong>, a sole proprietorship owned by {BUSINESS.proprietor} and registered in India under Udyam (MSME) Registration No. <strong>{BUSINESS.udyamNumber}</strong>, with its registered address at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us” or “our”).</p>
+      <p>These Terms &amp; Conditions (“Terms”) govern your use of this website (<a href={BUSINESS.website}>{BUSINESS.websiteLabel}</a>) and the remote CCTV monitoring and retail security surveillance services (“Services”) provided by <strong>{BUSINESS.name}</strong>, a sole proprietorship owned by {BUSINESS.proprietor} and registered in India under Udyam (MSME) Registration No. <strong>{BUSINESS.udyamNumber}</strong>, with its registered address at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us” or “our”).</p>
       <p>“Customer”, “you” or “your” means the business, and the individual acting for that business, that uses this website, subscribes to the Services or makes a payment to us. By subscribing to the Services, making a payment or using this website, you agree to these Terms, our <Link href="/privacy">Privacy Policy</Link>, our <Link href="/refund-policy">Refund Policy</Link> and our <Link href="/cancellation-policy">Cancellation Policy</Link>.</p>
       <p>If you have signed a separate written service agreement or order with us, that agreement applies together with these Terms. Where the two conflict, the signed agreement prevails for that specific point.</p>
     </>,
@@ -46,6 +46,7 @@ const sections: LegalSection[] = [
         <li>We do not provide physical security guards and do not attend or enter your premises.</li>
         <li>We are not an emergency service, an alarm-response company or a law-enforcement agency.</li>
         <li>We never access any CCTV system without the owner’s authorisation.</li>
+        <li>We monitor <strong>video only</strong>. We do not listen to, monitor or record audio from your cameras.</li>
       </ul>
     </>,
   },
@@ -59,6 +60,7 @@ const sections: LegalSection[] = [
         <li>Give us accurate details of your locations, monitoring hours and designated contacts, and update us promptly when they change;</li>
         <li>Make sure your designated contacts are reachable during monitoring hours;</li>
         <li>Comply with all laws that apply to video surveillance at your premises, including posting any required CCTV signage and giving any notices to employees and customers. Cameras must not be placed where surveillance is unlawful (for example, restrooms or changing areas);</li>
+        <li><strong>Disable audio</strong> on the camera feeds you share with us, or otherwise ensure that no audio is transmitted. Recording or listening to conversations without consent is illegal in many US states, and our team will not monitor audio even if it is available;</li>
         <li>Not ask us to monitor any place or person you are not legally entitled to monitor, or to use the Services for any unlawful purpose;</li>
         <li>Keep your own emergency arrangements in place, including contacting emergency services directly when needed.</li>
       </ul>

@@ -13,7 +13,7 @@ const sections: LegalSection[] = [
     id: 'overview',
     title: 'Who we are',
     content: <>
-      <p>This Privacy Policy explains how <strong>{BUSINESS.name}</strong>, a sole proprietorship owned by {BUSINESS.proprietor} and registered in India (Udyam Reg. No. {BUSINESS.udyamNumber}), located at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us”), handles information when you visit this website, contact us, subscribe to our remote CCTV monitoring services or make a payment.</p>
+      <p>This Privacy Policy explains how <strong>{BUSINESS.name}</strong>, a sole proprietorship owned by {BUSINESS.proprietor} and registered in India (Udyam Reg. No. {BUSINESS.udyamNumber}), located at {BUSINESS_ADDRESS_ONE_LINE} (“Secure Monitoring”, “we”, “us”), handles information when you visit this website (<a href={BUSINESS.website}>{BUSINESS.websiteLabel}</a>), contact us, subscribe to our remote CCTV monitoring services or make a payment.</p>
       <p>We process information in line with applicable law, including India’s Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023, and we respect the privacy expectations of our customers in the United States.</p>
     </>,
   },
@@ -28,7 +28,7 @@ const sections: LegalSection[] = [
       <h3>CCTV access and monitoring information</h3>
       <ul>
         <li>Remote access details for your CCTV system (for example, viewer app login or IP/port details) that you authorise us to use;</li>
-        <li>Live video feeds viewed by our monitoring team. These may show your employees, customers and visitors;</li>
+        <li>Live video feeds viewed by our monitoring team. These may show your employees, customers and visitors. We monitor <strong>video only</strong> and do not listen to or collect audio;</li>
         <li>Monitoring logs, incident notes, alert history and reports, which may include still images or short clips of incidents where your plan includes them.</li>
       </ul>
       <h3>Website information</h3>
@@ -55,6 +55,7 @@ const sections: LegalSection[] = [
     title: 'CCTV footage and the people on camera',
     content: <>
       <p>For monitoring, our customer decides which cameras and locations we monitor and why. The customer is responsible for having a lawful basis for its CCTV system and for giving any notices required by local law (such as CCTV signage and employee notices). We act on the customer’s instructions and use the footage only to provide the Services.</p>
+      <p><strong>No audio.</strong> We do not listen to, monitor or record sound or conversations. Customers are asked to disable audio on shared feeds, and if audio is ever transmitted, our team keeps it muted.</p>
       <p>We view live feeds; we do not routinely download or keep copies of your recordings. Recordings remain on your own CCTV system under your control.</p>
     </>,
   },

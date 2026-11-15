@@ -4,15 +4,17 @@ import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { BUSINESS } from '@/lib/business'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BUSINESS.website),
   title: { default: 'Secure Monitoring | Managed Security Operations', template: '%s | Secure Monitoring' },
   description: 'Human-led managed security operations for incident monitoring, response coordination, escalation, and reporting.',
-  openGraph: { title: 'Secure Monitoring | Managed Security Operations', description: 'Human-led monitoring, incident response, escalation, and reporting.', type: 'website' },
+  openGraph: { title: 'Secure Monitoring | Managed Security Operations', description: 'Human-led monitoring, incident response, escalation, and reporting.', type: 'website', url: BUSINESS.website, siteName: 'Secure Monitoring' },
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

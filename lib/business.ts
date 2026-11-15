@@ -15,6 +15,8 @@ export const BUSINESS = {
     country: 'India',
   },
   proprietor: 'Shaik Mudassir',
+  website: 'https://securemonitoring24hr.cc',
+  websiteLabel: 'securemonitoring24hr.cc',
   email: 'securemonitoring24hr@gmail.com',
   // Primary number (also WhatsApp) and the number registered on the Udyam certificate.
   phone: '+91 9392525869',
