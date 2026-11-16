@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/json-ld'
+import { pageMetadata } from '@/lib/seo'
+import { pricingSchema } from '@/lib/schema'
 import Link from 'next/link'
 import { BadgeCheck, CalendarCheck, Check, CreditCard, Gift, MessagesSquare, RefreshCw } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
 
-export const metadata: Metadata = { title: 'Pricing', description: 'Remote CCTV monitoring from $199 per site per month with 24/7 monitoring, a 7-day free trial and no setup fees. Pricing tailored to your cameras and monitoring hours.' }
+export const metadata: Metadata = pageMetadata({ title: 'Remote Video Monitoring Pricing', description: 'Remote CCTV monitoring pricing: from $199 per site per month for 24/7 monitoring, tailored to cameras and hours. 7-day free trial, no setup fees, month to month.', path: '/pricing' })
 
 const plans = [
   { name: 'Basic', price: '$199', note: 'site / month', intro: '24/7 monitoring with essential employee escalation.', cta: 'Start 7-day free trial', features: ['24/7 live CCTV monitoring of your site', 'Employee monitoring', 'Shoplifting monitoring', '30-second response target', 'Employee notification by phone for detected shoplifting incidents', 'WhatsApp alerts and coordination', 'Incident reporting', 'Operational support through WhatsApp'] },
@@ -35,7 +38,8 @@ const faqs = [
 
 export default function PricingPage() {
   return <>
-    <PageHero eyebrow="Pricing" title="Simple monthly pricing per site, with a free trial.">24/7 remote monitoring of your existing CCTV cameras, priced per site per month. Your final price is tailored to the number of cameras and the active monitoring hours you need.</PageHero>
+    <JsonLd data={pricingSchema()} />
+    <PageHero eyebrow="Pricing" title="Simple monthly pricing per site, with a free trial." breadcrumbs={[{ name: 'Pricing', path: '/pricing' }]}>24/7 remote monitoring of your existing CCTV cameras, priced per site per month. Your final price is tailored to the number of cameras and the active monitoring hours you need.</PageHero>
 
     <section className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8">
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

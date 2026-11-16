@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { ContactLine, LegalPage, type LegalSection } from '@/components/legal-page'
 import { BUSINESS, BUSINESS_ADDRESS_ONE_LINE } from '@/lib/business'
 
-export const metadata: Metadata = {
-  title: 'Terms & Conditions',
-  description: 'Terms and conditions governing Secure Monitoring’s remote CCTV monitoring and retail security surveillance services, website use, fees and payments.',
-}
+export const metadata: Metadata = pageMetadata({ title: 'Terms & Conditions', description: 'Terms and conditions governing Secure Monitoring’s remote CCTV monitoring and retail security surveillance services, website use, fees and payments.', path: '/terms' })
 
 const sections: LegalSection[] = [
   {

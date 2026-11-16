@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { ContactLine, LegalPage, type LegalSection } from '@/components/legal-page'
 import { BUSINESS } from '@/lib/business'
 
-export const metadata: Metadata = {
-  title: 'Refund Policy',
-  description: 'When Secure Monitoring issues refunds for remote CCTV monitoring subscriptions, how to request one, and how long refunds take.',
-}
+export const metadata: Metadata = pageMetadata({ title: 'Refund Policy', description: 'When Secure Monitoring issues refunds for remote CCTV monitoring subscriptions, how to request one, and how long refunds take.', path: '/refund-policy' })
 
 const sections: LegalSection[] = [
   {
