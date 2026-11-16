@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { LegalPage, type LegalSection } from '@/components/legal-page'
 import { BUSINESS, BUSINESS_ADDRESS_ONE_LINE } from '@/lib/business'
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'How Secure Monitoring collects, uses, protects and retains information when providing remote CCTV monitoring services and operating this website.',
-}
+export const metadata: Metadata = pageMetadata({ title: 'Privacy Policy', description: 'How Secure Monitoring collects, uses, protects and retains information when providing remote CCTV monitoring services and operating this website.', path: '/privacy' })
 
 const sections: LegalSection[] = [
   {
@@ -32,7 +30,8 @@ const sections: LegalSection[] = [
         <li>Monitoring logs, incident notes, alert history and reports, which may include still images or short clips of incidents where your plan includes them.</li>
       </ul>
       <h3>Website information</h3>
-      <p>Basic, privacy-friendly usage statistics (such as pages visited, browser type and approximate country) collected through our hosting provider’s analytics. This website does not use advertising cookies and has no contact form that stores submissions.</p>
+      <p>Usage statistics (such as pages visited, referring website, browser type and approximate location) collected through our hosting provider’s analytics and, where enabled, Google Analytics and Microsoft Clarity. These tools may use cookies or similar technologies to measure how the website is used. We do not use advertising cookies.</p>
+      <p>Our enquiry form does not store your information on this website. It opens your own email app or WhatsApp with your details filled in, and the information reaches us only if you choose to send it.</p>
     </>,
   },
   {

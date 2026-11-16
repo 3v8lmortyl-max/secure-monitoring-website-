@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { ArrowRight, Ban, RotateCcw } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
 
-export const metadata: Metadata = { title: 'Cancellation & Refunds', description: 'Summary of Secure Monitoring’s cancellation and refund policies for monthly remote CCTV monitoring subscriptions.' }
+export const metadata: Metadata = pageMetadata({ title: 'Cancellation & Refunds', description: 'Summary of Secure Monitoring’s cancellation and refund policies for monthly remote CCTV monitoring subscriptions.', path: '/cancellation-refund', noindex: true })
 
 const cards = [
   { href: '/cancellation-policy', icon: Ban, title: 'Cancellation Policy', points: ['7-day free trial, no card required', 'Month-to-month, no cancellation fee', 'Cancel by email or WhatsApp at any time', 'Give 3 business days’ notice before your next billing date', 'Service runs to the end of the paid month'] },

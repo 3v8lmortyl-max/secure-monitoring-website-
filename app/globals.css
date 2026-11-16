@@ -87,3 +87,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Accessible link/label colour in dark mode: the brand primary (used for buttons and borders)
+   is too dark for text on near-black backgrounds (WCAG AA contrast). */
+@layer utilities {
+  .dark .text-primary {
+    color: oklch(0.7 0.13 250);
+  }
+}

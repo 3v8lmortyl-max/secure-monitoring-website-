@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import { ContactLine, LegalPage, type LegalSection } from '@/components/legal-page'
 import { BUSINESS } from '@/lib/business'
 
-export const metadata: Metadata = {
-  title: 'Cancellation Policy',
-  description: 'How to cancel a Secure Monitoring remote CCTV monitoring subscription, notice periods, when cancellation takes effect and what happens afterwards.',
-}
+export const metadata: Metadata = pageMetadata({ title: 'Cancellation Policy', description: 'How to cancel a Secure Monitoring remote CCTV monitoring subscription, notice periods, when cancellation takes effect and what happens afterwards.', path: '/cancellation-policy' })
 
 const sections: LegalSection[] = [
   {

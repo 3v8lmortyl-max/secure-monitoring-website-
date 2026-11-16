@@ -8,19 +8,19 @@ import { useState } from 'react'
 import { BUSINESS } from '@/lib/business'
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Solutions', href: '/solutions' },
-  { label: 'Operations', href: '/operations' },
-  { label: 'Professional Services', href: '/professional-services' },
+  { label: 'Services', href: '/services' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'How It Works', href: '/how-it-works' },
   { label: 'Pricing', href: '/pricing' },
+  { label: 'Resources', href: '/resources' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
 
 export function Logo({ onClick }: { onClick?: () => void }) {
   return (
-    <Link href="/" className="flex items-center gap-3" onClick={onClick} aria-label={`${BUSINESS.name} home`}>
-      <Image src="/logo-mark.png" alt="" width={240} height={155} priority className="h-9 w-auto sm:h-10" />
+    <Link href="/" className="flex items-center gap-3" onClick={onClick}>
+      <Image src="/logo-mark.webp" alt="" width={240} height={155} priority className="h-9 w-auto sm:h-10" />
       <span className="flex flex-col leading-none">
         <span className="text-[15px] font-extrabold italic tracking-wide sm:text-base">SECURE</span>
         <span className="text-[15px] font-extrabold italic tracking-wide sm:text-base">MONITORING</span>
@@ -53,7 +53,7 @@ export function Navigation() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <Link href="/contact" className="hidden rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-accent sm:inline-flex">Book a Consultation</Link>
+          <Link href="/contact#quote-form" className="hidden rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-accent sm:inline-flex">Start Free Trial</Link>
           <button type="button" className="inline-flex rounded-md p-2 text-foreground xl:hidden" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen} aria-controls="mobile-navigation" aria-label="Toggle navigation">{isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
         </div>
       </nav>
@@ -61,7 +61,7 @@ export function Navigation() {
         <div id="mobile-navigation" className="border-t border-border bg-background px-4 py-3 xl:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
             {navItems.map((item) => <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)} aria-current={isActive(item.href) ? 'page' : undefined} className={`rounded-md px-3 py-2.5 text-sm font-medium hover:bg-secondary ${isActive(item.href) ? 'bg-secondary' : ''}`}>{item.label}</Link>)}
-            <Link href="/contact" onClick={() => setIsOpen(false)} className="mt-2 rounded-md bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground">Book a Consultation</Link>
+            <Link href="/contact#quote-form" onClick={() => setIsOpen(false)} className="mt-2 rounded-md bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground">Start Free Trial</Link>
           </div>
         </div>
       )}
