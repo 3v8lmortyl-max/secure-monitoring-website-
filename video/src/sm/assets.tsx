@@ -480,3 +480,36 @@ export const AlertCard: React.FC<{at: number}> = ({at}) => {
     </div>
   );
 };
+
+/** CCTV overlay for any live content (e.g. a 3D render): grade, grain, scanlines, vignette, timestamp, REC. */
+export const CctvFrame: React.FC<{w: number; h: number; cam: string; dim?: number; label?: boolean; children: React.ReactNode}> = ({w, h, cam, dim = 0, label = true, children}) => {
+  const frame = useCurrentFrame();
+  const sec = 14 * 60 + 3 + Math.floor(frame / 30);
+  const ts = `11-18-2026  02:${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`;
+  const fs = Math.max(13, Math.round(w / 34));
+  const jx = Math.floor(frame / 3) % 7 === 0 ? (rand(`fx${frame}${cam}`) - 0.5) * 2 : 0;
+  return (
+    <div style={{position: 'relative', width: w, height: h, overflow: 'hidden', borderRadius: 10, background: '#000'}}>
+      <div style={{position: 'absolute', inset: 0, transform: `translateX(${jx}px)`, filter: 'saturate(0.6) contrast(1.12) brightness(0.95)'}}>{children}</div>
+      <svg width="100%" height="100%" style={{position: 'absolute', inset: 0, opacity: 0.3, mixBlendMode: 'overlay'}}>
+        <filter id={`fg${cam.replace(/\W/g, '')}`}>
+          <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves={1} seed={(frame % 11) + 1} />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#fg${cam.replace(/\W/g, '')})`} />
+      </svg>
+      <div style={{position: 'absolute', inset: 0, background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 3px)'}} />
+      <div style={{position: 'absolute', inset: 0, background: `radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%), rgba(0,0,0,${dim})`}} />
+      {label ? (
+        <>
+          <div style={{position: 'absolute', top: 12, left: 14, fontFamily: SM.mono, fontSize: fs, color: '#F8FAFC', textShadow: '0 1px 2px #000', letterSpacing: '0.04em'}}>{ts}</div>
+          <div style={{position: 'absolute', bottom: 12, left: 14, fontFamily: SM.mono, fontSize: fs, color: '#F8FAFC', textShadow: '0 1px 2px #000'}}>{cam}</div>
+          <div style={{position: 'absolute', top: 14, right: 14, display: 'flex', alignItems: 'center', gap: 8, fontFamily: SM.mono, fontSize: fs, color: '#F8FAFC'}}>
+            <div style={{width: fs * 0.7, height: fs * 0.7, borderRadius: '50%', background: SM.red, opacity: Math.floor(frame / 15) % 2 ? 0.3 : 1}} />
+            REC
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+};

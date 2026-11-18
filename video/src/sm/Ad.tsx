@@ -269,7 +269,7 @@ export const adScenes: AdScene[] = [
   {
     id: 'us',
     duration: 5.2,
-    vo: [{at: 0.2, text: 'Built for convenience, liquor, grocery, and retail stores across the U.S.'}],
+    vo: [{at: 0.2, text: 'Built for convenience, liquor, grocery, and retail stores across America.'}],
     render: () => (
       <>
         <Center y={300}>

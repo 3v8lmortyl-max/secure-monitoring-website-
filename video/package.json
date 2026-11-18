@@ -9,10 +9,21 @@
     "still": "remotion still Explainer out/still.png"
   },
   "dependencies": {
+    "@react-three/fiber": "^8.17.10",
     "@remotion/cli": "4.0.242",
+    "@remotion/motion-blur": "^4.0.242",
+    "@remotion/three": "^4.0.242",
+    "@remotion/transitions": "^4.0.242",
+    "@types/d3-geo": "^3.1.0",
+    "@types/three": "^0.169.0",
+    "@types/topojson-client": "^3.1.5",
+    "d3-geo": "^3.1.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "remotion": "4.0.242"
+    "remotion": "4.0.242",
+    "three": "^0.169.0",
+    "topojson-client": "^3.1.0",
+    "us-atlas": "^3.0.1"
   },
   "devDependencies": {
     "@types/react": "18.3.12",
