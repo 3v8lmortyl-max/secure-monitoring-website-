@@ -325,7 +325,7 @@ export const ShieldMark: React.FC<{size?: number; light?: boolean}> = ({size = 2
         <stop offset="1" stopColor="#1D4ED8" />
       </linearGradient>
     </defs>
-    <path d="M50 4 L90 18 V52 C90 80 70 100 50 108 C30 100 10 80 10 52 V18 Z" fill="#0B1220" stroke="url(#shieldG)" strokeWidth={8} strokeLinejoin="round" />
+    <path d="M50 4 L90 18 V52 C90 80 70 100 50 108 C30 100 10 80 10 52 V18 Z" fill="#000000" stroke="url(#shieldG)" strokeWidth={8} strokeLinejoin="round" />
     <image href={staticFile('brand/sm-mark.png')} x={18} y={30} width={64} height={39.8} preserveAspectRatio="xMidYMid meet" />
   </svg>
 );

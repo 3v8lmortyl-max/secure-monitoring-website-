@@ -191,7 +191,7 @@ export const Shield3D: React.FC<{width: number; height: number; light?: boolean;
         </mesh>
         <mesh position={[0, 0, -0.08]}>
           <extrudeGeometry args={[inner, {depth: 0.12, bevelEnabled: false, curveSegments: 48}]} />
-          <meshPhysicalMaterial color="#0B1220" metalness={0.1} roughness={0.35} clearcoat={0.8} />
+          <meshBasicMaterial color="#000000" toneMapped={false} />
         </mesh>
         {tex ? (
           <mesh position={[0, 0.0, 0.06]}>
