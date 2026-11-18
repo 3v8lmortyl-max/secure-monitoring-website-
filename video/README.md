@@ -76,3 +76,11 @@ npx remotion render SecureMonitoringAd30 out/secure-monitoring-ad-30s.mp4 --gl=a
 # audio: node scripts/timeline.mjs ad30 > /tmp/ad30.json
 #        VOICE=af_heart VO_SPEED=1.0 MUSIC=1 python scripts/generate_audio.py /tmp/ad30.json ./kokoro 900 public/audio/ad30.mp3
 ```
+
+### Landscape version (`SecureMonitoringAdLandscape`, 1920×1080)
+
+`src/sm/AdLandscape.tsx` re-lays out every scene of the full ad for 16:9. It keeps the same timing, so it reuses `audio/ad.mp3`.
+
+```bash
+npx remotion render SecureMonitoringAdLandscape out/secure-monitoring-ad-landscape.mp4 --gl=angle
+```

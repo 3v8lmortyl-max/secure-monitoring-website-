@@ -26,7 +26,7 @@ const Center: React.FC<{y: number; children: React.ReactNode}> = ({y, children})
   <div style={{position: 'absolute', left: 0, right: 0, top: y, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{children}</div>
 );
 
-const ActiveSteps: React.FC = () => {
+export const ActiveSteps: React.FC = () => {
   const frame = useCurrentFrame();
   const steps = [
     {n: '01', icon: 'video', title: 'Connect', sub: 'Your existing cameras', at: s(0.4)},
@@ -44,7 +44,7 @@ const ActiveSteps: React.FC = () => {
   );
 };
 
-const CheckRow: React.FC<{text: string; at: number}> = ({text, at}) => {
+export const CheckRow: React.FC<{text: string; at: number}> = ({text, at}) => {
   const frame = useCurrentFrame();
   const p = interpolate(frame, [at, at + 20], [0, 1], {...clamp, easing: ease});
   return (
@@ -57,12 +57,12 @@ const CheckRow: React.FC<{text: string; at: number}> = ({text, at}) => {
   );
 };
 
-const Light: React.FC<{children: React.ReactNode}> = ({children}) => (
+export const Light: React.FC<{children: React.ReactNode}> = ({children}) => (
   <AbsoluteFill style={{background: 'radial-gradient(80% 60% at 50% 40%, #FFFFFF 0%, #EEF3FB 70%, #E2EAF7 100%)'}}>{children}</AbsoluteFill>
 );
 
-const AI = (n: string) => `brand/ai/${n}.jpg`;
-const WALL: [string, string][] = [
+export const AI = (n: string) => `brand/ai/${n}.jpg`;
+export const WALL: [string, string][] = [
   ['cctv-storefront', 'CAM 01 STOREFRONT'],
   ['cctv-checkout', 'CAM 02 CHECKOUT'],
   ['cctv-liquor', 'CAM 04 LIQUOR'],
@@ -71,7 +71,7 @@ const WALL: [string, string][] = [
   ['aisle-empty', 'CAM 05 AISLE 2'],
 ];
 
-const Wordmark: React.FC<{at: number; light?: boolean; size?: number}> = ({at, light, size = 112}) => (
+export const Wordmark: React.FC<{at: number; light?: boolean; size?: number}> = ({at, light, size = 112}) => (
   <div style={{textAlign: 'center'}}>
     <Reveal at={at} size={size} weight={800} tracking="-0.04em" color={light ? '#0B1220' : SM.text} lines={['Secure Monitoring']} />
     <Rise at={at + 14} dist={20}>

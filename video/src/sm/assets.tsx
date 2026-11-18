@@ -515,7 +515,7 @@ export const CctvFrame: React.FC<{w: number; h: number; cam: string; dim?: numbe
  * Full-bleed cinematic photo: cover-fit to the 9:16 frame around a focal point, slow push/drift
  * (Ken Burns), brand grade, and a bottom gradient so captions stay legible.
  */
-export const HeroPhoto: React.FC<{src: string; focus?: [number, number]; zoom?: [number, number]; drift?: number; shade?: number}> = ({src, focus = [50, 50], zoom = [1.0, 1.08], drift = 30, shade = 0.85}) => {
+export const HeroPhoto: React.FC<{src: string; focus?: [number, number]; zoom?: [number, number]; drift?: number; shade?: number; side?: 'bottom' | 'left' | 'right'}> = ({src, focus = [50, 50], zoom = [1.0, 1.08], drift = 30, shade = 0.85, side = 'bottom'}) => {
   const frame = useCurrentFrame();
   const dur = useSceneDuration();
   const t = interpolate(frame, [0, dur], [0, 1]);
@@ -540,7 +540,10 @@ export const HeroPhoto: React.FC<{src: string; focus?: [number, number]; zoom?: 
         style={{
           position: 'absolute',
           inset: 0,
-          background: `linear-gradient(180deg, rgba(11,18,32,0.35) 0%, rgba(11,18,32,0) 25%, rgba(11,18,32,0) 45%, rgba(11,18,32,${shade}) 72%, rgba(11,18,32,0.97) 100%)`,
+          background:
+            side === 'bottom'
+              ? `linear-gradient(180deg, rgba(11,18,32,0.35) 0%, rgba(11,18,32,0) 25%, rgba(11,18,32,0) 45%, rgba(11,18,32,${shade}) 72%, rgba(11,18,32,0.97) 100%)`
+              : `linear-gradient(${side === 'left' ? 90 : 270}deg, rgba(11,18,32,0.96) 0%, rgba(11,18,32,${shade}) 30%, rgba(11,18,32,0) 58%), linear-gradient(0deg, rgba(11,18,32,0.5) 0%, rgba(11,18,32,0) 30%)`,
         }}
       />
       <div style={{position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 90% 70% at 50% 40%, transparent 50%, rgba(0,0,0,0.45) 100%)'}} />

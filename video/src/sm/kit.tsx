@@ -58,7 +58,7 @@ export const Backdrop: React.FC = () => {
           background: `radial-gradient(70% 45% at ${50 + Math.sin(frame / 90) * 8}% 38%, rgba(37,99,235,0.30) 0%, rgba(37,99,235,0.06) 45%, transparent 70%)`,
         }}
       />
-      <svg width="100%" height="100%" viewBox="0 0 1080 1920" style={{position: 'absolute', opacity: 0.55}}>
+      <svg width="100%" height="100%" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMax slice" style={{position: 'absolute', opacity: 0.55}}>
         {Array.from({length: 14}).map((_, i) => {
           const y = 1500 + i * 16;
           const ph = drift * 0.02 + i * 0.35;
