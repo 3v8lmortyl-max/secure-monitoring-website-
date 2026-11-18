@@ -1,5 +1,5 @@
 // Prints the narration/SFX timeline (global frames) derived from the scene definitions.
-// Usage: node scripts/timeline.mjs [explainer|promo] > timeline.json
+// Usage: node scripts/timeline.mjs [explainer|ad] > timeline.json
 import {build} from 'esbuild';
 import {pathToFileURL} from 'node:url';
 import path from 'node:path';
@@ -14,8 +14,8 @@ await build({
       import {part3} from './src/parts/part3';
       import {part4} from './src/parts/part4';
       import {PART_FRAMES, defaultProps} from './src/script';
-      import {promoScenes, promoDefaults} from './src/promo/scenes';
-      export {part1, part2, part3, part4, PART_FRAMES, defaultProps, promoScenes, promoDefaults};`,
+      import {adScenes} from './src/sm/Ad';
+      export {part1, part2, part3, part4, PART_FRAMES, defaultProps, adScenes};`,
     resolveDir: process.cwd(),
     loader: 'ts',
   },
@@ -29,8 +29,8 @@ await build({
 const m = (await import(pathToFileURL(out).href)).default;
 const clean = (t) => t.replace(/[*_!]/g, '').replace(/\|/g, ' ').replace(/\s+/g, ' ').trim();
 const events = [];
-const promo = process.argv[2] === 'promo';
-const builds = promo ? [() => m.promoScenes(m.promoDefaults)] : [m.part1, m.part2, m.part3, m.part4];
+const promo = process.argv[2] === 'ad';
+const builds = promo ? [() => m.adScenes] : [m.part1, m.part2, m.part3, m.part4];
 const props = m.defaultProps;
 let partStart = 0;
 builds.forEach((build, pi) => {
@@ -55,6 +55,7 @@ builds.forEach((build, pi) => {
       const next = arr[i + 1] ? arr[i + 1].at : dur;
       events.push({type: 'bullet', frame: sceneStart + b.at, maxFrames: next - b.at, text: b.say ?? clean(b.text), scene: sc.id});
     });
+    (sc.vo ?? []).forEach((v) => events.push({type: 'voice', frame: sceneStart + Math.round(v.at * 30), text: v.text, scene: sc.id}));
     (sc.sfx ?? []).forEach((f) => events.push({type: 'sfx', sfx: f.type, frame: sceneStart + Math.round(f.at * 30), scene: sc.id}));
     sceneStart += dur;
   }

@@ -51,14 +51,19 @@ node scripts/timeline.mjs > /tmp/timeline.json
 python scripts/generate_audio.py /tmp/timeline.json ./kokoro   # VOICE=af_heart for a female voice
 ```
 
-## Promo: "Your cameras are recording. Nobody's watching."
+## Brand ad: Secure Monitoring (`SecureMonitoringAd`, ~57s)
 
-A second, original composition (`Promo`, ~53s) for Secure Monitoring, built with the same components and motion.
-Scenes are in `src/promo/scenes.tsx`, visuals in `src/promo/visuals.tsx`. All claims follow the website
-(30-second response *target*, $199/$299 per site per month, no setup fees, 7-day free trial).
+An original ad with its own design system in `src/sm/`. It shares nothing visually with the explainer.
+
+- **Brand:** the official logo and monitoring-room photo from the website (`public/brand/`), the navy/blue + signal-red palette and the Geist type family.
+- **Look:** dark "security operations" styling with a blue glow, a fine grid, film grain, a camera overlay (REC, timecode, viewfinder corners), masked word reveals and light-sweep cuts.
+- **Generated assets:** night CCTV feeds with an operator flag, line icons, glass cards, a response ring, pricing cards and a CTA button.
+- **Claims:** they follow the website. The 30-second figure is a response *target*. Pricing is $199/$299 per site per month (Enterprise from $699), with no setup fees and a 7-day free trial.
+
+Scenes and voice-over lines live in `src/sm/Ad.tsx`.
 
 ```bash
-npx remotion render Promo out/promo.mp4
-# audio: node scripts/timeline.mjs promo > /tmp/promo.json
-#        python scripts/generate_audio.py /tmp/promo.json ./kokoro 1578 public/audio/promo.mp3
+npx remotion render SecureMonitoringAd out/secure-monitoring-ad.mp4
+# audio: node scripts/timeline.mjs ad > /tmp/ad.json
+#        VO_SPEED=1.0 MUSIC=1 python scripts/generate_audio.py /tmp/ad.json ./kokoro 1716 public/audio/ad.mp3
 ```

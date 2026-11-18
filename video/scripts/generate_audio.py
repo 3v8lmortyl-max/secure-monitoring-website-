@@ -174,7 +174,7 @@ def main(timeline_path, model_dir, total_frames=TOTAL_FRAMES, out=OUT):
     for i, e in enumerate(speech):
         nxt = speech[i + 1]['frame'] if i + 1 < len(speech) else total_frames
         avail = (nxt - e['frame']) / FPS
-        speed, gain = STYLE.get(e['scene'], (1.05, 1.0))
+        speed, gain = STYLE.get(e['scene'], (float(os.environ.get('VO_SPEED', 1.05)), 1.0)) if not os.environ.get('VO_SPEED') else (float(os.environ['VO_SPEED']), 1.0)
         if e['type'] == 'bullet':
             speed = max(speed, 1.1)
         text = spoken(e['text'])
@@ -239,9 +239,44 @@ def explainer_sfx(place, fx, scenes):
     place(fx, ding(1046.5, 1.6), scenes['follow']['frame'] + 6, 0.7)
 
 
+def music_bed(n, bpm=96):
+    """Dark, minimal corporate bed: sustained minor pad + soft sub pulse + quiet hats."""
+    t = np.arange(n) / SR
+    beat = 60 / bpm
+    bar = beat * 4
+    chords = [[110.0, 130.81, 164.81], [87.31, 110.0, 130.81], [98.0, 123.47, 146.83], [82.41, 103.83, 123.47]]  # Am F G E
+    pad = np.zeros(n, np.float32)
+    for ci in range(int(t[-1] / bar) + 1):
+        s0, s1 = int(ci * bar * SR), min(int((ci + 1) * bar * SR), n)
+        tt = t[s0:s1] - ci * bar
+        env = np.minimum(1, tt / 0.6) * np.minimum(1, (bar - tt) / 0.6)
+        for f in chords[ci % 4]:
+            for h, a in [(1, 1), (2, 0.25), (0.5, 0.5)]:
+                pad[s0:s1] += (a * np.sin(2 * np.pi * f * h * tt + h) * env * (0.6 + 0.4 * np.sin(2 * np.pi * 0.11 * tt))).astype(np.float32)
+    pulse = np.zeros(n, np.float32)
+    k = t_(0.35)
+    kick = (np.sin(2 * np.pi * (50 + 60 * np.exp(-k * 30)) * k) * np.exp(-k * 9)).astype(np.float32)
+    hat = (lowpass(rng.standard_normal(1600), 9000) - lowpass(rng.standard_normal(1600), 4000)).astype(np.float32) * np.exp(-np.arange(1600) / 250).astype(np.float32)
+    for b in range(int(t[-1] / beat)):
+        s0 = int(b * beat * SR)
+        if s0 + len(kick) < n:
+            pulse[s0:s0 + len(kick)] += kick * 0.9
+        h0 = int((b + 0.5) * beat * SR)
+        if h0 + len(hat) < n and b > 8:
+            pulse[h0:h0 + len(hat)] += hat * 0.12
+    bed = pad / (np.abs(pad).max() + 1e-9) * 0.5 + pulse * 0.45
+    fade = np.minimum(1, t / 2.0) * np.minimum(1, (t[-1] - t) / 2.5)
+    return (bed * fade).astype(np.float32)
+
+
 def mix_and_write(vo, fx, total_frames, out):
     vo /= np.abs(vo).max() + 1e-9
     mix = vo * 0.9 + fx * 0.55
+    if os.environ.get('MUSIC'):
+        bed = music_bed(len(vo))
+        env = np.convolve(np.abs(vo), np.ones(4800) / 4800, mode='same')  # duck the bed under the voice
+        duck = 1 - 0.55 * np.clip(env / (env.max() + 1e-9) * 4, 0, 1)
+        mix = mix + bed * duck * 0.22
     mix = np.tanh(mix * 1.1) / np.tanh(1.1)  # gentle soft-clip glue
     stereo = np.stack([mix, mix], axis=1)[: int(total_frames / FPS * SR)]
 
