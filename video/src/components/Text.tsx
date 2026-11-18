@@ -131,7 +131,8 @@ export const WordLines: React.FC<{
   );
 };
 
-export type Caption = {at: number; lines: Line[]; speed?: number};
+/** `say` overrides what the voice-over reads for this caption. */
+export type Caption = {at: number; lines: Line[]; speed?: number; say?: string};
 
 /** A sequence of captions: each replaces the previous one, with a quick blur-out. */
 export const Captions: React.FC<{captions: Caption[]; end: number; top: number}> = ({
@@ -177,7 +178,7 @@ export const Sparkle: React.FC<{size: number; color?: string}> = ({size, color =
   </svg>
 );
 
-export type Bullet = {at: number; text: string};
+export type Bullet = {at: number; text: string; say?: string};
 
 /** Accumulating ✦ list. Use "|" in text to force a line break. */
 export const Bullets: React.FC<{items: Bullet[]; top: number; left?: number; size?: number; speed?: number}> = ({

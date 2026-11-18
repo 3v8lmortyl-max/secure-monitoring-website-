@@ -152,15 +152,15 @@ def typing(dur=1.6):
 
 
 # ---------------------------------------------------------------- mix
-def main(timeline_path, model_dir):
+def main(timeline_path, model_dir, total_frames=TOTAL_FRAMES, out=OUT):
     events = json.load(open(timeline_path))
     scenes = {e['scene']: e for e in events if e['type'] == 'cut'}
-    for x in EXTRA:
+    for x in (EXTRA if 'reread' in scenes else []):
         events.append({**x, 'frame': scenes[x['scene']]['frame'] + x['offset']})
     events.sort(key=lambda e: e['frame'])
     speech = [e for e in events if e['type'] in ('voice', 'bullet')]
 
-    n = int(TOTAL_FRAMES / FPS * SR) + SR
+    n = int(total_frames / FPS * SR) + SR
     vo = np.zeros(n, np.float32)
     fx = np.zeros(n, np.float32)
 
@@ -172,7 +172,7 @@ def main(timeline_path, model_dir):
     k = Kokoro(os.path.join(model_dir, 'kokoro-v1.0.onnx'), os.path.join(model_dir, 'voices-v1.0.bin'))
     cursor = 0  # sample index where the previous line ended (no overlapping lines)
     for i, e in enumerate(speech):
-        nxt = speech[i + 1]['frame'] if i + 1 < len(speech) else TOTAL_FRAMES
+        nxt = speech[i + 1]['frame'] if i + 1 < len(speech) else total_frames
         avail = (nxt - e['frame']) / FPS
         speed, gain = STYLE.get(e['scene'], (1.05, 1.0))
         if e['type'] == 'bullet':
@@ -201,6 +201,26 @@ def main(timeline_path, model_dir):
             place(fx, whoosh(0.45), f - 9, 0.55)
         if e['type'] == 'bullet':
             place(fx, pop(), f, 0.6)
+    generic = {'impact': lambda: (impact(), 0.8), 'ding': lambda: (ding(1318.5), 0.75), 'typing': lambda: (typing(1.5), 0.5),
+               'riser': lambda: (riser(2.2), 0.6), 'pop': lambda: (pop(), 0.6), 'alert': lambda: (ding(880, 0.6), 0.6)}
+    for e in events:
+        if e['type'] != 'sfx':
+            continue
+        if e['sfx'] == 'ticks':
+            for j in range(8):
+                place(fx, tick(), e['frame'] + j * 3, 0.8)
+        elif e['sfx'] == 'alert':  # two-tone alert chime
+            place(fx, ding(880, 0.5), e['frame'], 0.6)
+            place(fx, ding(1174.7, 0.6), e['frame'] + 6, 0.6)
+        else:
+            clip, g = generic[e['sfx']]()
+            place(fx, clip, e['frame'] - (66 if e['sfx'] == 'riser' else 0), g)
+    if 'reread' in scenes:  # explainer-specific sound design
+        explainer_sfx(place, fx, scenes)
+    mix_and_write(vo, fx, total_frames, out)
+
+
+def explainer_sfx(place, fx, scenes):
     place(fx, impact(), 0, 0.9)                                   # hook hit
     place(fx, whoosh(0.6, up=False), 263, 0.5)                    # logo reveal
     place(fx, ding(1046.5), scenes['logo']['frame'] + 16, 0.8)
@@ -218,20 +238,23 @@ def main(timeline_path, model_dir):
     place(fx, impact(), scenes['cta']['frame'], 0.8)
     place(fx, ding(1046.5, 1.6), scenes['follow']['frame'] + 6, 0.7)
 
+
+def mix_and_write(vo, fx, total_frames, out):
     vo /= np.abs(vo).max() + 1e-9
     mix = vo * 0.9 + fx * 0.55
     mix = np.tanh(mix * 1.1) / np.tanh(1.1)  # gentle soft-clip glue
-    stereo = np.stack([mix, mix], axis=1)[: int(TOTAL_FRAMES / FPS * SR)]
+    stereo = np.stack([mix, mix], axis=1)[: int(total_frames / FPS * SR)]
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
     with tempfile.TemporaryDirectory() as d:
         wav = os.path.join(d, 'mix.wav')
         sf.write(wav, stereo, SR)
         subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', wav,
                         '-af', 'highpass=f=60,acompressor=threshold=-18dB:ratio=3:attack=5:release=120,loudnorm=I=-14:TP=-1.5:LRA=9',
-                        '-ar', str(SR), '-b:a', '192k', OUT], check=True)
-    print('wrote', os.path.abspath(OUT))
+                        '-ar', str(SR), '-b:a', '192k', out], check=True)
+    print('wrote', os.path.abspath(out))
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    # optional: total frames and output path (e.g. for the Promo composition)
+    main(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else TOTAL_FRAMES, sys.argv[4] if len(sys.argv) > 4 else OUT)

@@ -24,6 +24,8 @@ export type SceneDef = {
   bulletSize?: number;
   /** a second, independent caption track (e.g. footer lines) */
   extra?: {top: number; captions: Caption[]};
+  /** sound effects for the audio generator; `at` in seconds from scene start */
+  sfx?: {at: number; type: 'impact' | 'ding' | 'typing' | 'ticks' | 'riser' | 'pop' | 'alert'}[];
   dots?: boolean;
   decor?: {type: 'spokes' | 'graph'; corners: Corner[]};
 };

@@ -50,3 +50,15 @@ pip install kokoro-onnx soundfile numpy        # plus ffmpeg on PATH
 node scripts/timeline.mjs > /tmp/timeline.json
 python scripts/generate_audio.py /tmp/timeline.json ./kokoro   # VOICE=af_heart for a female voice
 ```
+
+## Promo: "Your cameras are recording. Nobody's watching."
+
+A second, original composition (`Promo`, ~53s) for Secure Monitoring, built with the same components and motion.
+Scenes are in `src/promo/scenes.tsx`, visuals in `src/promo/visuals.tsx`. All claims follow the website
+(30-second response *target*, $199/$299 per site per month, no setup fees, 7-day free trial).
+
+```bash
+npx remotion render Promo out/promo.mp4
+# audio: node scripts/timeline.mjs promo > /tmp/promo.json
+#        python scripts/generate_audio.py /tmp/promo.json ./kokoro 1578 public/audio/promo.mp3
+```
