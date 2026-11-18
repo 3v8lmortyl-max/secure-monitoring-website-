@@ -195,7 +195,7 @@ export const Shield3D: React.FC<{width: number; height: number; light?: boolean;
         </mesh>
         {tex ? (
           <mesh position={[0, 0.0, 0.06]}>
-            <planeGeometry args={[1.32, 1.32 * (881 / 1341)]} />
+            <planeGeometry args={[1.32, 1.32 * (1166 / 1874)]} />
             <meshBasicMaterial map={tex} transparent toneMapped={false} />
           </mesh>
         ) : null}
