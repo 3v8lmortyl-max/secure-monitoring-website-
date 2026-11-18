@@ -13,54 +13,55 @@ import {s} from '../theme';
 export const PART2_FRAMES = 691;
 
 export const part2 = (p: VideoProps): SceneDef[] => [
+  // Cuts measured on the original: 699 | 834 | 913 | 1012 | 1211 | 1286 | 1390 (sum 691 frames)
   {
     id: 'tokens',
-    duration: 5,
+    duration: 135 / 30,
     visual: () => <DarkMonitor />,
-    visualY: 640,
-    captionY: 1100,
+    visualY: 663,
+    captionY: 1180,
     captions: [
-      C(0, L('On a large project that is', 50), L('10s of 1000s of', 68, 500), L('*tokens* *burned*', 78, 700)),
-      C(3, L('before you type a', 56), L('*single* *word*', 80, 700)),
+      {at: 1, speed: 5, lines: [L('On a large project that is', 52), L('10s of 1000s of', 70, 500), L('*tokens* *burned*', 92, 700)]},
+      {at: 91, speed: 5, lines: [L('before you type a', 60), L('*single* *word*', 96, 700)]},
     ],
   },
   {
     id: 'fixes',
-    duration: 3,
+    duration: 79 / 30,
     visual: () => <GraphIcon size={300} />,
     visualY: 700,
-    captionY: 960,
-    captions: [C(0.6, L(`${p.productName} fixes that`, 56), L('*permanently*', 84, 700))],
+    captionY: 1000,
+    captions: [{at: 36, speed: 5, lines: [L('and fixes that', 56), L('*permanently*', 84, 700)]}],
   },
   {
     id: 'scans',
-    duration: 3,
+    duration: 99 / 30,
     visual: () => <BrowserCard title={`${p.productName} — ${p.productTagline}`} subtitle="Point it at any repository. It parses every file once and keeps a living map of how your code fits together." command={p.installCommand} />,
     visualY: 560,
     captionY: 1030,
     captions: [
-      C(0, L('It scans your', 58), L('*entire* *codebase*', 72, 700)),
-      C(1.2, L('and builds a persistent', 56), L('*knowledge* *graph*', 76, 700)),
+      {at: 7, speed: 6, lines: [L('It scans your', 58), L('*entire* *codebase*', 72, 700)]},
+      {at: 45, speed: 6, lines: [L('and builds a persistent', 56), L('*knowledge* *graph*', 76, 700)]},
     ],
   },
   {
     id: 'maps',
-    duration: 6,
+    duration: 199 / 30,
     visual: () => <DocsCard name={p.productName} />,
     visualY: 520,
     bulletsY: 900,
     decor: {type: 'graph', corners: ['tr', 'bl']},
-    bullets: [B(0.3, 'Every class'), B(1, 'Every function'), B(1.8, 'Every import'), B(2.7, 'Every call relationship'), B(3.8, 'Every architectural|decision')],
+    bullets: [B(3 / 30, 'Every class'), B(38 / 30, 'Every function'), B(68 / 30, 'Every import'), B(98 / 30, 'Every call relationship'), B(143 / 30, 'Every architectural|decision')],
   },
   {
     id: 'local',
-    duration: 3,
+    duration: 75 / 30,
     visual: () => (
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 120}}>
         <div style={{position: 'relative', height: 420, width: 400, display: 'flex', justifyContent: 'center'}}>
           <Burst size={300} />
           <div style={{position: 'absolute', top: 240}}>
-            <GraphIcon size={190} delay={10} />
+            <GraphIcon size={190} delay={24} />
           </div>
         </div>
         <Laptop />
@@ -70,10 +71,10 @@ export const part2 = (p: VideoProps): SceneDef[] => [
   },
   {
     id: 'privacy',
-    duration: 3,
+    duration: 104 / 30,
     dots: true,
-    bulletsY: 780,
-    bulletSize: 60,
-    bullets: [B(0, 'No code leaves|your devices'), B(1.1, 'No cloud'), B(1.8, 'No privacy risk')],
+    bulletsY: 700,
+    bulletSize: 48,
+    bullets: [B(4 / 30, 'No code leaves|your devices'), B(49 / 30, 'No cloud'), B(74 / 30, 'No privacy risk')],
   },
 ];

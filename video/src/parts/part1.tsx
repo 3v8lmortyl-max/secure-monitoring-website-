@@ -15,7 +15,7 @@ export const PART1_FRAMES = 699;
 export const part1 = (p: VideoProps): SceneDef[] => [
   {
     id: 'hook',
-    duration: 3,
+    duration: 98 / 30,
     visual: () => <PixelCritter badge="20X" size={440} />,
     visualY: 560,
     captionY: 840,
@@ -30,7 +30,7 @@ export const part1 = (p: VideoProps): SceneDef[] => [
   },
   {
     id: 'dropped',
-    duration: 6,
+    duration: 165 / 30,
     visual: () => <BrowserCard title={`${p.productName} — ${p.productTagline}`} subtitle={`${p.productName} is an open-source skill that helps AI coding assistants understand your codebase by building a queryable knowledge graph from code, docs and diagrams.`} command={p.installCommand} />,
     visualY: 560,
     captionY: 1030,
@@ -42,13 +42,13 @@ export const part1 = (p: VideoProps): SceneDef[] => [
   },
   {
     id: 'logo',
-    duration: 2,
+    duration: 54 / 30,
     visual: () => <Wordmark name={p.productName} />,
     visualY: 860,
   },
   {
     id: 'problem',
-    duration: 3,
+    duration: 105 / 30,
     visual: () => <PixelCritter alert tilt={-28} size={420} />,
     visualY: 600,
     captionY: 960,
@@ -59,7 +59,7 @@ export const part1 = (p: VideoProps): SceneDef[] => [
   },
   {
     id: 'reread',
-    duration: 9,
+    duration: 277 / 30,
     visual: () => <TerminalWindow />,
     visualY: 600,
     captionY: 1000,
