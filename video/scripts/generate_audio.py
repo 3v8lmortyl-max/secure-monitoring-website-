@@ -23,7 +23,7 @@ from kokoro_onnx import Kokoro
 FPS = 30
 SR = 48000
 TOTAL_FRAMES = 3095
-VOICE = os.environ.get('VOICE', 'af_heart')
+VOICE = os.environ.get('VOICE', 'am_michael')
 OUT = os.path.join(os.path.dirname(__file__), '..', 'public', 'audio', 'soundtrack.mp3')
 rng = np.random.default_rng(7)
 
