@@ -33,3 +33,20 @@ Caption markup: `*bold*`, `_italic_`, `!accent!`. Use `|` inside a bullet to for
 To clear a caption early, add a caption with no lines, e.g. `C(4.8)`.
 
 Fonts (Roboto, Roboto Mono, both open-source) are bundled in `public/fonts`, so rendering works offline.
+
+## Voice-over and sound effects (free, offline)
+
+`public/audio/soundtrack.mp3` holds the narration plus SFX, and `src/Explainer.tsx` plays it under the video.
+
+- **Voice:** [Kokoro-82M](https://github.com/thewh1teagle/kokoro-onnx) (Apache-2.0), voice `af_heart`. Each line is placed on its caption's frame and sped up if needed to fit before the next cue. Emotion comes from per-scene speed/level and punctuation (`STYLE` / `SAY` in the script).
+- **SFX:** generated in code (no licensing): whooshes on scene cuts, pops on bullets, typing, counter ticks, impacts, chimes and a riser into the CTA.
+- **Mix:** compressed and loudness-normalised to −14 LUFS.
+
+Regenerate after changing captions:
+
+```bash
+pip install kokoro-onnx soundfile numpy        # plus ffmpeg on PATH
+# download kokoro-v1.0.onnx + voices-v1.0.bin from the kokoro-onnx GitHub releases into ./kokoro
+node scripts/timeline.mjs > /tmp/timeline.json
+python scripts/generate_audio.py /tmp/timeline.json ./kokoro   # VOICE=am_michael to change voice
+```
