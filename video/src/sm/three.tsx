@@ -10,7 +10,7 @@ import {ThreeCanvas} from '@remotion/three';
 import {useThree} from '@react-three/fiber';
 import * as THREE from 'three';
 import {RoomEnvironment} from 'three/examples/jsm/environments/RoomEnvironment.js';
-import {Easing, interpolate, random, useCurrentFrame, useVideoConfig} from 'remotion';
+import {continueRender, delayRender, Easing, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -123,6 +123,24 @@ export const CctvCamera3D: React.FC<{width: number; height: number}> = ({width, 
 };
 
 /* ================================================================== shield mark */
+/** Official SM symbol as a texture (loaded once, render waits for it). */
+let smTex: THREE.Texture | null = null;
+const useSmTexture = () => {
+  const [, force] = React.useState(0);
+  React.useLayoutEffect(() => {
+    if (smTex) return;
+    const h = delayRender('SM logo texture');
+    new THREE.TextureLoader().load(staticFile('brand/sm-mark.png'), (tx) => {
+      tx.colorSpace = THREE.SRGBColorSpace;
+      tx.anisotropy = 8;
+      smTex = tx;
+      force((n) => n + 1);
+      continueRender(h);
+    });
+  }, []);
+  return smTex;
+};
+
 const shieldShape = (s: number) => {
   const sh = new THREE.Shape();
   sh.moveTo(0, 1.0 * s);
@@ -157,7 +175,7 @@ export const Shield3D: React.FC<{width: number; height: number; light?: boolean;
     return outer;
   }, []);
   const inner = useMemo(() => shieldShape(0.82), []);
-  const glyph = useMemo(() => cameraGlyph(), []);
+  const tex = useSmTexture();
   const bevel = {bevelEnabled: true, bevelThickness: 0.06, bevelSize: 0.04, bevelSegments: 6, curveSegments: 48};
   return (
     <ThreeCanvas width={width} height={height} camera={{fov: 28, position: [0, 0, 6.2]}} gl={{antialias: true, alpha: true}}>
@@ -173,22 +191,14 @@ export const Shield3D: React.FC<{width: number; height: number; light?: boolean;
         </mesh>
         <mesh position={[0, 0, -0.08]}>
           <extrudeGeometry args={[inner, {depth: 0.12, bevelEnabled: false, curveSegments: 48}]} />
-          <meshPhysicalMaterial color={light ? '#F8FAFC' : '#0B1220'} metalness={0.1} roughness={0.35} clearcoat={0.8} />
+          <meshPhysicalMaterial color="#0B1220" metalness={0.1} roughness={0.35} clearcoat={0.8} />
         </mesh>
-        <group position={[0.02, 0.02, 0.1]} rotation={[0, 0, -0.08]} scale={1.15}>
-          <mesh>
-            <extrudeGeometry args={[glyph, {depth: 0.1, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.015, bevelSegments: 3}]} />
-            <meshStandardMaterial color={light ? '#0B1220' : '#F8FAFC'} metalness={0.2} roughness={0.3} />
+        {tex ? (
+          <mesh position={[0, 0.0, 0.06]}>
+            <planeGeometry args={[1.32, 1.32 * (881 / 1341)]} />
+            <meshBasicMaterial map={tex} transparent toneMapped={false} />
           </mesh>
-          <mesh position={[-0.26, -0.24, 0.05]}>
-            <boxGeometry args={[0.07, 0.26, 0.1]} />
-            <meshStandardMaterial color={light ? '#0B1220' : '#F8FAFC'} />
-          </mesh>
-          <mesh position={[-0.33, -0.38, 0.05]}>
-            <boxGeometry args={[0.24, 0.07, 0.1]} />
-            <meshStandardMaterial color={light ? '#0B1220' : '#F8FAFC'} />
-          </mesh>
-        </group>
+        ) : null}
       </group>
     </ThreeCanvas>
   );

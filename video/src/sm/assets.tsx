@@ -316,8 +316,8 @@ export const Button: React.FC<{text: string; at: number}> = ({text, at}) => {
 
 /* ================================================================== brand-sheet assets */
 
-/** Shield + CCTV camera mark (vector recreation of the brand sheet logo). */
-export const ShieldMark: React.FC<{size?: number; light?: boolean}> = ({size = 220, light}) => (
+/** Official SM symbol inside a brand shield (blue gradient rim, navy field). */
+export const ShieldMark: React.FC<{size?: number; light?: boolean}> = ({size = 220}) => (
   <svg width={size} height={size * 1.12} viewBox="0 0 100 112">
     <defs>
       <linearGradient id="shieldG" x1="0" y1="0" x2="1" y2="1">
@@ -325,13 +325,8 @@ export const ShieldMark: React.FC<{size?: number; light?: boolean}> = ({size = 2
         <stop offset="1" stopColor="#1D4ED8" />
       </linearGradient>
     </defs>
-    <path d="M50 4 L90 18 V52 C90 80 70 100 50 108 C30 100 10 80 10 52 V18 Z" fill={light ? '#fff' : '#0B1220'} stroke="url(#shieldG)" strokeWidth={8} strokeLinejoin="round" />
-    <g fill={light ? '#0B1220' : '#F8FAFC'}>
-      <path d="M30 44 L66 34 Q70 33 71 37 L74 47 Q75 51 71 52 L35 62 Q31 63 30 59 Z" />
-      <path d="M71 41 L79 39 L81 47 L73 49 Z" />
-      <rect x="33" y="60" width="6" height="14" rx="2" transform="rotate(-16 36 67)" />
-      <rect x="27" y="72" width="16" height="5" rx="2" />
-    </g>
+    <path d="M50 4 L90 18 V52 C90 80 70 100 50 108 C30 100 10 80 10 52 V18 Z" fill="#0B1220" stroke="url(#shieldG)" strokeWidth={8} strokeLinejoin="round" />
+    <image href={staticFile('brand/sm-mark.png')} x={18} y={30} width={64} height={42.0} preserveAspectRatio="xMidYMid meet" />
   </svg>
 );
 
