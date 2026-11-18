@@ -34,7 +34,6 @@ export const COLORS = {
   ink: '#121212',
   muted: '#a3a3a3',
   faint: '#d6d6d6',
-  watermark: '#c9c9c9',
   orange: '#D97757',
   blue: '#1E5BE6',
   purple: '#7A4DE8',

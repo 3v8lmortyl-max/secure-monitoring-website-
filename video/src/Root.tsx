@@ -1,7 +1,7 @@
 import React from 'react';
 import {Composition} from 'remotion';
 import {Explainer} from './Explainer';
-import {defaultProps, totalFrames, VideoProps} from './script';
+import {defaultProps, TOTAL_FRAMES} from './script';
 import {FPS, HEIGHT, WIDTH} from './theme';
 
 export const RemotionRoot: React.FC = () => (
@@ -11,8 +11,7 @@ export const RemotionRoot: React.FC = () => (
     width={WIDTH}
     height={HEIGHT}
     fps={FPS}
-    durationInFrames={totalFrames(defaultProps)}
+    durationInFrames={TOTAL_FRAMES}
     defaultProps={defaultProps}
-    calculateMetadata={({props}) => ({durationInFrames: totalFrames(props as VideoProps)})}
   />
 );

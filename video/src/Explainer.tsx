@@ -1,36 +1,37 @@
 import React from 'react';
-import {AbsoluteFill, Series} from 'remotion';
-import {SceneView} from './components/Scene';
-import {buildScript, VideoProps} from './script';
+import {AbsoluteFill, Sequence, Series} from 'remotion';
+import {SceneDef, SceneView} from './components/Scene';
+import {part1} from './parts/part1';
+import {part2} from './parts/part2';
+import {part3} from './parts/part3';
+import {part4} from './parts/part4';
+import {PART_FRAMES, VideoProps} from './script';
 import {COLORS, FONT, s} from './theme';
 
+const Part: React.FC<{scenes: SceneDef[]}> = ({scenes}) => (
+  <Series>
+    {scenes.map((sc) => (
+      <Series.Sequence key={sc.id} name={sc.id} durationInFrames={s(sc.duration)}>
+        <SceneView scene={sc} duration={s(sc.duration)} />
+      </Series.Sequence>
+    ))}
+  </Series>
+);
+
 export const Explainer: React.FC<VideoProps> = (props) => {
-  const scenes = buildScript(props);
+  const parts = [part1, part2, part3, part4];
+  let from = 0;
   return (
     <AbsoluteFill style={{background: COLORS.bg, fontFamily: FONT, overflow: 'hidden'}}>
-      <Series>
-        {scenes.map((sc) => (
-          <Series.Sequence key={sc.id} name={sc.id} durationInFrames={s(sc.duration)}>
-            <SceneView scene={sc} duration={s(sc.duration)} />
-          </Series.Sequence>
-        ))}
-      </Series>
-      {/* persistent watermark */}
-      <div
-        style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 1600,
-          textAlign: 'center',
-          fontWeight: 700,
-          fontSize: 44,
-          color: COLORS.watermark,
-          letterSpacing: '0.01em',
-        }}
-      >
-        {props.watermark}
-      </div>
+      {parts.map((build, i) => {
+        const start = from;
+        from += PART_FRAMES[i];
+        return (
+          <Sequence key={i} name={`part${i + 1}`} from={start} durationInFrames={PART_FRAMES[i]}>
+            <Part scenes={build(props)} />
+          </Sequence>
+        );
+      })}
     </AbsoluteFill>
   );
 };
