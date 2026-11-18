@@ -9,7 +9,7 @@ if (typeof document !== 'undefined') {
   const handle = delayRender('Loading Geist');
   Promise.all(
     [
-      ['Geist', 'fonts/Geist.woff2'],
+      ['Inter', 'fonts/Inter.woff2'],
       ['Geist Mono', 'fonts/GeistMono.woff2'],
     ].map(([family, file]) => {
       const face = new FontFace(family, `url(${staticFile(file)}) format('woff2')`, {weight: '100 900'});
@@ -21,19 +21,21 @@ if (typeof document !== 'undefined') {
     .catch(() => continueRender(handle));
 }
 
+/* Brand sheet: primary #2563EB, accent #1D4ED8, background #0B1220, text #F8FAFC, Inter. */
 export const SM = {
-  bg: '#05070b',
-  bg2: '#0a1220',
-  text: '#F4F1EA', // logo off-white
-  muted: '#8B95A8',
-  dim: '#4a5466',
-  line: 'rgba(255,255,255,0.09)',
-  glass: 'rgba(255,255,255,0.045)',
-  blue: '#1F5AA6', // logo blue
-  blueHi: '#4C8DFF',
-  red: '#D7282F', // logo swoosh
+  bg: '#0B1220',
+  bg2: '#0F1A2E',
+  text: '#F8FAFC',
+  muted: '#94A3B8',
+  dim: '#475569',
+  line: 'rgba(148,163,184,0.14)',
+  glass: 'rgba(15,26,46,0.72)',
+  blue: '#1D4ED8',
+  blueHi: '#2563EB',
+  glow: '#3B82F6',
+  red: '#EF4444',
   green: '#22C55E',
-  font: "'Geist', 'Inter', 'Helvetica Neue', Arial, sans-serif",
+  font: "'Inter', 'Helvetica Neue', Arial, sans-serif",
   mono: "'Geist Mono', ui-monospace, monospace",
 };
 
@@ -53,18 +55,25 @@ export const Backdrop: React.FC = () => {
     <AbsoluteFill style={{background: SM.bg}}>
       <AbsoluteFill
         style={{
-          background: `radial-gradient(70% 45% at ${50 + Math.sin(frame / 90) * 8}% 38%, rgba(31,90,166,0.32) 0%, rgba(31,90,166,0.06) 45%, transparent 70%)`,
+          background: `radial-gradient(70% 45% at ${50 + Math.sin(frame / 90) * 8}% 38%, rgba(37,99,235,0.30) 0%, rgba(37,99,235,0.06) 45%, transparent 70%)`,
         }}
       />
-      <AbsoluteFill
-        style={{
-          backgroundImage: `linear-gradient(${SM.line} 1px, transparent 1px), linear-gradient(90deg, ${SM.line} 1px, transparent 1px)`,
-          backgroundSize: '90px 90px',
-          backgroundPosition: `0 ${drift}px`,
-          opacity: 0.35,
-          WebkitMaskImage: 'radial-gradient(ellipse 70% 55% at 50% 45%, #000 20%, transparent 80%)',
-        }}
-      />
+      <svg width="100%" height="100%" viewBox="0 0 1080 1920" style={{position: 'absolute', opacity: 0.55}}>
+        {Array.from({length: 14}).map((_, i) => {
+          const y = 1500 + i * 16;
+          const ph = drift * 0.02 + i * 0.35;
+          return (
+            <path
+              key={i}
+              d={`M -50 ${y + Math.sin(ph) * 40} C 300 ${y - 160 + Math.cos(ph) * 50}, 700 ${y + 120 + Math.sin(ph) * 50}, 1130 ${y - 260 + Math.cos(ph) * 40}`}
+              fill="none"
+              stroke={SM.blueHi}
+              strokeOpacity={0.05 + (i / 14) * 0.2}
+              strokeWidth={1.2}
+            />
+          );
+        })}
+      </svg>
       {/* film grain */}
       <svg width="100%" height="100%" style={{position: 'absolute', opacity: 0.07, mixBlendMode: 'screen'}}>
         <filter id="grain">
@@ -151,7 +160,7 @@ export const Reveal: React.FC<{
           {tokenize(line).map((tok, ti) => {
             const st = at + k++ * stagger;
             const p = interpolate(frame, [st, st + 16], [0, 1], {...clamp, easing: ease});
-            const c = tok.style === 'blue' ? SM.blueHi : tok.style === 'red' ? SM.red : tok.style === 'muted' ? SM.muted : color;
+            const c = tok.style === 'blue' ? SM.glow : tok.style === 'red' ? SM.red : tok.style === 'muted' ? SM.muted : color;
             return (
               <span key={ti} style={{display: 'inline-block', overflow: 'hidden', paddingBottom: '0.08em', marginBottom: '-0.08em'}}>
                 <span style={{display: 'inline-block', transform: `translateY(${(1 - p) * 105}%)`, opacity: p > 0 ? 1 : 0, color: c}}>{tok.t}</span>
@@ -165,7 +174,7 @@ export const Reveal: React.FC<{
 };
 
 /** Small mono overline label with a leading rule, e.g. "— 01 / PROCESS". */
-export const Label: React.FC<{text: string; at?: number; color?: string; align?: 'center' | 'left'}> = ({text, at = 0, color = SM.blueHi, align = 'center'}) => {
+export const Label: React.FC<{text: string; at?: number; color?: string; align?: 'center' | 'left'}> = ({text, at = 0, color = SM.glow, align = 'center'}) => {
   const frame = useCurrentFrame();
   const p = interpolate(frame, [at, at + 18], [0, 1], {...clamp, easing: ease});
   return (
@@ -198,7 +207,7 @@ export const Scene: React.FC<{duration: number; children: React.ReactNode; hud?:
       {frame < 16 ? (
         <AbsoluteFill
           style={{
-            background: `linear-gradient(100deg, transparent ${sweep * 100 - 12}%, rgba(76,141,255,0.16) ${sweep * 100}%, transparent ${sweep * 100 + 12}%)`,
+            background: `linear-gradient(100deg, transparent ${sweep * 100 - 12}%, rgba(59,130,246,0.16) ${sweep * 100}%, transparent ${sweep * 100 + 12}%)`,
             pointerEvents: 'none',
           }}
         />

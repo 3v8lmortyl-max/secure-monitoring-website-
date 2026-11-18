@@ -179,6 +179,23 @@ const ICONS: Record<string, React.ReactNode> = {
     </>
   ),
   check: <path d="M20 6L9 17l-5-5" />,
+  video: (
+    <>
+      <rect x="2" y="6" width="14" height="12" rx="2" />
+      <path d="M16 10l6-3v10l-6-3" />
+    </>
+  ),
+  alert: (
+    <>
+      <path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" />
+      <path d="M12 9v4M12 17h.01" />
+    </>
+  ),
+  stores: (
+    <>
+      <path d="M2 10l1.5-4h7L12 10M3 10v9h8v-9M12 10l1.5-4h7L22 10M13 10v9h8v-9" />
+    </>
+  ),
   shield: (
     <>
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -216,8 +233,8 @@ export const Step: React.FC<{n: string; icon: string; title: string; sub: string
     <div style={{opacity: p, transform: `translateX(${(1 - p) * 80}px)`}}>
       <Glass glow={active} style={{display: 'flex', alignItems: 'center', gap: 34, padding: '30px 40px', width: 880}}>
         <div style={{fontFamily: SM.mono, fontSize: 30, color: SM.blueHi, width: 50}}>{n}</div>
-        <div style={{width: 96, height: 96, borderRadius: 22, background: 'rgba(31,90,166,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <Icon name={icon} size={54} color={SM.text} />
+        <div style={{width: 96, height: 96, borderRadius: 22, border: `2px solid ${SM.blueHi}`, background: 'rgba(37,99,235,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Icon name={icon} size={54} color={SM.glow} />
         </div>
         <div>
           <div style={{fontFamily: SM.font, fontSize: 50, fontWeight: 600, color: SM.text, letterSpacing: '-0.02em'}}>{title}</div>
@@ -292,6 +309,174 @@ export const Button: React.FC<{text: string; at: number}> = ({text, at}) => {
     >
       {text}
       <div style={{position: 'absolute', inset: 0, background: `linear-gradient(100deg, transparent ${sheen - 10}%, rgba(255,255,255,0.35) ${sheen}%, transparent ${sheen + 10}%)`}} />
+    </div>
+  );
+};
+
+
+/* ================================================================== brand-sheet assets */
+
+/** Shield + CCTV camera mark (vector recreation of the brand sheet logo). */
+export const ShieldMark: React.FC<{size?: number; light?: boolean}> = ({size = 220, light}) => (
+  <svg width={size} height={size * 1.12} viewBox="0 0 100 112">
+    <defs>
+      <linearGradient id="shieldG" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stopColor="#3B82F6" />
+        <stop offset="1" stopColor="#1D4ED8" />
+      </linearGradient>
+    </defs>
+    <path d="M50 4 L90 18 V52 C90 80 70 100 50 108 C30 100 10 80 10 52 V18 Z" fill={light ? '#fff' : '#0B1220'} stroke="url(#shieldG)" strokeWidth={8} strokeLinejoin="round" />
+    <g fill={light ? '#0B1220' : '#F8FAFC'}>
+      <path d="M30 44 L66 34 Q70 33 71 37 L74 47 Q75 51 71 52 L35 62 Q31 63 30 59 Z" />
+      <path d="M71 41 L79 39 L81 47 L73 49 Z" />
+      <rect x="33" y="60" width="6" height="14" rx="2" transform="rotate(-16 36 67)" />
+      <rect x="27" y="72" width="16" height="5" rx="2" />
+    </g>
+  </svg>
+);
+
+/** Logo lockup: mark | divider | "Secure Monitoring" + REMOTE RETAIL SECURITY. Animated reveal. */
+export const Lockup: React.FC<{at?: number; scale?: number; light?: boolean; stacked?: boolean}> = ({at = 0, scale = 1, light, stacked}) => {
+  const frame = useCurrentFrame() - at;
+  const mark = interpolate(frame, [0, 18], [0, 1], {...clamp, easing: ease});
+  const word = interpolate(frame, [10, 30], [0, 1], {...clamp, easing: ease});
+  const tag = interpolate(frame, [22, 40], [0, 1], {...clamp, easing: ease});
+  const ink = light ? '#0B1220' : SM.text;
+  const shine = interpolate(frame, [20, 50], [-40, 140], clamp);
+  return (
+    <div style={{display: 'flex', flexDirection: stacked ? 'column' : 'row', alignItems: 'center', gap: 34 * scale, transform: `scale(${scale})`}}>
+      <div style={{position: 'relative', opacity: mark, transform: `scale(${0.85 + mark * 0.15})`, filter: `drop-shadow(0 0 ${30 * mark}px rgba(59,130,246,0.55))`}}>
+        <ShieldMark size={200} light={light} />
+        <div style={{position: 'absolute', inset: 0, background: `linear-gradient(110deg, transparent ${shine - 15}%, rgba(255,255,255,0.35) ${shine}%, transparent ${shine + 15}%)`, mixBlendMode: 'overlay'}} />
+      </div>
+      {!stacked ? <div style={{width: 2, height: 190 * word, background: light ? 'rgba(11,18,32,0.2)' : SM.line}} /> : null}
+      <div style={{textAlign: stacked ? 'center' : 'left'}}>
+        <div style={{overflow: 'hidden'}}>
+          <div style={{fontFamily: SM.font, fontWeight: 800, fontSize: 96, lineHeight: 0.98, letterSpacing: '-0.035em', color: ink, transform: `translateY(${(1 - word) * 100}%)`}}>
+            Secure
+            <br />
+            Monitoring
+          </div>
+        </div>
+        <div style={{fontFamily: SM.font, fontWeight: 500, fontSize: 28, letterSpacing: '0.32em', color: light ? '#334155' : SM.muted, marginTop: 18, opacity: tag}}>REMOTE RETAIL SECURITY</div>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * Realistic CCTV treatment over a photo: sensor grade, grain, scanlines, slight barrel vignette,
+ * slow digital zoom, micro frame jitter, compression blockiness, timestamp + camera id.
+ */
+export const CctvPhoto: React.FC<{src: string; w: number; h: number; cam: string; pos?: string; zoom?: [number, number]; mono?: boolean; dim?: number; label?: boolean}> = ({
+  src,
+  w,
+  h,
+  cam,
+  pos = '50% 50%',
+  zoom = [1.04, 1.12],
+  mono,
+  dim = 0,
+  label = true,
+}) => {
+  const frame = useCurrentFrame();
+  const dur = useSceneDuration();
+  const z = interpolate(frame, [0, dur], zoom);
+  const jx = Math.floor(frame / 3) % 7 === 0 ? (rand(`jx${frame}`) - 0.5) * 3 : 0;
+  const sec = 14 * 60 + 3 + Math.floor(frame / 30);
+  const ts = `11-18-2026  02:${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`;
+  const fs = Math.max(13, Math.round(w / 34));
+  return (
+    <div style={{position: 'relative', width: w, height: h, overflow: 'hidden', borderRadius: 10, background: '#000'}}>
+      <Img
+        src={staticFile(src)}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: pos,
+          transform: `scale(${z}) translateX(${jx}px)`,
+          filter: mono ? 'grayscale(1) contrast(1.25) brightness(0.95) sepia(0.15) hue-rotate(160deg)' : 'saturate(0.55) contrast(1.15) brightness(0.92) blur(0.4px)',
+        }}
+      />
+      <svg width="100%" height="100%" style={{position: 'absolute', inset: 0, opacity: 0.28, mixBlendMode: 'overlay'}}>
+        <filter id={`cg${cam}`}>
+          <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves={1} seed={(frame % 11) + 1} />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#cg${cam})`} />
+      </svg>
+      <div style={{position: 'absolute', inset: 0, background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px)'}} />
+      <div style={{position: 'absolute', inset: 0, background: `radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(0,0,0,0.65) 100%), rgba(0,0,0,${dim})`}} />
+      {label ? (
+        <>
+          <div style={{position: 'absolute', top: 12, left: 14, fontFamily: SM.mono, fontSize: fs, color: '#F8FAFC', textShadow: '0 1px 2px #000', letterSpacing: '0.04em'}}>{ts}</div>
+          <div style={{position: 'absolute', bottom: 12, left: 14, fontFamily: SM.mono, fontSize: fs, color: '#F8FAFC', textShadow: '0 1px 2px #000'}}>{cam}</div>
+          <div style={{position: 'absolute', top: 14, right: 14, display: 'flex', alignItems: 'center', gap: 8, fontFamily: SM.mono, fontSize: fs, color: '#F8FAFC'}}>
+            <div style={{width: fs * 0.7, height: fs * 0.7, borderRadius: '50%', background: SM.red, opacity: Math.floor(frame / 15) % 2 ? 0.3 : 1}} />
+            REC
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+};
+
+/** Brand-sheet icon tile: outlined rounded square + label. */
+export const IconTile: React.FC<{icon: string; label: string; at: number; size?: number}> = ({icon, label, at, size = 170}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [at, at + 20], [0, 1], {...clamp, easing: ease});
+  return (
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22, opacity: p, transform: `translateY(${(1 - p) * 40}px)`}}>
+      <div style={{width: size, height: size, borderRadius: size * 0.24, border: `2px solid ${SM.blueHi}`, background: 'rgba(37,99,235,0.10)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 40px rgba(37,99,235,0.18)'}}>
+        <Icon name={icon} size={size * 0.48} color={SM.glow} stroke={1.5} />
+      </div>
+      <div style={{fontFamily: SM.font, fontSize: 38, fontWeight: 500, color: SM.text, textAlign: 'center', lineHeight: 1.15}}>{label}</div>
+    </div>
+  );
+};
+
+/** Lower third: slanted blue brand panel + "24/7 Live Monitoring" pill (brand sheet). */
+export const LowerThird: React.FC<{at: number}> = ({at}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [at, at + 22], [0, 1], {...clamp, easing: ease});
+  const q = interpolate(frame, [at + 10, at + 32], [0, 1], {...clamp, easing: ease});
+  return (
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 22}}>
+      <div style={{transform: `translateX(${(1 - p) * -700}px) skewX(-14deg)`, background: `linear-gradient(90deg, ${SM.blueHi}, ${SM.blue})`, padding: '22px 48px 22px 34px', borderRadius: 10, boxShadow: '0 20px 50px rgba(37,99,235,0.35)'}}>
+        <div style={{transform: 'skewX(14deg)', display: 'flex', alignItems: 'center', gap: 22}}>
+          <ShieldMark size={74} />
+          <div>
+            <div style={{fontFamily: SM.font, fontWeight: 700, fontSize: 44, color: '#fff', letterSpacing: '-0.02em'}}>Secure Monitoring</div>
+            <div style={{fontFamily: SM.font, fontSize: 26, color: 'rgba(255,255,255,0.8)'}}>Remote Retail Security</div>
+          </div>
+        </div>
+      </div>
+      <div style={{marginLeft: 40, opacity: q, transform: `translateX(${(1 - q) * -200}px) skewX(-14deg)`, border: `2px solid ${SM.blueHi}`, background: 'rgba(11,18,32,0.85)', padding: '16px 34px', borderRadius: 10}}>
+        <div style={{transform: 'skewX(14deg)', display: 'flex', alignItems: 'center', gap: 16, fontFamily: SM.font, fontWeight: 600, fontSize: 36, color: SM.text}}>
+          <div style={{width: 16, height: 16, borderRadius: 8, background: SM.green, boxShadow: '0 0 12px #22C55E'}} />
+          24/7 Live Monitoring
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Incident alert card that slides in over a feed. */
+export const AlertCard: React.FC<{at: number}> = ({at}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [at, at + 16], [0, 1], {...clamp, easing: ease});
+  const blink = Math.floor((frame - at) / 8) % 2 === 0;
+  return (
+    <div style={{opacity: p, transform: `translateY(${(1 - p) * 40}px) scale(${0.95 + p * 0.05})`, width: 760, background: 'rgba(11,18,32,0.92)', border: `2px solid ${SM.red}`, borderRadius: 18, padding: '26px 30px', display: 'flex', gap: 24, alignItems: 'center', boxShadow: '0 20px 60px rgba(239,68,68,0.25)'}}>
+      <div style={{width: 84, height: 84, borderRadius: 42, background: blink ? SM.red : '#7f1d1d', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+        <Icon name="alert" size={46} color="#fff" stroke={2.2} />
+      </div>
+      <div>
+        <div style={{fontFamily: SM.mono, fontSize: 24, letterSpacing: '0.14em', color: SM.red}}>INCIDENT · CAM 07</div>
+        <div style={{fontFamily: SM.font, fontSize: 38, fontWeight: 600, color: SM.text, marginTop: 6}}>Suspicious activity, aisle 4</div>
+        <div style={{fontFamily: SM.font, fontSize: 28, color: SM.muted, marginTop: 4}}>Store manager notified</div>
+      </div>
     </div>
   );
 };
