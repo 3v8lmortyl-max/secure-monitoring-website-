@@ -473,7 +473,7 @@ export const AlertCard: React.FC<{at: number}> = ({at}) => {
         <Icon name="alert" size={46} color="#fff" stroke={2.2} />
       </div>
       <div>
-        <div style={{fontFamily: SM.mono, fontSize: 24, letterSpacing: '0.14em', color: SM.red}}>INCIDENT · CAM 07</div>
+        <div style={{fontFamily: SM.mono, fontSize: 24, letterSpacing: '0.14em', color: SM.red}}>INCIDENT · CAM 05</div>
         <div style={{fontFamily: SM.font, fontSize: 38, fontWeight: 600, color: SM.text, marginTop: 6}}>Suspicious activity, aisle 4</div>
         <div style={{fontFamily: SM.font, fontSize: 28, color: SM.muted, marginTop: 4}}>Store manager notified</div>
       </div>
@@ -510,6 +510,83 @@ export const CctvFrame: React.FC<{w: number; h: number; cam: string; dim?: numbe
           </div>
         </>
       ) : null}
+    </div>
+  );
+};
+
+/* ================================================================== photographic scenes */
+
+/**
+ * Full-bleed cinematic photo: cover-fit to the 9:16 frame around a focal point, slow push/drift
+ * (Ken Burns), brand grade, and a bottom gradient so captions stay legible.
+ */
+export const HeroPhoto: React.FC<{src: string; focus?: [number, number]; zoom?: [number, number]; drift?: number; shade?: number}> = ({src, focus = [50, 50], zoom = [1.0, 1.08], drift = 30, shade = 0.85}) => {
+  const frame = useCurrentFrame();
+  const dur = useSceneDuration();
+  const t = interpolate(frame, [0, dur], [0, 1]);
+  const z = zoom[0] + (zoom[1] - zoom[0]) * t;
+  return (
+    <div style={{position: 'absolute', inset: 0, overflow: 'hidden', background: '#000'}}>
+      <Img
+        src={staticFile(src)}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: `${focus[0]}% ${focus[1]}%`,
+          transform: `scale(${z}) translateX(${(t - 0.5) * -drift}px)`,
+          transformOrigin: `${focus[0]}% ${focus[1]}%`,
+          filter: 'contrast(1.06) saturate(0.92)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: `linear-gradient(180deg, rgba(11,18,32,0.35) 0%, rgba(11,18,32,0) 25%, rgba(11,18,32,0) 45%, rgba(11,18,32,${shade}) 72%, rgba(11,18,32,0.97) 100%)`,
+        }}
+      />
+      <div style={{position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 90% 70% at 50% 40%, transparent 50%, rgba(0,0,0,0.45) 100%)'}} />
+    </div>
+  );
+};
+
+/** Operator tracking brackets (percent box inside its parent) with a label. */
+export const Bracket: React.FC<{box: [number, number, number, number]; at: number; label?: string}> = ({box, at, label = 'OPERATOR FLAG'}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [at, at + 12], [0, 1], {...clamp, easing: ease});
+  const [l, t, w, h] = box;
+  const c = (s: React.CSSProperties) => <div style={{position: 'absolute', width: 34, height: 34, borderColor: SM.red, borderStyle: 'solid', borderWidth: 0, ...s}} />;
+  return (
+    <div style={{position: 'absolute', left: `${l}%`, top: `${t}%`, width: `${w}%`, height: `${h}%`, opacity: p, transform: `scale(${1.25 - p * 0.25})`}}>
+      {c({top: 0, left: 0, borderTopWidth: 4, borderLeftWidth: 4})}
+      {c({top: 0, right: 0, borderTopWidth: 4, borderRightWidth: 4})}
+      {c({bottom: 0, left: 0, borderBottomWidth: 4, borderLeftWidth: 4})}
+      {c({bottom: 0, right: 0, borderBottomWidth: 4, borderRightWidth: 4})}
+      <div style={{position: 'absolute', top: -40, left: 0, background: SM.red, color: '#fff', fontFamily: SM.mono, fontSize: 20, fontWeight: 700, padding: '6px 12px', letterSpacing: '0.08em', whiteSpace: 'nowrap'}}>{label}</div>
+    </div>
+  );
+};
+
+/** iOS-style push notification card from Secure Monitoring. */
+export const PushNotice: React.FC<{at: number; title: string; body: string}> = ({at, title, body}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [at, at + 18], [0, 1], {...clamp, easing: ease});
+  return (
+    <div style={{opacity: p, transform: `translateY(${(1 - p) * -60}px) scale(${0.96 + p * 0.04})`, width: 900, borderRadius: 34, padding: '26px 30px', background: 'rgba(248,250,252,0.86)', backdropFilter: 'blur(20px)', boxShadow: '0 30px 80px rgba(0,0,0,0.45)', display: 'flex', gap: 24, alignItems: 'center'}}>
+      <div style={{width: 92, height: 92, borderRadius: 22, background: SM.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+        <ShieldMark size={62} />
+      </div>
+      <div style={{flex: 1, fontFamily: SM.font}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', fontSize: 26, color: '#475569', fontWeight: 500}}>
+          <span>SECURE MONITORING</span>
+          <span>now</span>
+        </div>
+        <div style={{fontSize: 36, fontWeight: 700, color: '#0B1220', marginTop: 4}}>{title}</div>
+        <div style={{fontSize: 30, color: '#334155', marginTop: 2}}>{body}</div>
+      </div>
     </div>
   );
 };

@@ -56,12 +56,13 @@ python scripts/generate_audio.py /tmp/timeline.json ./kokoro   # VOICE=af_heart 
 An original ad styled on the Secure Monitoring brand sheet. It shares nothing visually with the explainer. Code: `src/sm/`.
 
 - **Brand system:** a shield + CCTV mark recreated as vector (`ShieldMark`, `Lockup`), the palette #2563EB / #1D4ED8 / #0B1220 / #F8FAFC, Inter, outlined icon tiles, slanted lower thirds and a white logo-reveal card.
-- **Photos:** cropped from the brand sheet into `public/brand/` (storefront, operator, aisle, US map). Camera shots get a realistic CCTV treatment (`CctvPhoto`): sensor grade, grain, scanlines, vignette, digital zoom, frame jitter, timestamp and REC.
+- **Photography:** client-supplied AI-generated images live in `public/brand/ai/`. Full-bleed shots use `HeroPhoto` (focal-point cover, slow push and drift, brand grade). Camera views use `CctvPhoto`, with live timestamp, REC, grain, scanlines and jitter overlays; the burned-in labels were cropped out of the source images.
+- **Motion graphics:** a 3D metallic shield (three.js via `@remotion/three`; render with `--gl=angle`), a glowing US map (`us-atlas` + `d3-geo`), tracking brackets, an alert card, a push notification, a lower third and masked type reveals.
 - **Voice:** female (`af_heart`) at one constant speed, over a ducked music bed with SFX.
 - **Claims:** all from the website. The 30-second figure is a response *target*; plans are $199/$299 per site per month (Enterprise from $699), with no setup fees and a 7-day free trial. Customer, transaction and AI-analytics features from the brand sheet are left out on purpose, because the website says they are not offered.
 
 ```bash
-npx remotion render SecureMonitoringAd out/secure-monitoring-ad.mp4
+npx remotion render SecureMonitoringAd out/secure-monitoring-ad.mp4 --gl=angle
 # audio: node scripts/timeline.mjs ad > /tmp/ad.json
-#        VOICE=af_heart VO_SPEED=1.0 MUSIC=1 python scripts/generate_audio.py /tmp/ad.json ./kokoro 1719 public/audio/ad.mp3
+#        VOICE=af_heart VO_SPEED=1.0 MUSIC=1 python scripts/generate_audio.py /tmp/ad.json ./kokoro 2010 public/audio/ad.mp3
 ```
