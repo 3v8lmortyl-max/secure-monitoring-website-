@@ -15,7 +15,8 @@ await build({
       import {part4} from './src/parts/part4';
       import {PART_FRAMES, defaultProps} from './src/script';
       import {adScenes} from './src/sm/Ad';
-      export {part1, part2, part3, part4, PART_FRAMES, defaultProps, adScenes};`,
+      import {ad30Scenes} from './src/sm/Ad30';
+      export {part1, part2, part3, part4, PART_FRAMES, defaultProps, adScenes, ad30Scenes};`,
     resolveDir: process.cwd(),
     loader: 'ts',
   },
@@ -29,8 +30,8 @@ await build({
 const m = (await import(pathToFileURL(out).href)).default;
 const clean = (t) => t.replace(/[*_!]/g, '').replace(/\|/g, ' ').replace(/\s+/g, ' ').trim();
 const events = [];
-const promo = process.argv[2] === 'ad';
-const builds = promo ? [() => m.adScenes] : [m.part1, m.part2, m.part3, m.part4];
+const promo = process.argv[2] === 'ad' || process.argv[2] === 'ad30';
+const builds = promo ? [() => (process.argv[2] === 'ad30' ? m.ad30Scenes : m.adScenes)] : [m.part1, m.part2, m.part3, m.part4];
 const props = m.defaultProps;
 let partStart = 0;
 builds.forEach((build, pi) => {

@@ -66,3 +66,13 @@ npx remotion render SecureMonitoringAd out/secure-monitoring-ad.mp4 --gl=angle
 # audio: node scripts/timeline.mjs ad > /tmp/ad.json
 #        VOICE=af_heart VO_SPEED=1.0 MUSIC=1 python scripts/generate_audio.py /tmp/ad.json ./kokoro 2010 public/audio/ad.mp3
 ```
+
+### 30-second cut (`SecureMonitoringAd30`)
+
+`src/sm/Ad30.tsx` reuses the brand ad's scenes with a tighter script (hook → problem → brand → live team → alert → team alerted → pricing → CTA), exactly 900 frames.
+
+```bash
+npx remotion render SecureMonitoringAd30 out/secure-monitoring-ad-30s.mp4 --gl=angle
+# audio: node scripts/timeline.mjs ad30 > /tmp/ad30.json
+#        VOICE=af_heart VO_SPEED=1.0 MUSIC=1 python scripts/generate_audio.py /tmp/ad30.json ./kokoro 900 public/audio/ad30.mp3
+```
