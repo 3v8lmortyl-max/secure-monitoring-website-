@@ -84,3 +84,18 @@ npx remotion render SecureMonitoringAd30 out/secure-monitoring-ad-30s.mp4 --gl=a
 ```bash
 npx remotion render SecureMonitoringAdLandscape out/secure-monitoring-ad-landscape.mp4 --gl=angle
 ```
+
+## STARDUST (`Stardust`, 1920×1080, 54s)
+
+A fully procedural 3D short about the 13.8-billion-year history of the atoms in your body. It is built with three.js through `@remotion/three` and needs no external assets.
+
+- **Particle universe:** one 40k-particle system morphs through the singularity, big bang, cosmic web, protostar, supernova remnant and accretion disk, then forms the particle typography. Every state is computed in a GLSL vertex shader from frame-driven uniforms.
+- **Shaded surfaces:** the star's surface (fbm granulation, red-giant shift), the planet (continents, oceans, clouds, night-side city lights, atmosphere) and the shockwave are all shaders.
+- **Camera:** a Catmull-Rom path through keyframes, with shake at the supernova.
+- **Sound:** a procedural score (drone, riser, impacts, heartbeat, pads, arpeggio) and Kokoro narration, both locked to `src/stardust/timeline.ts`.
+
+```bash
+node scripts/stardust_timeline.mjs > /tmp/sd.json
+python scripts/stardust_audio.py /tmp/sd.json ./kokoro
+npx remotion render Stardust out/stardust.mp4 --gl=angle
+```
