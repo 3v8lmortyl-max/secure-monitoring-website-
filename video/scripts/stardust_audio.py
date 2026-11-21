@@ -2,6 +2,7 @@
 
   node scripts/stardust_timeline.mjs > /tmp/sd.json
   python scripts/stardust_audio.py /tmp/sd.json /path/to/kokoro-dir
+  REEL=1 python scripts/stardust_audio.py ...   # Instagram cut: narration only + closing CTA -> stardust-reel.mp3
 """
 import json
 import os
@@ -97,6 +98,11 @@ def main(tl_path, model_dir, out=os.path.join(os.path.dirname(__file__), '..', '
     tl = json.load(open(tl_path))
     B = tl['beats']
     total = tl['total']
+    reel = bool(os.environ.get('REEL'))
+    if reel:
+        total = tl['reelTotal']
+        tl['narration'] = tl['narration'] + [tl['reelCta']]
+        out = os.path.join(os.path.dirname(out), 'stardust-reel.mp3')
     n = at(total) + SR
     mus = np.zeros(n, np.float32)
     fx = np.zeros(n, np.float32)
@@ -157,6 +163,9 @@ def main(tl_path, model_dir, out=os.path.join(os.path.dirname(__file__), '..', '
         print(f'{f:5d} {len(clip) / SR:4.1f}s  {text}')
 
     vo /= np.abs(vo).max() + 1e-9
+    if reel:  # narration only: no score, no sound effects
+        mus[:] = 0
+        fx[:] = 0
     mus /= np.abs(mus).max() + 1e-9
     fx /= np.abs(fx).max() + 1e-9
     envv = np.convolve(np.abs(vo), np.ones(9600) / 9600, mode='same')

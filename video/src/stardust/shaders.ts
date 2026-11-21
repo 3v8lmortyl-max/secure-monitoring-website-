@@ -16,7 +16,7 @@ ${NOISE}
 attribute vec4 aSeed;
 attribute vec3 aWeb;
 attribute vec3 aText;
-uniform float uTime, uBang, uShell, uStarScale, uSize, uSingular;
+uniform float uTime, uBang, uShell, uStarScale, uSize, uSingular, uTextScale;
 uniform vec3 uW1; // bang, web, star
 uniform vec3 uW2; // shell, disk, text
 varying vec3 vColor;
@@ -61,7 +61,7 @@ void main(){
   pDisk.yz = mat2(0.94, -0.34, 0.34, 0.94) * pDisk.yz;
 
   // 6. typography
-  vec3 pText = aText + 0.05 * vec3(sin(uTime*1.3 + aSeed.x*40.0), cos(uTime*1.1 + aSeed.y*40.0), 0.0);
+  vec3 pText = aText * uTextScale + 0.05 * vec3(sin(uTime*1.3 + aSeed.x*40.0), cos(uTime*1.1 + aSeed.y*40.0), 0.0);
 
   vec3 pos = uW1.x*pBang + uW1.y*pWeb + uW1.z*pStar + uW2.x*pShell + uW2.y*pDisk + uW2.z*pText;
 

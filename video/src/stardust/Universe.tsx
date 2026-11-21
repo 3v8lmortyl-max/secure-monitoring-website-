@@ -65,7 +65,7 @@ const buildText = () => {
 };
 
 /* ------------------------------------------------------------------ the morphing particle universe */
-export const Particles: React.FC<{frame: number}> = ({frame}) => {
+export const Particles: React.FC<{frame: number; fade?: readonly [number, number]; textScale?: number}> = ({frame, fade = T.fadeOut, textScale = 1}) => {
   const {geo, mat} = useMemo(() => {
     const g = new THREE.BufferGeometry();
     const seed = new Float32Array(N * 4);
@@ -89,6 +89,7 @@ export const Particles: React.FC<{frame: number}> = ({frame}) => {
         uSingular: {value: 1},
         uAlpha: {value: 1},
         uTextBoost: {value: 0},
+        uTextScale: {value: 1},
         uW1: {value: new THREE.Vector3(1, 0, 0)},
         uW2: {value: new THREE.Vector3(0, 0, 0)},
       },
@@ -109,16 +110,17 @@ export const Particles: React.FC<{frame: number}> = ({frame}) => {
   const text = smooth(f, T.textIn[0], T.textIn[1]);
   u.uW1.value.set(bang, web, star);
   u.uTextBoost.value = text;
+  u.uTextScale.value = textScale;
   u.uW2.value.set(shell, disk, text);
   u.uStarScale.value = 1 - 0.85 * smooth(f, T.collapse[0], T.collapse[1]);
   u.uShell.value = 0.6 + 15 * expoOut(Math.max(0, (f - T.nova) / 120));
-  u.uAlpha.value = (f < T.bang ? 0.9 : 1) * (1 - smooth(f, T.fadeOut[0], T.fadeOut[1])) * (1 - 0.55 * smooth(f, T.planetGrow[0], T.planetGrow[1]) * (1 - text));
+  u.uAlpha.value = (f < T.bang ? 0.9 : 1) * (1 - smooth(f, fade[0], fade[1])) * (1 - 0.55 * smooth(f, T.planetGrow[0], T.planetGrow[1]) * (1 - text));
   u.uSize.value = 0.09 + 0.1 * bang * u.uBang.value + 0.17 * web + 0.1 * shell + 0.03 * disk + 0.06 * text;
   return <points geometry={geo} material={mat} frustumCulled={false} />;
 };
 
 /* ------------------------------------------------------------------ background starfield */
-export const Starfield: React.FC<{frame: number}> = ({frame}) => {
+export const Starfield: React.FC<{frame: number; fade?: readonly [number, number]}> = ({frame, fade = T.fadeOut}) => {
   const {geo, mat} = useMemo(() => {
     const n = 5000;
     const pos = new Float32Array(n * 3);
@@ -138,7 +140,7 @@ export const Starfield: React.FC<{frame: number}> = ({frame}) => {
     return {geo: g, mat: m};
   }, []);
   mat.uniforms.uTime.value = frame / 30;
-  mat.uniforms.uAlpha.value = smooth(frame, T.bang + 40, T.bang + 200) * (1 - smooth(frame, T.fadeOut[0], T.fadeOut[1]));
+  mat.uniforms.uAlpha.value = smooth(frame, T.bang + 40, T.bang + 200) * (1 - smooth(frame, fade[0], fade[1]));
   return <points geometry={geo} material={mat} frustumCulled={false} />;
 };
 
@@ -251,7 +253,7 @@ const KEYS: Key[] = [
 const cr = (p0: number, p1: number, p2: number, p3: number, t: number) =>
   0.5 * (2 * p1 + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t + (-p0 + 3 * p1 - 3 * p2 + p3) * t * t * t);
 
-export const CameraRig: React.FC<{frame: number}> = ({frame}) => {
+export const CameraRig: React.FC<{frame: number; dist?: number}> = ({frame, dist = 1}) => {
   const {camera} = useThree();
   useLayoutEffect(() => {
     let i = KEYS.findIndex((k, j) => j < KEYS.length - 1 && frame >= k[0] && frame < KEYS[j + 1][0]);
@@ -266,7 +268,7 @@ export const CameraRig: React.FC<{frame: number}> = ({frame}) => {
     const tgt = [0, 1, 2].map((a) => cr(k0[2][a], k1[2][a], k2[2][a], k3[2][a], t));
     // supernova camera shake
     const shake = Math.max(0, 1 - Math.abs(frame - T.nova) / 22) * 0.35;
-    camera.position.set(pos[0] + Math.sin(frame * 2.1) * shake, pos[1] + Math.cos(frame * 2.7) * shake, pos[2]);
+    camera.position.set(pos[0] * dist + Math.sin(frame * 2.1) * shake, pos[1] * dist + Math.cos(frame * 2.7) * shake, pos[2] * dist);
     camera.lookAt(tgt[0], tgt[1], tgt[2]);
   });
   return null;

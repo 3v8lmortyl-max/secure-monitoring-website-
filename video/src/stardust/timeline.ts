@@ -38,6 +38,11 @@ export const NARRATION: [number, string][] = [
   [1478, 'You are made of stardust.'],
 ];
 
+/** Instagram Reel cut: narration-only, plus a closing call to action. */
+export const REEL_TOTAL = 1740; // 58 s
+export const REEL_FADE: [number, number] = [1700, 1740];
+export const REEL_CTA: [number, string] = [1556, 'If you want me to create a full explanation video on this, comment, Stardust.'];
+
 export const smooth = (f: number, a: number, b: number) => {
   const x = Math.min(1, Math.max(0, (f - a) / (b - a)));
   return x * x * (3 - 2 * x);

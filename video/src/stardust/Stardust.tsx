@@ -16,7 +16,7 @@ if (typeof document !== 'undefined') {
   face.load().then(() => continueRender(h)).catch(() => continueRender(h));
 }
 
-const FONT = "'Inter', 'Helvetica Neue', Arial, sans-serif";
+export const FONT = "'Inter', 'Helvetica Neue', Arial, sans-serif";
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
 /** A title that fades/tracks in and out over [a, b]. */
@@ -45,7 +45,7 @@ const Title: React.FC<{a: number; b: number; kicker: string; title?: string; ali
   );
 };
 
-const ELEMENTS: [string, number, string, string][] = [
+export const ELEMENTS: [string, number, string, string][] = [
   ['H', 1, 'Hydrogen', '#9ec5ff'],
   ['He', 2, 'Helium', '#ffe39e'],
   ['C', 6, 'Carbon', '#ffd36b'],
@@ -93,7 +93,7 @@ const Forge: React.FC = () => {
 };
 
 /** The singularity: a breathing point of light before the bang. */
-const Singularity: React.FC = () => {
+export const Singularity: React.FC = () => {
   const f = useCurrentFrame();
   if (f > T.bang + 4) return null;
   const grow = interpolate(f, [10, T.bang], [0.4, 1.35], clamp);
@@ -109,7 +109,7 @@ const Singularity: React.FC = () => {
   );
 };
 
-const Flash: React.FC<{at: number; len: number; color: string}> = ({at, len, color}) => {
+export const Flash: React.FC<{at: number; len: number; color: string}> = ({at, len, color}) => {
   const f = useCurrentFrame();
   const o = interpolate(f, [at - 2, at, at + len], [0, 1, 0], clamp);
   return o > 0 ? <AbsoluteFill style={{background: color, opacity: o, mixBlendMode: 'screen'}} /> : null;
