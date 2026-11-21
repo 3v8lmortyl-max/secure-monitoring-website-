@@ -99,3 +99,12 @@ node scripts/stardust_timeline.mjs > /tmp/sd.json
 python scripts/stardust_audio.py /tmp/sd.json ./kokoro
 npx remotion render Stardust out/stardust.mp4 --gl=angle
 ```
+
+### STARDUST Reel (`StardustReel`, 1080×1920, 58s)
+
+The vertical Instagram cut has narration only and ends with a "comment STARDUST" call to action.
+
+```bash
+REEL=1 python scripts/stardust_audio.py /tmp/sd.json ./kokoro   # writes public/audio/stardust-reel.mp3
+npx remotion render StardustReel out/stardust-reel.mp4 --gl=angle
+```
