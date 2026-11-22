@@ -4,6 +4,7 @@ import {Explainer} from './Explainer';
 import {Ad, adFrames} from './sm/Ad';
 import {Stardust} from './stardust/Stardust';
 import {SecOpsShort, SECOPS_TOTAL} from './secops/Short';
+import {SecOpsCover} from './secops/Cover';
 import {REEL_TOTAL, TOTAL as STARDUST_FRAMES} from './stardust/timeline';
 import {StardustReel} from './stardust/StardustReel';
 import {Ad30, ad30Frames} from './sm/Ad30';
@@ -23,6 +24,7 @@ export const RemotionRoot: React.FC = () => (
     durationInFrames={TOTAL_FRAMES}
     defaultProps={defaultProps}
   />
+  <Composition id="SecOpsLab01Cover" component={SecOpsCover} width={1080} height={1920} fps={30} durationInFrames={1} />
   <Composition id="SecOpsLab01" component={SecOpsShort} width={1080} height={1920} fps={30} durationInFrames={SECOPS_TOTAL} defaultProps={{withAudio: true}} />
   <Composition id="StardustReel" component={StardustReel} width={1080} height={1920} fps={30} durationInFrames={REEL_TOTAL} defaultProps={{withAudio: true}} />
   <Composition id="Stardust" component={Stardust} width={1920} height={1080} fps={30} durationInFrames={STARDUST_FRAMES} defaultProps={{withAudio: true}} />
