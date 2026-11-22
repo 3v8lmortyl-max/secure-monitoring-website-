@@ -6,6 +6,10 @@
 import React from 'react';
 import {AbsoluteFill, Audio, Img, interpolate, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import timeline from './timeline.json';
+import lab from './lab.json';
+
+/** Measured timings from the real lab run (never hard-coded). */
+const ms = (cmdStart: string) => lab.log.find((l) => l.cmd.startsWith(cmdStart))!.ms;
 import {Backdrop, C, Captions, clamp, ease, FixCard, Icon, SceneCtx, SceneWrap, Terminal, TopBar, Vault3D, VAULT_LABELS} from './parts';
 
 const At: React.FC<{x?: number; y: number; children: React.ReactNode; center?: boolean}> = ({x = 0, y, children, center = true}) => (
@@ -120,7 +124,7 @@ const Reveal: React.FC = () => {
       </At>
       <At y={780}>
         <div style={{opacity: badge, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18}}>
-          <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 130, color: '#fff', lineHeight: 1, textShadow: `0 0 40px ${C.accent}88`}}>3.9 <span style={{color: C.accent}}>ms</span></div>
+          <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 130, color: '#fff', lineHeight: 1, textShadow: `0 0 40px ${C.accent}88`}}>{ms('git show')} <span style={{color: C.accent}}>ms</span></div>
           <div style={{fontFamily: C.mono, fontSize: 22, color: C.red, border: `1.5px solid ${C.red}`, padding: '6px 14px', borderRadius: 8}}>FAKE KEY · GENERATED FOR THIS DEMO</div>
         </div>
       </At>
@@ -144,7 +148,7 @@ const Scan: React.FC = () => {
           {[
             ['4', 'COMMITS'],
             ['1', 'SECRET FOUND'],
-            ['5.9', 'MS'],
+            [String(ms('git log -p')), 'MS'],
           ].map(([v, l]) => (
             <div key={l} style={{width: 290, padding: '22px 0', textAlign: 'center', borderRadius: 18, background: 'rgba(31,41,55,0.7)', border: `1.5px solid ${l.includes('SECRET') ? C.red : C.secondary}`}}>
               <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 72, color: l.includes('SECRET') ? C.red : C.text}}>{v}</div>

@@ -393,8 +393,8 @@
   {
    "scene": "reveal",
    "start": 643,
-   "dur": 107,
-   "text": "One more command, and the key is back. In under six milliseconds.",
+   "dur": 105,
+   "text": "One more command, and the key is back. In under four milliseconds.",
    "words": [
     {
      "w": "One",
@@ -404,57 +404,57 @@
     {
      "w": "more",
      "at": 649,
-     "end": 658
+     "end": 657
     },
     {
      "w": "command,",
-     "at": 658,
-     "end": 671
+     "at": 657,
+     "end": 670
     },
     {
      "w": "and",
-     "at": 671,
-     "end": 678
+     "at": 670,
+     "end": 677
     },
     {
      "w": "the",
-     "at": 678,
-     "end": 685
+     "at": 677,
+     "end": 684
     },
     {
      "w": "key",
-     "at": 685,
-     "end": 692
+     "at": 684,
+     "end": 690
     },
     {
      "w": "is",
-     "at": 692,
-     "end": 697
+     "at": 690,
+     "end": 696
     },
     {
      "w": "back.",
-     "at": 697,
-     "end": 707
+     "at": 696,
+     "end": 705
     },
     {
      "w": "In",
-     "at": 707,
-     "end": 712
+     "at": 705,
+     "end": 710
     },
     {
      "w": "under",
-     "at": 712,
-     "end": 722
+     "at": 710,
+     "end": 720
     },
     {
-     "w": "six",
-     "at": 722,
-     "end": 729
+     "w": "four",
+     "at": 720,
+     "end": 728
     },
     {
      "w": "milliseconds.",
-     "at": 729,
-     "end": 750
+     "at": 728,
+     "end": 748
     }
    ]
   },
