@@ -1,0 +1,883 @@
+{
+ "fps": 30,
+ "total": 1735,
+ "scenes": [
+  {
+   "id": "hook",
+   "start": 0,
+   "dur": 103,
+   "terminal": []
+  },
+  {
+   "id": "setup",
+   "start": 103,
+   "dur": 216,
+   "terminal": [
+    {
+     "cmd": "git log --oneline",
+     "start": 113,
+     "typed": 17,
+     "out": 138
+    }
+   ]
+  },
+  {
+   "id": "gone",
+   "start": 319,
+   "dur": 138,
+   "terminal": [
+    {
+     "cmd": "ls -a",
+     "start": 329,
+     "typed": 5,
+     "out": 342
+    },
+    {
+     "cmd": "cat .env",
+     "start": 362,
+     "typed": 8,
+     "out": 378
+    }
+   ]
+  },
+  {
+   "id": "history",
+   "start": 457,
+   "dur": 180,
+   "terminal": [
+    {
+     "cmd": "git log --all --oneline -S AKIA",
+     "start": 467,
+     "typed": 31,
+     "out": 506
+    }
+   ]
+  },
+  {
+   "id": "reveal",
+   "start": 637,
+   "dur": 162,
+   "terminal": [
+    {
+     "cmd": "git show HEAD~3:.env",
+     "start": 647,
+     "typed": 20,
+     "out": 675
+    }
+   ]
+  },
+  {
+   "id": "scan",
+   "start": 799,
+   "dur": 170,
+   "terminal": [
+    {
+     "cmd": "git log -p --all | grep -Eo 'AKIA[A-Z0-9]{16}' | sort -u",
+     "start": 809,
+     "typed": 56,
+     "out": 873
+    }
+   ]
+  },
+  {
+   "id": "fix",
+   "start": 969,
+   "dur": 616,
+   "terminal": []
+  },
+  {
+   "id": "outro",
+   "start": 1585,
+   "dur": 150,
+   "terminal": []
+  }
+ ],
+ "lines": [
+  {
+   "scene": "hook",
+   "start": 6,
+   "dur": 75,
+   "text": "You deleted the API key. Git didn't.",
+   "words": [
+    {
+     "w": "You",
+     "at": 6,
+     "end": 14
+    },
+    {
+     "w": "deleted",
+     "at": 14,
+     "end": 29
+    },
+    {
+     "w": "the",
+     "at": 29,
+     "end": 38
+    },
+    {
+     "w": "API",
+     "at": 38,
+     "end": 46
+    },
+    {
+     "w": "key.",
+     "at": 46,
+     "end": 57
+    },
+    {
+     "w": "Git",
+     "at": 57,
+     "end": 65
+    },
+    {
+     "w": "didn't.",
+     "at": 65,
+     "end": 81
+    }
+   ]
+  },
+  {
+   "scene": "setup",
+   "start": 109,
+   "dur": 188,
+   "text": "Real test. I committed a fake AWS key to this project, then removed it a few commits later.",
+   "words": [
+    {
+     "w": "Real",
+     "at": 109,
+     "end": 119
+    },
+    {
+     "w": "test.",
+     "at": 119,
+     "end": 131
+    },
+    {
+     "w": "I",
+     "at": 131,
+     "end": 136
+    },
+    {
+     "w": "committed",
+     "at": 136,
+     "end": 155
+    },
+    {
+     "w": "a",
+     "at": 155,
+     "end": 160
+    },
+    {
+     "w": "fake",
+     "at": 160,
+     "end": 170
+    },
+    {
+     "w": "AWS",
+     "at": 170,
+     "end": 179
+    },
+    {
+     "w": "key",
+     "at": 179,
+     "end": 187
+    },
+    {
+     "w": "to",
+     "at": 187,
+     "end": 194
+    },
+    {
+     "w": "this",
+     "at": 194,
+     "end": 204
+    },
+    {
+     "w": "project,",
+     "at": 204,
+     "end": 221
+    },
+    {
+     "w": "then",
+     "at": 221,
+     "end": 232
+    },
+    {
+     "w": "removed",
+     "at": 232,
+     "end": 247
+    },
+    {
+     "w": "it",
+     "at": 247,
+     "end": 254
+    },
+    {
+     "w": "a",
+     "at": 254,
+     "end": 259
+    },
+    {
+     "w": "few",
+     "at": 259,
+     "end": 267
+    },
+    {
+     "w": "commits",
+     "at": 267,
+     "end": 283
+    },
+    {
+     "w": "later.",
+     "at": 283,
+     "end": 297
+    }
+   ]
+  },
+  {
+   "scene": "gone",
+   "start": 325,
+   "dur": 105,
+   "text": "The file is gone. It's not in the folder, and cat can't find it.",
+   "words": [
+    {
+     "w": "The",
+     "at": 325,
+     "end": 331
+    },
+    {
+     "w": "file",
+     "at": 331,
+     "end": 339
+    },
+    {
+     "w": "is",
+     "at": 339,
+     "end": 344
+    },
+    {
+     "w": "gone.",
+     "at": 344,
+     "end": 354
+    },
+    {
+     "w": "It's",
+     "at": 354,
+     "end": 362
+    },
+    {
+     "w": "not",
+     "at": 362,
+     "end": 368
+    },
+    {
+     "w": "in",
+     "at": 368,
+     "end": 374
+    },
+    {
+     "w": "the",
+     "at": 374,
+     "end": 380
+    },
+    {
+     "w": "folder,",
+     "at": 380,
+     "end": 392
+    },
+    {
+     "w": "and",
+     "at": 392,
+     "end": 399
+    },
+    {
+     "w": "cat",
+     "at": 399,
+     "end": 406
+    },
+    {
+     "w": "can't",
+     "at": 406,
+     "end": 415
+    },
+    {
+     "w": "find",
+     "at": 415,
+     "end": 423
+    },
+    {
+     "w": "it.",
+     "at": 423,
+     "end": 430
+    }
+   ]
+  },
+  {
+   "scene": "history",
+   "start": 463,
+   "dur": 136,
+   "text": "But Git stores every version of every file. One search finds the exact commit.",
+   "words": [
+    {
+     "w": "But",
+     "at": 463,
+     "end": 470
+    },
+    {
+     "w": "Git",
+     "at": 470,
+     "end": 477
+    },
+    {
+     "w": "stores",
+     "at": 477,
+     "end": 489
+    },
+    {
+     "w": "every",
+     "at": 489,
+     "end": 499
+    },
+    {
+     "w": "version",
+     "at": 499,
+     "end": 512
+    },
+    {
+     "w": "of",
+     "at": 512,
+     "end": 518
+    },
+    {
+     "w": "every",
+     "at": 518,
+     "end": 528
+    },
+    {
+     "w": "file.",
+     "at": 528,
+     "end": 539
+    },
+    {
+     "w": "One",
+     "at": 539,
+     "end": 546
+    },
+    {
+     "w": "search",
+     "at": 546,
+     "end": 558
+    },
+    {
+     "w": "finds",
+     "at": 558,
+     "end": 568
+    },
+    {
+     "w": "the",
+     "at": 568,
+     "end": 575
+    },
+    {
+     "w": "exact",
+     "at": 575,
+     "end": 585
+    },
+    {
+     "w": "commit.",
+     "at": 585,
+     "end": 599
+    }
+   ]
+  },
+  {
+   "scene": "reveal",
+   "start": 643,
+   "dur": 107,
+   "text": "One more command, and the key is back. In under six milliseconds.",
+   "words": [
+    {
+     "w": "One",
+     "at": 643,
+     "end": 649
+    },
+    {
+     "w": "more",
+     "at": 649,
+     "end": 658
+    },
+    {
+     "w": "command,",
+     "at": 658,
+     "end": 671
+    },
+    {
+     "w": "and",
+     "at": 671,
+     "end": 678
+    },
+    {
+     "w": "the",
+     "at": 678,
+     "end": 685
+    },
+    {
+     "w": "key",
+     "at": 685,
+     "end": 692
+    },
+    {
+     "w": "is",
+     "at": 692,
+     "end": 697
+    },
+    {
+     "w": "back.",
+     "at": 697,
+     "end": 707
+    },
+    {
+     "w": "In",
+     "at": 707,
+     "end": 712
+    },
+    {
+     "w": "under",
+     "at": 712,
+     "end": 722
+    },
+    {
+     "w": "six",
+     "at": 722,
+     "end": 729
+    },
+    {
+     "w": "milliseconds.",
+     "at": 729,
+     "end": 750
+    }
+   ]
+  },
+  {
+   "scene": "scan",
+   "start": 805,
+   "dur": 142,
+   "text": "Secret scanners, good and bad, run a pattern search just like this, across every commit.",
+   "words": [
+    {
+     "w": "Secret",
+     "at": 805,
+     "end": 815
+    },
+    {
+     "w": "scanners,",
+     "at": 815,
+     "end": 830
+    },
+    {
+     "w": "good",
+     "at": 830,
+     "end": 839
+    },
+    {
+     "w": "and",
+     "at": 839,
+     "end": 845
+    },
+    {
+     "w": "bad,",
+     "at": 845,
+     "end": 854
+    },
+    {
+     "w": "run",
+     "at": 854,
+     "end": 860
+    },
+    {
+     "w": "a",
+     "at": 860,
+     "end": 865
+    },
+    {
+     "w": "pattern",
+     "at": 865,
+     "end": 877
+    },
+    {
+     "w": "search",
+     "at": 877,
+     "end": 888
+    },
+    {
+     "w": "just",
+     "at": 888,
+     "end": 896
+    },
+    {
+     "w": "like",
+     "at": 896,
+     "end": 904
+    },
+    {
+     "w": "this,",
+     "at": 904,
+     "end": 914
+    },
+    {
+     "w": "across",
+     "at": 914,
+     "end": 925
+    },
+    {
+     "w": "every",
+     "at": 925,
+     "end": 934
+    },
+    {
+     "w": "commit.",
+     "at": 934,
+     "end": 947
+    }
+   ]
+  },
+  {
+   "scene": "fix",
+   "start": 975,
+   "dur": 32,
+   "text": "So here's the fix.",
+   "words": [
+    {
+     "w": "So",
+     "at": 975,
+     "end": 980
+    },
+    {
+     "w": "here's",
+     "at": 980,
+     "end": 991
+    },
+    {
+     "w": "the",
+     "at": 991,
+     "end": 998
+    },
+    {
+     "w": "fix.",
+     "at": 998,
+     "end": 1007
+    }
+   ]
+  },
+  {
+   "scene": "fix",
+   "start": 1015,
+   "dur": 117,
+   "text": "One. Revoke and rotate the key first. That's GitHub's own advice.",
+   "words": [
+    {
+     "w": "One.",
+     "at": 1015,
+     "end": 1024
+    },
+    {
+     "w": "Revoke",
+     "at": 1024,
+     "end": 1036
+    },
+    {
+     "w": "and",
+     "at": 1036,
+     "end": 1043
+    },
+    {
+     "w": "rotate",
+     "at": 1043,
+     "end": 1056
+    },
+    {
+     "w": "the",
+     "at": 1056,
+     "end": 1063
+    },
+    {
+     "w": "key",
+     "at": 1063,
+     "end": 1071
+    },
+    {
+     "w": "first.",
+     "at": 1071,
+     "end": 1083
+    },
+    {
+     "w": "That's",
+     "at": 1083,
+     "end": 1095
+    },
+    {
+     "w": "GitHub's",
+     "at": 1095,
+     "end": 1110
+    },
+    {
+     "w": "own",
+     "at": 1110,
+     "end": 1118
+    },
+    {
+     "w": "advice.",
+     "at": 1118,
+     "end": 1132
+    }
+   ]
+  },
+  {
+   "scene": "fix",
+   "start": 1140,
+   "dur": 151,
+   "text": "Two. Rewrite history with git filter-repo. But clones and forks can still keep copies.",
+   "words": [
+    {
+     "w": "Two.",
+     "at": 1140,
+     "end": 1148
+    },
+    {
+     "w": "Rewrite",
+     "at": 1148,
+     "end": 1162
+    },
+    {
+     "w": "history",
+     "at": 1162,
+     "end": 1175
+    },
+    {
+     "w": "with",
+     "at": 1175,
+     "end": 1184
+    },
+    {
+     "w": "git",
+     "at": 1184,
+     "end": 1192
+    },
+    {
+     "w": "filter-repo.",
+     "at": 1192,
+     "end": 1213
+    },
+    {
+     "w": "But",
+     "at": 1213,
+     "end": 1220
+    },
+    {
+     "w": "clones",
+     "at": 1220,
+     "end": 1232
+    },
+    {
+     "w": "and",
+     "at": 1232,
+     "end": 1240
+    },
+    {
+     "w": "forks",
+     "at": 1240,
+     "end": 1250
+    },
+    {
+     "w": "can",
+     "at": 1250,
+     "end": 1258
+    },
+    {
+     "w": "still",
+     "at": 1258,
+     "end": 1268
+    },
+    {
+     "w": "keep",
+     "at": 1268,
+     "end": 1277
+    },
+    {
+     "w": "copies.",
+     "at": 1277,
+     "end": 1291
+    }
+   ]
+  },
+  {
+   "scene": "fix",
+   "start": 1299,
+   "dur": 123,
+   "text": "Three. Turn on push protection, so secrets get blocked before they land.",
+   "words": [
+    {
+     "w": "Three.",
+     "at": 1299,
+     "end": 1310
+    },
+    {
+     "w": "Turn",
+     "at": 1310,
+     "end": 1319
+    },
+    {
+     "w": "on",
+     "at": 1319,
+     "end": 1325
+    },
+    {
+     "w": "push",
+     "at": 1325,
+     "end": 1333
+    },
+    {
+     "w": "protection,",
+     "at": 1333,
+     "end": 1352
+    },
+    {
+     "w": "so",
+     "at": 1352,
+     "end": 1358
+    },
+    {
+     "w": "secrets",
+     "at": 1358,
+     "end": 1371
+    },
+    {
+     "w": "get",
+     "at": 1371,
+     "end": 1378
+    },
+    {
+     "w": "blocked",
+     "at": 1378,
+     "end": 1391
+    },
+    {
+     "w": "before",
+     "at": 1391,
+     "end": 1403
+    },
+    {
+     "w": "they",
+     "at": 1403,
+     "end": 1411
+    },
+    {
+     "w": "land.",
+     "at": 1411,
+     "end": 1422
+    }
+   ]
+  },
+  {
+   "scene": "fix",
+   "start": 1430,
+   "dur": 133,
+   "text": "And on AWS, prefer short-lived credentials, like IAM roles.",
+   "words": [
+    {
+     "w": "And",
+     "at": 1430,
+     "end": 1439
+    },
+    {
+     "w": "on",
+     "at": 1439,
+     "end": 1447
+    },
+    {
+     "w": "AWS,",
+     "at": 1447,
+     "end": 1458
+    },
+    {
+     "w": "prefer",
+     "at": 1458,
+     "end": 1474
+    },
+    {
+     "w": "short-lived",
+     "at": 1474,
+     "end": 1499
+    },
+    {
+     "w": "credentials,",
+     "at": 1499,
+     "end": 1526
+    },
+    {
+     "w": "like",
+     "at": 1526,
+     "end": 1537
+    },
+    {
+     "w": "IAM",
+     "at": 1537,
+     "end": 1547
+    },
+    {
+     "w": "roles.",
+     "at": 1547,
+     "end": 1563
+    }
+   ]
+  },
+  {
+   "scene": "outro",
+   "start": 1591,
+   "dur": 111,
+   "text": "Follow AI SecOps Lab, for real security experiments.",
+   "words": [
+    {
+     "w": "Follow",
+     "at": 1591,
+     "end": 1605
+    },
+    {
+     "w": "AI",
+     "at": 1605,
+     "end": 1612
+    },
+    {
+     "w": "SecOps",
+     "at": 1612,
+     "end": 1627
+    },
+    {
+     "w": "Lab,",
+     "at": 1627,
+     "end": 1638
+    },
+    {
+     "w": "for",
+     "at": 1638,
+     "end": 1647
+    },
+    {
+     "w": "real",
+     "at": 1647,
+     "end": 1658
+    },
+    {
+     "w": "security",
+     "at": 1658,
+     "end": 1676
+    },
+    {
+     "w": "experiments.",
+     "at": 1676,
+     "end": 1702
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "title": "You deleted the API key. Git didn't.",
+ "scenes": [
+  {
+   "id": "hook",
+   "min": 3.4,
+   "lines": [
+    "You deleted the API key. Git didn't."
+   ],
+   "sfx": [
+    [
+     "glitch",
+     0.05
+    ],
+    [
+     "impact",
+     1.35
+    ]
+   ]
+  },
+  {
+   "id": "setup",
+   "min": 5.2,
+   "lines": [
+    "Real test. I committed a fake AWS key to this project, then removed it a few commits later."
+   ],
+   "sfx": [
+    [
+     "whoosh",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "gone",
+   "min": 4.6,
+   "lines": [
+    "The file is gone. It's not in the folder, and cat can't find it."
+   ],
+   "sfx": [
+    [
+     "whoosh",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "history",
+   "min": 6.0,
+   "lines": [
+    "But Git stores every version of every file. One search finds the exact commit."
+   ],
+   "sfx": [
+    [
+     "whoosh",
+     0
+    ],
+    [
+     "riser",
+     4.2
+    ]
+   ]
+  },
+  {
+   "id": "reveal",
+   "min": 5.4,
+   "lines": [
+    "One more command, and the key is back. In under six milliseconds."
+   ],
+   "sfx": [
+    [
+     "impact",
+     1.4
+    ],
+    [
+     "glitch",
+     1.4
+    ]
+   ]
+  },
+  {
+   "id": "scan",
+   "min": 4.8,
+   "lines": [
+    "Secret scanners, good and bad, run a pattern search just like this, across every commit."
+   ],
+   "sfx": [
+    [
+     "whoosh",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "fix",
+   "min": 13.0,
+   "lines": [
+    "So here's the fix.",
+    "One. Revoke and rotate the key first. That's GitHub's own advice.",
+    "Two. Rewrite history with git filter-repo. But clones and forks can still keep copies.",
+    "Three. Turn on push protection, so secrets get blocked before they land.",
+    "And on AWS, prefer short-lived credentials, like IAM roles."
+   ],
+   "sfx": [
+    [
+     "whoosh",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "outro",
+   "min": 5.0,
+   "lines": [
+    "Follow AI SecOps Lab, for real security experiments."
+   ],
+   "sfx": [
+    [
+     "impact",
+     0.0
+    ],
+    [
+     "ding",
+     0.6
+    ]
+   ]
+  }
+ ]
+}
