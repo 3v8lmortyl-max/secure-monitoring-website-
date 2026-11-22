@@ -26,12 +26,12 @@ const Hook: React.FC = () => {
         <div style={{opacity: a, transform: `translateY(${(1 - a) * 40}px)`, fontFamily: C.head, fontWeight: 900, fontSize: 104, lineHeight: 1.0, color: C.text, textAlign: 'center', letterSpacing: '-0.02em'}}>
           YOU DELETED
           <br />
-          THE <span style={{color: C.cyan}}>API KEY.</span>
+          THE <span style={{color: C.accent}}>API KEY.</span>
         </div>
       </At>
       <At y={720}>
         <div style={{position: 'relative', opacity: b, transform: `scale(${1.3 - 0.3 * b}) translateX(${jitter}px)`}}>
-          {[C.cyan, C.red].map((c, i) => (
+          {['#F5F7FA', C.red].map((c, i) => (
             <div key={c} style={{position: 'absolute', inset: 0, fontFamily: C.head, fontWeight: 900, fontSize: 150, color: c, opacity: f < 60 ? 0.7 : 0, transform: `translateX(${(i ? 8 : -8) * (f < 60 ? 1 : 0)}px)`, mixBlendMode: 'screen'}}>GIT DIDN'T.</div>
           ))}
           <div style={{position: 'relative', fontFamily: C.head, fontWeight: 900, fontSize: 150, color: C.red, textShadow: `0 0 40px ${C.red}88`}}>GIT DIDN'T.</div>
@@ -39,7 +39,7 @@ const Hook: React.FC = () => {
       </At>
       <At y={1010}>
         <div style={{opacity: b, fontFamily: C.mono, fontSize: 30, color: C.muted}}>
-          <span style={{color: C.green}}>$</span> git rm .env <span style={{color: C.green}}>✓</span>
+          <span style={{color: C.accent}}>$</span> git rm .env <span style={{color: C.text}}>✓</span>
         </div>
       </At>
     </>
@@ -51,7 +51,7 @@ const Setup: React.FC = () => (
     <Terminal
       extra={(li, cmd) => {
         if (cmd !== 'git log --oneline') return null;
-        const tag = li === 3 ? ['FAKE KEY ADDED', C.red] : li === 0 ? ['KEY REMOVED', C.green] : null;
+        const tag = li === 3 ? ['FAKE KEY ADDED', C.red] : li === 0 ? ['KEY REMOVED', C.muted] : null;
         return tag ? <span style={{position: 'absolute', right: 0, top: 6, fontSize: 18, color: tag[1] as string, border: `1.5px solid ${tag[1]}`, borderRadius: 8, padding: '0 10px'}}>{tag[0]}</span> : null;
       }}
     />
@@ -89,16 +89,16 @@ const History: React.FC = () => {
           const p = interpolate(f, [8 + i * 6, 24 + i * 6], [0, 1], {...clamp, easing: ease});
           return (
             <div key={c.hash} style={{opacity: p, fontFamily: C.mono, fontSize: 22, lineHeight: 1.25}}>
-              <div style={{color: C.cyan}}>{c.hash}</div>
+              <div style={{color: C.text}}>{c.hash}</div>
               <div style={{color: C.muted, fontSize: 18}}>{c.msg}</div>
-              <div style={{color: c.env ? C.red : C.green, fontSize: 17}}>{c.env ? '● .env inside' : '○ .env removed'}</div>
+              <div style={{color: c.env ? C.red : C.muted, fontSize: 17}}>{c.env ? '● .env inside' : '○ .env removed'}</div>
             </div>
           );
         })}
       </div>
       <div style={{position: 'absolute', right: 70, top: 300, fontFamily: C.head, fontWeight: 800, fontSize: 30, color: C.text, textAlign: 'right'}}>
         EVERY COMMIT =<br />
-        <span style={{color: C.cyan}}>A FULL SNAPSHOT</span>
+        <span style={{color: C.accent}}>A FULL SNAPSHOT</span>
       </div>
       <At y={960}>
         <Terminal width={980} />
@@ -120,7 +120,7 @@ const Reveal: React.FC = () => {
       </At>
       <At y={780}>
         <div style={{opacity: badge, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18}}>
-          <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 130, color: C.cyan, lineHeight: 1, textShadow: `0 0 40px ${C.cyan}66`}}>3.9 ms</div>
+          <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 130, color: '#fff', lineHeight: 1, textShadow: `0 0 40px ${C.accent}88`}}>3.9 <span style={{color: C.accent}}>ms</span></div>
           <div style={{fontFamily: C.mono, fontSize: 22, color: C.red, border: `1.5px solid ${C.red}`, padding: '6px 14px', borderRadius: 8}}>FAKE KEY · GENERATED FOR THIS DEMO</div>
         </div>
       </At>
@@ -146,8 +146,8 @@ const Scan: React.FC = () => {
             ['1', 'SECRET FOUND'],
             ['5.9', 'MS'],
           ].map(([v, l]) => (
-            <div key={l} style={{width: 290, padding: '22px 0', textAlign: 'center', borderRadius: 18, background: 'rgba(31,41,55,0.7)', border: `1.5px solid ${l.includes('SECRET') ? C.red : C.cyan}66`}}>
-              <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 72, color: l.includes('SECRET') ? C.red : C.cyan}}>{v}</div>
+            <div key={l} style={{width: 290, padding: '22px 0', textAlign: 'center', borderRadius: 18, background: 'rgba(31,41,55,0.7)', border: `1.5px solid ${l.includes('SECRET') ? C.red : C.secondary}`}}>
+              <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 72, color: l.includes('SECRET') ? C.red : C.text}}>{v}</div>
               <div style={{fontFamily: C.mono, fontSize: 20, color: C.muted, letterSpacing: '0.1em'}}>{l}</div>
             </div>
           ))}
@@ -164,14 +164,14 @@ const Fix: React.FC = () => {
     <>
       <At y={290}>
         <div style={{fontFamily: C.head, fontWeight: 900, fontSize: 78, color: C.text}}>
-          THE <span style={{color: C.green}}>FIX</span>
+          THE <span style={{color: C.accent}}>FIX</span>
         </div>
       </At>
       <div style={{position: 'absolute', left: 60, top: 420, display: 'flex', flexDirection: 'column', gap: 24}}>
         <FixCard n="01" title="Revoke & rotate first" body="Assume the key is compromised. Kill it, issue a new one." source="GitHub Docs" at={at(1)} color={C.red} icon={<Icon d={<><path d="M21 2l-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zM15.5 7.5l3 3L22 7l-3-3" /></>} />} />
-        <FixCard n="02" title="Rewrite history" body="git filter-repo. Clones & forks may still hold copies." source="GitHub Docs" at={at(2)} color={C.purple} icon={<Icon d={<><circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="12" r="2.5" /><path d="M6 8.5v7M8.3 7.2l7.4 3.6" /></>} />} />
-        <FixCard n="03" title="Push protection" body="Secrets get blocked before they reach the repo." source="GitHub Docs" at={at(3)} color={C.cyan} icon={<Icon d={<><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></>} />} />
-        <FixCard n="+" title="Short-lived credentials" body="On AWS, prefer IAM roles over long-term access keys." source="AWS IAM Docs" at={at(4)} color={C.green} icon={<Icon d={<><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>} />} />
+        <FixCard n="02" title="Rewrite history" body="git filter-repo. Clones & forks may still hold copies." source="GitHub Docs" at={at(2)} color={C.text} icon={<Icon d={<><circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="12" r="2.5" /><path d="M6 8.5v7M8.3 7.2l7.4 3.6" /></>} />} />
+        <FixCard n="03" title="Push protection" body="Secrets get blocked before they reach the repo." source="GitHub Docs" at={at(3)} color={C.accent} icon={<Icon d={<><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></>} />} />
+        <FixCard n="+" title="Short-lived credentials" body="On AWS, prefer IAM roles over long-term access keys." source="AWS IAM Docs" at={at(4)} color={C.text} icon={<Icon d={<><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>} />} />
       </div>
     </>
   );
@@ -185,13 +185,13 @@ const Outro: React.FC = () => {
   return (
     <At y={360}>
       <div style={{opacity: p, transform: `scale(${0.9 + 0.1 * p})`, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <Img src={staticFile('secops/emblem.png')} style={{width: 420, height: 412, objectFit: 'contain', filter: `drop-shadow(0 0 40px ${C.cyan}66)`}} />
+        <Img src={staticFile('secops/emblem.png')} style={{width: 440, height: 440, objectFit: 'contain', filter: `drop-shadow(0 0 50px ${C.accent}55)`}} />
         <div style={{fontFamily: C.head, fontWeight: 800, fontSize: 104, color: '#fff', letterSpacing: '-0.02em', marginTop: 10}}>
-          AI Sec<span style={{color: C.cyan}}>Ops</span> Lab
+          <i>AI SecOps <span style={{color: C.accent}}>Lab</span></i>
         </div>
-        <div style={{fontFamily: C.body, fontSize: 28, letterSpacing: '0.32em', color: C.muted, marginTop: 10}}>AI · CYBERSECURITY · ENTERPRISE TECH</div>
-        <div style={{opacity: btn, transform: `scale(${pulse})`, marginTop: 60, padding: '26px 64px', borderRadius: 999, background: `linear-gradient(90deg, ${C.purple}, ${C.cyan})`, fontFamily: C.head, fontWeight: 900, fontSize: 46, color: C.navy, boxShadow: `0 0 50px ${C.cyan}66`}}>
-          FOLLOW FOR REAL LABS
+        <div style={{fontFamily: C.body, fontSize: 26, letterSpacing: '0.3em', color: C.muted, marginTop: 10}}>AI <span style={{color: C.accent}}>/</span> CYBERSECURITY <span style={{color: C.accent}}>/</span> ENTERPRISE TECH</div>
+        <div style={{opacity: btn, transform: `scale(${pulse})`, marginTop: 60, padding: '26px 64px', borderRadius: 999, background: C.accent, fontFamily: C.head, fontWeight: 900, fontSize: 46, color: '#fff', boxShadow: `0 0 50px ${C.accent}88`}}>
+          FOLLOW @AISECOPSLAB
         </div>
       </div>
     </At>

@@ -26,7 +26,7 @@ Real lab, real output. The key was generated for this demo and never existed in 
 - GitHub Docs: About push protection. https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection
 - AWS IAM: Manage access keys for IAM users. https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
 
-Follow AI SecOps Lab for real security experiments.
+Follow @aisecopslab for real security experiments.
 
 ## Hashtags (max 5)
 #cybersecurity #devsecops #git #infosec #shorts

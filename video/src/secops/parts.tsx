@@ -1,4 +1,4 @@
-/** AI SecOps Lab design system + motion components (brand: #00E5FF / #8B5CF6 / #22C55E on #0B0F19; Montserrat + Inter). */
+/** AI SecOps Lab design system + motion components (brand v2: #E63946 accent / #F5F7FA primary on #0B0D12; Montserrat + Inter). */
 import React, {createContext, useContext} from 'react';
 import {ThreeCanvas} from '@remotion/three';
 import * as THREE from 'three';
@@ -23,15 +23,18 @@ if (typeof document !== 'undefined') {
     .catch(() => continueRender(h));
 }
 
+/** Brand v2: Background #0B0D12 · Primary #F5F7FA · Accent #E63946 · Surface #1F2937 · Secondary #374151. */
 export const C = {
-  cyan: '#00E5FF',
-  purple: '#8B5CF6',
-  green: '#22C55E',
-  red: '#FF3B5C',
-  navy: '#0B0F19',
+  accent: '#E63946',
+  cyan: '#E63946', // legacy alias: the accent colour
+  purple: '#9CA3AF', // legacy alias: neutral secondary text/lines
+  green: '#F5F7FA', // legacy alias: "ok / success" states render in primary white
+  red: '#E63946',
+  navy: '#0B0D12',
   slate: '#1F2937',
-  text: '#E5E7EB',
-  muted: '#94A3B8',
+  secondary: '#374151',
+  text: '#F5F7FA',
+  muted: '#9CA3AF',
   head: "'Montserrat', 'Inter', sans-serif",
   body: "'Inter', sans-serif",
   mono: "'JetBrains Mono', ui-monospace, monospace",
@@ -48,7 +51,7 @@ export const Backdrop: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: C.navy, overflow: 'hidden'}}>
-      <AbsoluteFill style={{background: `radial-gradient(60% 35% at 20% 18%, rgba(139,92,246,0.22), transparent 70%), radial-gradient(55% 35% at 85% 70%, rgba(0,229,255,0.16), transparent 70%)`}} />
+      <AbsoluteFill style={{background: `radial-gradient(60% 35% at 18% 16%, rgba(230,57,70,0.20), transparent 70%), radial-gradient(55% 35% at 88% 72%, rgba(230,57,70,0.12), transparent 70%)`}} />
       {/* perspective grid floor */}
       <div style={{position: 'absolute', left: -600, right: -600, bottom: -200, height: 1100, perspective: 900, overflow: 'hidden'}}>
         <div
@@ -57,7 +60,7 @@ export const Backdrop: React.FC = () => {
             inset: 0,
             transform: 'rotateX(68deg)',
             transformOrigin: '50% 100%',
-            backgroundImage: `linear-gradient(rgba(0,229,255,0.22) 2px, transparent 2px), linear-gradient(90deg, rgba(0,229,255,0.22) 2px, transparent 2px)`,
+            backgroundImage: `linear-gradient(rgba(230,57,70,0.20) 2px, transparent 2px), linear-gradient(90deg, rgba(230,57,70,0.20) 2px, transparent 2px)`,
             backgroundSize: '120px 120px',
             backgroundPosition: `0 ${(f * 2) % 120}px`,
             WebkitMaskImage: 'linear-gradient(0deg, #000 10%, transparent 75%)',
@@ -82,18 +85,18 @@ export const TopBar: React.FC = () => {
   const p = f / timeline.total;
   return (
     <>
-      <div style={{position: 'absolute', left: 0, top: 0, height: 8, width: `${p * 100}%`, background: `linear-gradient(90deg, ${C.purple}, ${C.cyan})`, boxShadow: `0 0 18px ${C.cyan}`}} />
+      <div style={{position: 'absolute', left: 0, top: 0, height: 8, width: `${p * 100}%`, background: `linear-gradient(90deg, #8f1d27, ${C.accent})`, boxShadow: `0 0 18px ${C.accent}`}} />
       <div style={{position: 'absolute', left: 60, top: 70, display: 'flex', alignItems: 'center', gap: 18}}>
         <Img src={staticFile('secops/emblem.png')} style={{width: 74, height: 74, objectFit: 'contain'}} />
         <div>
           <div style={{fontFamily: C.head, fontWeight: 800, fontSize: 32, color: C.text, letterSpacing: '-0.01em'}}>
-            AI Sec<span style={{color: C.cyan}}>Ops</span> Lab
+            AI SecOps <span style={{color: C.accent}}>Lab</span>
           </div>
           <div style={{fontFamily: C.mono, fontSize: 19, color: C.muted, letterSpacing: '0.12em'}}>LAB 01 · DEVSECOPS</div>
         </div>
       </div>
-      <div style={{position: 'absolute', right: 60, top: 92, display: 'flex', alignItems: 'center', gap: 10, fontFamily: C.mono, fontSize: 20, color: C.green, border: `2px solid ${C.green}88`, padding: '8px 16px', borderRadius: 10}}>
-        <div style={{width: 12, height: 12, borderRadius: 6, background: C.green, opacity: Math.floor(f / 15) % 2 ? 0.35 : 1}} />
+      <div style={{position: 'absolute', right: 60, top: 92, display: 'flex', alignItems: 'center', gap: 10, fontFamily: C.head, fontWeight: 800, fontSize: 21, color: '#fff', background: C.accent, padding: '9px 18px', borderRadius: 8, boxShadow: `0 0 24px ${C.accent}66`}}>
+        <div style={{width: 12, height: 12, borderRadius: 6, background: '#fff', opacity: Math.floor(f / 15) % 2 ? 0.35 : 1}} />
         REAL TEST
       </div>
     </>
@@ -130,13 +133,13 @@ export const Terminal: React.FC<{width?: number; hot?: boolean; extra?: (lineIdx
   const sc = useSceneInfo();
   const t0 = sc.start;
   return (
-    <div style={{width, borderRadius: 18, overflow: 'hidden', background: 'rgba(10,14,24,0.92)', border: `1.5px solid ${C.cyan}55`, boxShadow: `0 0 50px ${C.cyan}22, 0 30px 80px rgba(0,0,0,0.6)`}}>
+    <div style={{width, borderRadius: 18, overflow: 'hidden', background: 'rgba(11,13,18,0.94)', border: `1.5px solid ${C.secondary}`, boxShadow: `0 0 60px ${C.accent}22, 0 30px 80px rgba(0,0,0,0.6)`}}>
       <div style={{height: 54, background: C.slate, display: 'flex', alignItems: 'center', padding: '0 22px', gap: 10}}>
         {['#ff5f57', '#febc2e', '#28c840'].map((c) => (
           <div key={c} style={{width: 15, height: 15, borderRadius: 8, background: c}} />
         ))}
         <div style={{marginLeft: 18, fontFamily: C.mono, fontSize: 20, color: C.muted}}>{title}</div>
-        <div style={{marginLeft: 'auto', fontFamily: C.mono, fontSize: 17, color: C.cyan, letterSpacing: '0.12em'}}>LIVE LAB</div>
+        <div style={{marginLeft: 'auto', fontFamily: C.head, fontWeight: 800, fontSize: 16, color: '#fff', background: C.accent, padding: '4px 10px', borderRadius: 6, letterSpacing: '0.08em'}}>● LAB</div>
       </div>
       <div style={{padding: '24px 30px 32px', fontFamily: C.mono, fontSize: 34, lineHeight: 1.45, color: C.text, minHeight: 120}}>
         {sc.terminal.map((t, idx) => {
@@ -151,9 +154,9 @@ export const Terminal: React.FC<{width?: number; hot?: boolean; extra?: (lineIdx
           return (
             <div key={idx} style={{marginBottom: 10}}>
               <div style={{whiteSpace: 'pre-wrap', wordBreak: 'break-all'}}>
-                <span style={{color: C.green}}>dev@lab</span> <span style={{color: C.cyan}}>acme-api</span> <span style={{color: C.purple}}>%</span> {typed}
+                <span style={{color: C.muted}}>dev@lab</span> <span style={{color: C.accent}}>acme-api</span> <span style={{color: C.muted}}>%</span> {typed}
                 {cursorOn ? <span style={{background: C.text, color: C.text}}>_</span> : null}
-                {showOut ? <span style={{float: 'right', fontSize: 20, color: C.cyan, marginTop: 8}}>{res.ms} ms</span> : null}
+                {showOut ? <span style={{float: 'right', fontSize: 20, color: C.accent, marginTop: 8}}>{res.ms} ms</span> : null}
               </div>
               {showOut
                 ? lines.slice(0, reveal + 1).map((ln, li) => (
@@ -204,10 +207,10 @@ export const Captions: React.FC = () => {
               fontSize: 72,
               textTransform: 'uppercase',
               letterSpacing: '-0.01em',
-              color: active ? C.cyan : said ? '#fff' : 'rgba(255,255,255,0.55)',
+              color: active ? C.accent : said ? '#fff' : 'rgba(255,255,255,0.55)',
               transform: `scale(${said ? pop : 0.85})`,
               display: 'inline-block',
-              textShadow: active ? `0 0 26px ${C.cyan}aa, 0 6px 18px rgba(0,0,0,0.9)` : '0 6px 18px rgba(0,0,0,0.9)',
+              textShadow: active ? `0 0 26px ${C.accent}aa, 0 6px 18px rgba(0,0,0,0.9)` : '0 6px 18px rgba(0,0,0,0.9)',
               WebkitTextStroke: '2px rgba(0,0,0,0.55)',
             }}
           >
@@ -239,15 +242,15 @@ export const Vault3D: React.FC<{w: number; h: number}> = ({w, h}) => {
           return (
             <group key={i} position={[0, y + drop, 0]}>
               <mesh geometry={box}>
-                <meshPhysicalMaterial color={hit ? '#00E5FF' : '#1F2937'} transparent opacity={hit ? 0.5 : 0.32} roughness={0.2} metalness={0.3} emissive={hit ? '#00E5FF' : '#0B0F19'} emissiveIntensity={hit ? 0.5 : 0.1} />
+                <meshPhysicalMaterial color={hit ? '#F5F7FA' : '#1F2937'} transparent opacity={hit ? 0.45 : 0.34} roughness={0.2} metalness={0.3} emissive={hit ? '#F5F7FA' : '#0B0D12'} emissiveIntensity={hit ? 0.35 : 0.1} />
               </mesh>
               <lineSegments geometry={edge(box)}>
-                <lineBasicMaterial color={i === 0 ? '#8B5CF6' : '#00E5FF'} />
+                <lineBasicMaterial color={i === 0 ? '#9CA3AF' : '#F5F7FA'} />
               </lineSegments>
               {hasEnv ? (
                 <mesh position={[1.4, 0.02, 0.4]}>
                   <boxGeometry args={[0.5, 0.3, 0.5]} />
-                  <meshStandardMaterial color="#FF3B5C" emissive="#FF3B5C" emissiveIntensity={1.6 + Math.sin(f / 5 + i) * 0.4} />
+                  <meshStandardMaterial color="#E63946" emissive="#E63946" emissiveIntensity={1.6 + Math.sin(f / 5 + i) * 0.4} />
                 </mesh>
               ) : null}
             </group>
@@ -255,7 +258,7 @@ export const Vault3D: React.FC<{w: number; h: number}> = ({w, h}) => {
         })}
         <mesh position={[0, beam, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <planeGeometry args={[6.4, 4.2]} />
-          <meshBasicMaterial color="#00E5FF" transparent opacity={f > 70 && f < 140 ? 0.16 : 0} side={THREE.DoubleSide} />
+          <meshBasicMaterial color="#F5F7FA" transparent opacity={f > 70 && f < 140 ? 0.14 : 0} side={THREE.DoubleSide} />
         </mesh>
       </group>
     </ThreeCanvas>
@@ -273,7 +276,7 @@ export const FixCard: React.FC<{n: string; title: string; body: string; source: 
   const p = interpolate(f, [at, at + 14], [0, 1], {...clamp, easing: ease});
   if (p <= 0) return null;
   return (
-    <div style={{opacity: p, transform: `translateX(${(1 - p) * 90}px)`, display: 'flex', gap: 26, alignItems: 'center', width: 960, padding: '26px 30px', borderRadius: 22, background: 'rgba(31,41,55,0.72)', border: `1.5px solid ${color}66`, boxShadow: `0 0 34px ${color}22`}}>
+    <div style={{opacity: p, transform: `translateX(${(1 - p) * 90}px)`, display: 'flex', gap: 26, alignItems: 'center', width: 960, padding: '26px 30px', borderRadius: 22, background: 'rgba(31,41,55,0.78)', border: `1.5px solid ${color}88`, boxShadow: `0 0 34px ${color}22`}}>
       <div style={{width: 96, height: 96, flexShrink: 0, borderRadius: 22, border: `2px solid ${color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color}}>{icon}</div>
       <div style={{flex: 1}}>
         <div style={{fontFamily: C.head, fontWeight: 800, fontSize: 42, color: C.text, letterSpacing: '-0.01em'}}>
